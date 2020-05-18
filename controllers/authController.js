@@ -1,6 +1,7 @@
 const validator = require('validator');
 const util = require('util');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 const User = require('../models/userModel');
 const hataYakala = require('../utils/hataYakala');
 const AppError = require('../utils/appError');
@@ -94,6 +95,29 @@ exports.kayitOl = hataYakala(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     token,
+  });
+});
+
+exports.emailTokenKontrol = hataYakala(async (req, res, next) => {
+  const { token } = req.params;
+  const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
+
+  const curUser = await User.findOne({ emailVerifyCode: hashedToken });
+
+  if (!curUser) {
+    return next(new AppError('Geçersiz token!', 400));
+  }
+
+  curUser.emailVerifyCode = undefined;
+  curUser.emailVerify = true;
+  await curUser.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    status: 'success',
+    message: 'Email onaylanmıştır',
+    data: {
+      curUser,
+    },
   });
 });
 
