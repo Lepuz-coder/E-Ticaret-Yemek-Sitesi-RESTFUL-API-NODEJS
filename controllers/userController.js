@@ -19,7 +19,8 @@ exports.kullanicilariAl = hataYakala(async (req, res, next) => {
     .parcalaraAyir()
     .fieldArama()
     .sayfalama()
-    .sutun();
+    .sutun()
+    .siralama();
 
   const kullanicilar = await apiEklenti.query;
 

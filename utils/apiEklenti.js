@@ -8,7 +8,7 @@ module.exports = class ApiEklenti {
   parcalaraAyir() {
     const linkQuery = { ...this.link };
 
-    const fieldAdlariDisindakiler = ['sayfa', 'limit', 'sutunlar']; //Buraya eklenti yapıcaksın
+    const fieldAdlariDisindakiler = ['sayfa', 'limit', 'sutunlar', 'sira']; //Buraya eklenti yapıcaksın
 
     Object.keys(linkQuery).forEach((el) => {
       if (fieldAdlariDisindakiler.includes(el)) delete linkQuery[el];
@@ -20,14 +20,22 @@ module.exports = class ApiEklenti {
 
   //Başında / işareti var ise regular expression kullanır
   fieldArama() {
-    Object.keys(this.fieldAramaFilter).forEach((el) => {
-      if (this.fieldAramaFilter[el].startsWith('/')) {
-        this.fieldAramaFilter[el] = this.fieldAramaFilter[el].split('/')[1];
-        this.fieldAramaFilter[el] = new RegExp(this.fieldAramaFilter[el], 'i');
+    let stringFilter = JSON.stringify(this.fieldAramaFilter);
+    stringFilter = stringFilter.replace(
+      /\b(lte|lt|gte|gt)\b/g,
+      (match) => `$${match}`
+    );
+
+    const filter = { ...JSON.parse(stringFilter) };
+
+    Object.keys(filter).forEach((el) => {
+      if (typeof filter[el] === 'string' && filter[el].startsWith('/')) {
+        filter[el] = filter[el].split('/')[1];
+        filter[el] = new RegExp(filter[el], 'i');
       }
     });
 
-    this.query = this.query.find(this.fieldAramaFilter);
+    this.query = this.query.find(filter);
     return this;
   }
 
@@ -45,10 +53,16 @@ module.exports = class ApiEklenti {
 
   sutun() {
     if (this.link.sutunlar) {
-      const sutunlar = this.link.sutunlar.split(',');
-      sutunlar.forEach((el) => {
-        this.query = this.query.select(el);
-      });
+      const sutunlar = this.link.sutunlar.replace(/,/g, ' ');
+      this.query = this.query.select(sutunlar);
+    }
+    return this;
+  }
+
+  siralama() {
+    if (this.link.sira) {
+      const siralama = this.link.sira.replace(/,/, ' ');
+      this.query = this.query.sort(siralama);
     }
     return this;
   }
