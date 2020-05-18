@@ -5,6 +5,7 @@ class Email {
     this.to = kullanici.email;
     this.from = process.env.EMAIL_FROM;
     this.link = link;
+    this.isim = kullanici.kullanici_ad;
   }
 
   transporter() {
@@ -25,6 +26,15 @@ class Email {
       to: this.to,
       subject: baslik,
       text: mesaj,
+    });
+  }
+
+  async emailVerifyTokenGonder() {
+    await this.transporter().sendMail({
+      from: this.from,
+      to: this.to,
+      subject: `Hoşgeldiniz ${this.isim}`,
+      text: `Emailinizi onaylamak için bu linke gidiniz:\n ${this.link}`,
     });
   }
 }

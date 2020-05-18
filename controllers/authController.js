@@ -78,7 +78,15 @@ exports.kayitOl = hataYakala(async (req, res, next) => {
     sifreTekrar,
   });
 
-  //3-)Kullanıcıya email verify kode gönder
+  //3-)Kullanıcıya email verify kodu gönder
+  const verifyToken = newUser.emailVerifyToken();
+
+  const sendMail = new Email(
+    newUser,
+    `${req.protocol}://${req.get('host')}/auth/emailOnayla/${verifyToken}`
+  );
+  await sendMail.emailVerifyTokenGonder();
+  await newUser.save({ validateBeforeSave: false });
 
   //4-)Token oluşturulacak ve oluşturulan token cevap olarak verilecek
   const token = tokenOlustur(newUser._id);
