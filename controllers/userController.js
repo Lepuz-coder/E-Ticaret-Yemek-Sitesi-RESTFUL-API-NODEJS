@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const hataYakala = require('../utils/hataYakala');
+const ApiEklenti = require('../utils/apiEklenti');
 
 const objeFiltre = (obj, ...filtre) => {
   Object.keys(obj).forEach((el) => {
@@ -11,7 +12,14 @@ const objeFiltre = (obj, ...filtre) => {
 //GET ALL USER
 
 exports.kullanicilariAl = hataYakala(async (req, res, next) => {
-  const kullanicilar = await User.find();
+  /*Linkte kullanıcıları belirli özelliklerine göre aramalar eklenicek
+   * field ile name=Lepuz gibi
+   */
+  const apiEklenti = new ApiEklenti(User.find(), req.query)
+    .parcalaraAyir()
+    .fieldArama();
+
+  const kullanicilar = await apiEklenti.query;
 
   res.status(200).json({
     status: 'success',
