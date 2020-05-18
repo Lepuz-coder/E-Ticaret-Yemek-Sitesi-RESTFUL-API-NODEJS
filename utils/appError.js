@@ -1,5 +1,5 @@
 module.exports = class AppError extends Error {
-  constructor(statucCode, message) {
+  constructor(message, statucCode) {
     super(message);
     this.statucCode = statucCode;
     this.status = statucCode.toString().startsWith('4') ? 'fail' : 'error';

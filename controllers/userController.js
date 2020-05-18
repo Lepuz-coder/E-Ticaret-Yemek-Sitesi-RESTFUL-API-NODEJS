@@ -47,16 +47,22 @@ exports.kullaniciOlustur = hataYakala(async (req, res, next) => {
 
 //UPDATE USER
 exports.kullaniciGuncelle = hataYakala(async (req, res, next) => {
-  const body = objeFiltre(req.body, 'sifre', 'sifreTekrar');
-  const yeniKullanici = await User.findByIdAndUpdate(req.params.id, body, {
-    new: true,
-    runValidators: true,
+  const user = await User.findById(req.params.id);
+
+  if (req.body.kullanici_ad) user.kullanici_ad = req.body.kullanici_ad;
+
+  if (req.body.email) user.email = req.body.email;
+
+  if (req.body.sifre) user.sifre = req.body.sifre;
+
+  await user.save({
+    validateBeforeSave: false,
   });
 
   res.status(200).json({
     status: 'success',
     data: {
-      yeniKullanici,
+      kullanici: user,
     },
   });
 });

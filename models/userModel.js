@@ -10,6 +10,7 @@ const userSchema = new Schema({
     maxlength: [15, 'Karakter uzunluğu en fazla 15 olabilir'],
     minlength: [5, 'Karakter uzunluğu en az 5 olabilir'],
     required: [true, 'Kullanıcı adının girilmesi zorunludur'],
+    unique: [true, 'Bu kullanıcı adı kullanılıyor'],
   },
   email: {
     type: String,
@@ -38,6 +39,7 @@ const userSchema = new Schema({
     enum: ['kullanici', 'satici', 'admin'],
     default: 'kullanici',
   },
+  sifreDegistirmeTarih: Date,
   /**
    * Sepet, Favoriler, eklenicek
    */
@@ -47,11 +49,25 @@ userSchema.pre('save', async function (next) {
   if (!this.isModified('sifre')) return next();
 
   this.sifreTekrar = undefined;
-
+  console.log(this.sifre);
   const hashedSifre = await bcrypt.hash(this.sifre, 12);
   this.sifre = hashedSifre;
   next();
 });
+
+userSchema.pre('save', function (next) {
+  if (!this.isModified('sifre') || this.isNew) return next();
+  console.log('hi');
+
+  this.sifreDegistirmeTarih = Date.now();
+  next();
+});
+
+userSchema.methods.sifreKarsilastir = async function (normalSifre) {
+  return await bcrypt.compare(normalSifre, this.sifre);
+};
+
+userSchema.methods.sifreDegismisMi = function (tokenTarih) {};
 
 const User = mongoose.model('User', userSchema);
 
