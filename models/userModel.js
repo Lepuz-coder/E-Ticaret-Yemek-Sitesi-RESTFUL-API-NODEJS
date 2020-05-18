@@ -67,7 +67,13 @@ userSchema.methods.sifreKarsilastir = async function (normalSifre) {
   return await bcrypt.compare(normalSifre, this.sifre);
 };
 
-userSchema.methods.sifreDegismisMi = function (tokenTarih) {};
+userSchema.methods.sifreDegismisMi = function (tokenTarih) {
+  if (!this.sifreDegistirmeTarih) return false;
+
+  const sifreUnixTime = this.sifreDegistirmeTarih.getTime() / 1000;
+
+  return tokenTarih < sifreUnixTime;
+};
 
 const User = mongoose.model('User', userSchema);
 

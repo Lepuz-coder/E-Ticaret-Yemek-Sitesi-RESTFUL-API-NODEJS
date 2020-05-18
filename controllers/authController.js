@@ -29,8 +29,11 @@ exports.protect = hataYakala(async (req, res, next) => {
   }
 
   //2-)Kullanıcı bu tokendan sonra şifresini değiştirmiş mi
-
-  console.log(decoded);
+  if (user.sifreDegismisMi(decoded.iat)) {
+    return next(
+      new AppError('Kullanıcı bu tokendan sonra şifresini değiştirmiş', 401)
+    );
+  }
 
   next();
 });
