@@ -8,7 +8,7 @@ module.exports = class ApiEklenti {
   parcalaraAyir() {
     const linkQuery = { ...this.link };
 
-    const fieldAdlariDisindakiler = ['sayfa', 'limit']; //Buraya eklenti yapıcaksın
+    const fieldAdlariDisindakiler = ['sayfa', 'limit', 'sutunlar']; //Buraya eklenti yapıcaksın
 
     Object.keys(linkQuery).forEach((el) => {
       if (fieldAdlariDisindakiler.includes(el)) delete linkQuery[el];
@@ -39,6 +39,16 @@ module.exports = class ApiEklenti {
 
       const skip = (sayfa - 1) * limit;
       this.query = this.query.skip(skip).limit(limit);
+    }
+    return this;
+  }
+
+  sutun() {
+    if (this.link.sutunlar) {
+      const sutunlar = this.link.sutunlar.split(',');
+      sutunlar.forEach((el) => {
+        this.query = this.query.select(el);
+      });
     }
     return this;
   }
