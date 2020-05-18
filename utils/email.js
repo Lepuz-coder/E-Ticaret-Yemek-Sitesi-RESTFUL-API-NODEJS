@@ -43,7 +43,7 @@ class Email {
       from: this.from,
       to: this.to,
       subject: `Şifre Sıfırlama`,
-      text: `Şifrenizi mi unuttunuz ? Şifre sıfırlamak için bu linke gidiniz:\n ${this.link}. Eğer ki şifrenizi unutmadıysanız bu mesajı
+      text: `Şifrenizi mi unuttunuz ? Şifre sıfırlamak için bu linke gidiniz: ${this.link} \n Eğer ki şifrenizi unutmadıysanız bu mesajı
         görmezden geliniz.`,
     });
   }

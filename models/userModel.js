@@ -70,8 +70,9 @@ userSchema.pre('save', async function (next) {
 
 userSchema.pre('save', function (next) {
   if (!this.isModified('sifre') || this.isNew) return next();
+  console.log('Tarih Sifre');
 
-  this.sifreDegistirmeTarih = Date.now();
+  this.sifreDegistirmeTarih = Date.now() + 1000 * 60 * 60 * 3;
   next();
 });
 
@@ -99,6 +100,7 @@ userSchema.methods.emailTokenAndSend = function (type) {
   } else if (type === 'password') {
     this.passwordResetCode = hashedRandomToken;
   }
+  console.log({ randomToken, hashedRandomToken });
 
   return randomToken;
 };

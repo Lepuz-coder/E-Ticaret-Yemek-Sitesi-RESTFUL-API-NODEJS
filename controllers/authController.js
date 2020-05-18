@@ -130,9 +130,9 @@ exports.sifreUnuttum = hataYakala(async (req, res, next) => {
 
   //2-)Emaile token gönder ve bu tokenı veritabanına kaydet
 
-  await user.save({ validateBeforeSave: false });
-
   const token = user.emailTokenAndSend('password');
+
+  await user.save({ validateBeforeSave: false });
 
   const mailGonder = new Email(
     user,
@@ -147,8 +147,35 @@ exports.sifreUnuttum = hataYakala(async (req, res, next) => {
   });
 });
 
+exports.sifreSifirla = hataYakala(async (req, res, next) => {
+  const { sifre, sifreTekrar } = req.body;
+  const hashedToken = crypto
+    .createHash('sha256')
+    .update(req.params.token)
+    .digest('hex');
+  console.log(hashedToken);
+  //1-)Token'a sahip bir kullanıcı var mı
+  const user = await User.findOne({ passwordResetCode: hashedToken });
+  if (!user) {
+    return next(new AppError('Geçersiz Token', 404));
+  }
+
+  //2-)Şifre sıfırlama işlemi yapılacak ve token silinecek
+  user.sifre = sifre;
+  user.sifreTekrar = sifreTekrar;
+  user.passwordResetCode = undefined;
+  await user.save();
+
+  //3-)Kullanıcıyı giriş yaptırıp jwt token gönderilecek
+  const token = tokenOlustur(user._id);
+
+  res.status(200).json({
+    status: 'success',
+    token,
+  });
+});
+
 /**
- * Şifremi unuttum
  * Şifre sıfırlama
  * kullanıcı güncelle /me (Sadece email ve kullanıcı adı)
  * Kullanıcı şifre değiş /me
