@@ -5,6 +5,7 @@ const User = require('../models/userModel');
 const hataYakala = require('../utils/hataYakala');
 const AppError = require('../utils/appError');
 const tokenOlustur = require('../utils/tokenOlustur');
+const Email = require('../utils/email');
 
 exports.protect = hataYakala(async (req, res, next) => {
   let token;
@@ -77,7 +78,16 @@ exports.kayitOl = hataYakala(async (req, res, next) => {
     sifreTekrar,
   });
 
-  //3-)Token oluşturulacak ve oluşturulan token cevap olarak verilecek
+  //3-)Kullanıcıya hoşgeldin mesajı gönder
+  try {
+    const sendEmail = new Email(newUser, '#');
+    await sendEmail.mailGonder('Merhabalar efendim', 'Sitemize Hoşgeldiniz');
+  } catch (err) {
+    return res.status(500).json({
+      err,
+    });
+  }
+  //4-)Token oluşturulacak ve oluşturulan token cevap olarak verilecek
   const token = tokenOlustur(newUser._id);
 
   res.status(200).json({
@@ -85,3 +95,11 @@ exports.kayitOl = hataYakala(async (req, res, next) => {
     token,
   });
 });
+
+/**
+ * Kayıt olmaya email verify kodu göndermeyi ekle
+ * Şifremi unuttum
+ * Şifre sıfırlama
+ * kullanıcı güncelle /me (Sadece email ve kullanıcı adı)
+ * Kullanıcı şifre değiş /me
+ */

@@ -49,7 +49,6 @@ userSchema.pre('save', async function (next) {
   if (!this.isModified('sifre')) return next();
 
   this.sifreTekrar = undefined;
-  console.log(this.sifre);
   const hashedSifre = await bcrypt.hash(this.sifre, 12);
   this.sifre = hashedSifre;
   next();
@@ -57,7 +56,6 @@ userSchema.pre('save', async function (next) {
 
 userSchema.pre('save', function (next) {
   if (!this.isModified('sifre') || this.isNew) return next();
-  console.log('hi');
 
   this.sifreDegistirmeTarih = Date.now();
   next();
