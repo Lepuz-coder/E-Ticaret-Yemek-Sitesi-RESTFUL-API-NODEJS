@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
+const cryptoRandomString = require('crypto-random-string');
+const crypto = require('crypto');
 
 const { Schema } = mongoose;
 
@@ -40,6 +42,14 @@ const userSchema = new Schema({
     default: 'kullanici',
   },
   sifreDegistirmeTarih: Date,
+  emailVerify: {
+    type: Boolean,
+    default: false,
+  },
+  emailVerifyCode: {
+    type: String,
+    select: false,
+  },
   /**
    * Sepet, Favoriler, eklenicek
    */
@@ -71,6 +81,18 @@ userSchema.methods.sifreDegismisMi = function (tokenTarih) {
   const sifreUnixTime = this.sifreDegistirmeTarih.getTime() / 1000;
 
   return tokenTarih < sifreUnixTime;
+};
+
+userSchema.methods.emailVerifyToken = function () {
+  const randomToken = cryptoRandomString({ length: 15 });
+  const hashedRandomToken = crypto
+    .createHash('sha256')
+    .update(randomToken)
+    .digest('hex');
+
+  this.emailVerifyCode = hashedRandomToken;
+
+  return randomToken;
 };
 
 const User = mongoose.model('User', userSchema);

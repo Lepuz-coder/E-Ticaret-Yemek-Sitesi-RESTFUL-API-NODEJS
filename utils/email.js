@@ -19,7 +19,7 @@ class Email {
     });
   }
 
-  async mailGonder(mesaj, baslik) {
+  async mailGonder(baslik, mesaj) {
     await this.transporter().sendMail({
       from: this.from,
       to: this.to,

@@ -78,15 +78,8 @@ exports.kayitOl = hataYakala(async (req, res, next) => {
     sifreTekrar,
   });
 
-  //3-)Kullanıcıya hoşgeldin mesajı gönder
-  try {
-    const sendEmail = new Email(newUser, '#');
-    await sendEmail.mailGonder('Merhabalar efendim', 'Sitemize Hoşgeldiniz');
-  } catch (err) {
-    return res.status(500).json({
-      err,
-    });
-  }
+  //3-)Kullanıcıya email verify kode gönder
+
   //4-)Token oluşturulacak ve oluşturulan token cevap olarak verilecek
   const token = tokenOlustur(newUser._id);
 
