@@ -23,7 +23,7 @@ module.exports = class ApiEklenti {
     Object.keys(this.fieldAramaFilter).forEach((el) => {
       if (this.fieldAramaFilter[el].startsWith('/')) {
         this.fieldAramaFilter[el] = this.fieldAramaFilter[el].split('/')[1];
-        this.fieldAramaFilter[el] = new RegExp(this.fieldAramaFilter[el]);
+        this.fieldAramaFilter[el] = new RegExp(this.fieldAramaFilter[el], 'i');
       }
     });
 
