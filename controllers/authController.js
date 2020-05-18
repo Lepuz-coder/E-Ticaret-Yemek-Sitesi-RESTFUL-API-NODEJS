@@ -80,7 +80,7 @@ exports.kayitOl = hataYakala(async (req, res, next) => {
   });
 
   //3-)Kullanıcıya email verify kodu gönder
-  const verifyToken = newUser.emailVerifyToken();
+  const verifyToken = newUser.emailTokenAndSend('verify');
 
   const sendMail = new Email(
     newUser,
@@ -121,8 +121,33 @@ exports.emailTokenKontrol = hataYakala(async (req, res, next) => {
   });
 });
 
+exports.sifreUnuttum = hataYakala(async (req, res, next) => {
+  //1-)Emailini al
+  const { email } = req.body;
+
+  const user = await User.findOne({ email });
+  if (!user) return next(new AppError('Bu emaile sahip bir kullanıcı yok'));
+
+  //2-)Emaile token gönder ve bu tokenı veritabanına kaydet
+
+  await user.save({ validateBeforeSave: false });
+
+  const token = user.emailTokenAndSend('password');
+
+  const mailGonder = new Email(
+    user,
+    `${req.protocol}://${req.get('host')}/api/v1/auth/sifreSifirla/${token}`
+  );
+
+  await mailGonder.emailSifreUnuttumTokenGonder();
+
+  res.status(200).json({
+    status: 'success',
+    message: 'Sifirlama linki maile gönderilmiştir',
+  });
+});
+
 /**
- * Kayıt olmaya email verify kodu göndermeyi ekle
  * Şifremi unuttum
  * Şifre sıfırlama
  * kullanıcı güncelle /me (Sadece email ve kullanıcı adı)

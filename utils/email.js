@@ -37,6 +37,16 @@ class Email {
       text: `Emailinizi onaylamak için bu linke gidiniz:\n ${this.link}`,
     });
   }
+
+  async emailSifreUnuttumTokenGonder() {
+    await this.transporter().sendMail({
+      from: this.from,
+      to: this.to,
+      subject: `Şifre Sıfırlama`,
+      text: `Şifrenizi mi unuttunuz ? Şifre sıfırlamak için bu linke gidiniz:\n ${this.link}. Eğer ki şifrenizi unutmadıysanız bu mesajı
+        görmezden geliniz.`,
+    });
+  }
 }
 
 module.exports = Email;

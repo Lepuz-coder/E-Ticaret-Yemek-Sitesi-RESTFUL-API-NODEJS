@@ -50,6 +50,10 @@ const userSchema = new Schema({
     type: String,
     select: false,
   },
+  passwordResetCode: {
+    type: String,
+    select: false,
+  },
   /**
    * Sepet, Favoriler, eklenicek
    */
@@ -83,14 +87,18 @@ userSchema.methods.sifreDegismisMi = function (tokenTarih) {
   return tokenTarih < sifreUnixTime;
 };
 
-userSchema.methods.emailVerifyToken = function () {
+userSchema.methods.emailTokenAndSend = function (type) {
   const randomToken = cryptoRandomString({ length: 15 });
   const hashedRandomToken = crypto
     .createHash('sha256')
     .update(randomToken)
     .digest('hex');
 
-  this.emailVerifyCode = hashedRandomToken;
+  if (type === 'verify') {
+    this.emailVerifyCode = hashedRandomToken;
+  } else if (type === 'password') {
+    this.passwordResetCode = hashedRandomToken;
+  }
 
   return randomToken;
 };
