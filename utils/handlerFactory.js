@@ -8,7 +8,7 @@ const objeFiltre = (obj, filtre) => {
   return obj;
 };
 
-exports.hepsiniAl = (Model) =>
+exports.hepsiniAl = (Model, tip) =>
   hataYakala(async (req, res, next) => {
     // eslint-disable-next-line prefer-destructuring
     if (!req.filter) req.filter = {};
@@ -20,7 +20,16 @@ exports.hepsiniAl = (Model) =>
       .sutun()
       .siralama();
 
-    const documents = await apiEklenti.query;
+    let documents;
+
+    if (tip === 'sepet') {
+      documents = await apiEklenti.query.populate({
+        path: 'urunler.yemek',
+        select: 'ad fiyat aciklama stok',
+      });
+    } else {
+      documents = await apiEklenti.query;
+    }
 
     res.status(200).json({
       status: 'success',
