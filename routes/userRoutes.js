@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.use(authController.protect);
 router.post('/beni-guncelle', userController.beniGuncelle);
+router.post('/sifremi-degis', userController.sifremiDegistir);
 
 router
   .route('/')

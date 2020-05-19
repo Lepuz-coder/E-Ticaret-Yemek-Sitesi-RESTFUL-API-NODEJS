@@ -117,3 +117,18 @@ exports.beniGuncelle = hataYakala(async (req, res, next) => {
     user: newUser,
   });
 });
+
+exports.sifremiDegistir = hataYakala(async (req, res, next) => {
+  const { sifre, sifreTekrar } = req.body;
+
+  const user = await User.findById(req.user.id);
+
+  user.sifre = sifre;
+  user.sifreTekrar = sifreTekrar;
+  await user.save();
+
+  res.status(200).json({
+    status: 'success',
+    message: 'Sifreniz başarıyla değiştirilmiştir',
+  });
+});

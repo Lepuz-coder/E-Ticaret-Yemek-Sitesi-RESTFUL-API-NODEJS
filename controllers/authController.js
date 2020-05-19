@@ -178,6 +178,5 @@ exports.sifreSifirla = hataYakala(async (req, res, next) => {
 });
 
 /**
- * kullanıcı güncelle /me (Sadece email ve kullanıcı adı)
  * Kullanıcı şifre değiş /me
  */
