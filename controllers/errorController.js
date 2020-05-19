@@ -15,11 +15,16 @@ const productionError = (err, res) => {
 };
 
 const validationError = (err, res) => {
-  const errors = err.message.split(':');
-
   res.status(err.statusCode).json({
     status: err.status,
     message: err.errors,
+  });
+};
+
+const jsonWebTokenError = (err, res) => {
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
   });
 };
 
@@ -32,5 +37,8 @@ module.exports = (err, req, res, next) => {
     return developmentError(err, res);
   }
 
-  if (err.name === 'ValidationError') validationError(err, res);
+  if (err.name === 'ValidationError') return validationError(err, res);
+  if (err.name === 'JsonWebTokenError') return jsonWebTokenError(err, res);
+
+  productionError(err, res);
 };

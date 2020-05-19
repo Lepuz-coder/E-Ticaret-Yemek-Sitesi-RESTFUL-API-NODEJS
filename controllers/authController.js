@@ -28,6 +28,10 @@ exports.protect = hataYakala(async (req, res, next) => {
     return next(new AppError('Buraya erişmek için lütfen giriş yapınız', 401));
   }
 
+  if (!token) {
+    return next(new AppError('Geçersiz Token', 401));
+  }
+
   const decoded = await util.promisify(jwt.verify)(
     token,
     process.env.JWT_SECRET_KEY
