@@ -35,6 +35,20 @@ const tokenExpiredError = (err, res) => {
   });
 };
 
+const mongoDuplicateError = (err, res) => {
+  const key = Object.keys(err.keyValue)[0];
+  const message = {
+    type: 'Duplicate',
+  };
+
+  message[key] = `${err.keyValue[key]} bir kullanıcı sahip`;
+
+  res.status(err.statusCode).json({
+    status: err.status,
+    message,
+  });
+};
+
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status =
@@ -47,6 +61,7 @@ module.exports = (err, req, res, next) => {
   if (err.name === 'ValidationError') return validationError(err, res);
   if (err.name === 'JsonWebTokenError') return jsonWebTokenError(err, res);
   if (err.name === 'TokenExpiredError') return tokenExpiredError(err, res);
+  if (err.code === 11000) return mongoDuplicateError(err, res);
 
   productionError(err, res);
 };
