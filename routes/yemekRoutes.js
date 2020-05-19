@@ -2,7 +2,7 @@ const express = require('express');
 const yemekController = require('../controllers/yemekController');
 const authController = require('../controllers/authController');
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 //Admin İçin Routingler :
 
@@ -13,7 +13,7 @@ router
     yemekController.yemekOlusturmaIzin,
     yemekController.yemekOlustur
   ) //Satıcı buraya erişebilir
-  .get(yemekController.yemekleriAl); //Herkes buraya erişebilir
+  .get(yemekController.nestedYemekler, yemekController.yemekleriAl); //Herkes buraya erişebilir
 
 router
   .route('/:id')

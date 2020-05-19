@@ -6,6 +6,8 @@ const yemekRoutes = require('./yemekRoutes');
 
 const router = express.Router();
 
+router.use('/:kulId/yemekler', yemekRoutes);
+
 router.use(authController.protect);
 
 router.post('/beni-guncelle', userController.beniGuncelle);

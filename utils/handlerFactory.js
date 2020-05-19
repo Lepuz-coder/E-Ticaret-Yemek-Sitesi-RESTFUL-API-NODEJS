@@ -3,10 +3,10 @@ const ApiEklenti = require('./apiEklenti');
 
 exports.hepsiniAl = (Model) =>
   hataYakala(async (req, res, next) => {
-    /*Linkte kullanıcıları belirli özelliklerine göre aramalar eklenicek
-     * field ile name=Lepuz gibi
-     */
-    const apiEklenti = new ApiEklenti(Model.find(), req.query)
+    // eslint-disable-next-line prefer-destructuring
+    if (!req.filter) req.filter = {};
+
+    const apiEklenti = new ApiEklenti(Model.find(req.filter), req.query)
       .parcalaraAyir()
       .fieldArama()
       .sayfalama()

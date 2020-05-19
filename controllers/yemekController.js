@@ -12,6 +12,11 @@ exports.yemekOlustur = handlerFactory.olustur(Yemek);
 exports.yemekGuncelle = handlerFactory.guncelle(Yemek);
 exports.yemekSil = handlerFactory.sil(Yemek);
 
+exports.nestedYemekler = (req, res, next) => {
+  if (req.params.kulId) req.filter = { satan_kullanici: req.params.kulId };
+  next();
+};
+
 //Satıcıların sadece kendisine ait bir yemek oluşturmasını sağlayan middleware
 exports.yemekOlusturmaIzin = (req, res, next) => {
   if (req.user.rol === 'admin') {
