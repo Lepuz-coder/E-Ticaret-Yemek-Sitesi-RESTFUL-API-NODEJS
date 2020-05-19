@@ -18,7 +18,7 @@ exports.yorumEkleDuzenle = (req, res, next) => {
   next();
 };
 
-exports.yorumIdProtect = async (req, res, next) => {
+exports.yorumIdProtect = hataYakala(async (req, res, next) => {
   if (req.rol === 'admin') return next();
 
   const yorum = await Yorum.findOne({
@@ -35,5 +35,19 @@ exports.yorumIdProtect = async (req, res, next) => {
     );
   }
 
+  next();
+});
+
+exports.yorumOlusturNested = (req, res, next) => {
+  if (!req.params.yemekId) return next();
+
+  req.body.yemek_id = req.params.yemekId;
+  next();
+};
+
+exports.yorumlarAlNested = (req, res, next) => {
+  if (!req.params.yemekId) return next();
+
+  req.filter = { yemek_id: req.params.yemekId };
   next();
 };

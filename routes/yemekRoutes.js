@@ -1,8 +1,11 @@
 const express = require('express');
 const yemekController = require('../controllers/yemekController');
 const authController = require('../controllers/authController');
+const yorumRouter = require('./yorumRoutes');
 
 const router = express.Router({ mergeParams: true });
+
+router.use('/:yemekId/yorumlar', yorumRouter);
 
 //Admin İçin Routingler :
 router

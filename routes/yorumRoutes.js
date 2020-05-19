@@ -2,14 +2,15 @@ const express = require('express');
 const yorumController = require('../controllers/yorumController');
 const authController = require('../controllers/authController');
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 router
   .route('/')
-  .get(yorumController.yorumlariAl)
+  .get(yorumController.yorumlarAlNested, yorumController.yorumlariAl)
   .post(
     authController.protect,
     authController.emailKontrol,
+    yorumController.yorumOlusturNested,
     yorumController.yorumEkleDuzenle,
     yorumController.yorumEkle
   );
