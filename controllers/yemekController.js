@@ -9,8 +9,18 @@ exports.yemekAl = handlerFactory.birTaneAl(Yemek, {
   select: 'kullanici_ad',
 });
 exports.yemekOlustur = handlerFactory.olustur(Yemek);
-exports.yemekGuncelle = handlerFactory.guncelle(Yemek);
+exports.yemekGuncelle = handlerFactory.guncelle(
+  Yemek,
+  'puan_sayi',
+  'puan_ortalama',
+  'satis'
+);
 exports.yemekSil = handlerFactory.sil(Yemek);
+
+exports.benimYemekler = (req, res, next) => {
+  req.filter = { satan_kullanici: req.user.id };
+  next();
+};
 
 exports.nestedYemekler = (req, res, next) => {
   if (req.params.kulId) req.filter = { satan_kullanici: req.params.kulId };

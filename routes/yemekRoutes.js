@@ -5,7 +5,6 @@ const authController = require('../controllers/authController');
 const router = express.Router({ mergeParams: true });
 
 //Admin İçin Routingler :
-
 router
   .route('/')
   .post(

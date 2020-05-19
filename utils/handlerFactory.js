@@ -1,6 +1,13 @@
 const hataYakala = require('./hataYakala');
 const ApiEklenti = require('./apiEklenti');
 
+const objeFiltre = (obj, filtre) => {
+  Object.keys(obj).forEach((el) => {
+    if (filtre.includes(el)) delete obj[el];
+  });
+  return obj;
+};
+
 exports.hepsiniAl = (Model) =>
   hataYakala(async (req, res, next) => {
     // eslint-disable-next-line prefer-destructuring
@@ -56,8 +63,10 @@ exports.olustur = (Model) =>
     });
   });
 
-exports.guncelle = (Model) =>
+exports.guncelle = (Model, ...filtre) =>
   hataYakala(async (req, res, next) => {
+    if (req.user.rol !== 'admin') req.body = objeFiltre(req.body, filtre);
+
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,

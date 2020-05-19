@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const validator = require('validator');
 const util = require('util');
 const jwt = require('jsonwebtoken');
@@ -9,7 +10,6 @@ const tokenOlustur = require('../utils/tokenOlustur');
 const Email = require('../utils/email');
 
 exports.izinliRoller = (...izinliRoller) => (req, res, next) => {
-  console.log(izinliRoller);
   if (!izinliRoller.includes(req.user.rol)) {
     return next(new AppError('Bunu yapmaya yetkiniz yok üzgünüz', 400));
   }
@@ -164,7 +164,6 @@ exports.sifreSifirla = hataYakala(async (req, res, next) => {
     .createHash('sha256')
     .update(req.params.token)
     .digest('hex');
-  console.log(hashedToken);
   //1-)Token'a sahip bir kullanıcı var mı
   const user = await User.findOne({ passwordResetCode: hashedToken });
   if (!user) {
