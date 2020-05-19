@@ -1,6 +1,8 @@
+/* eslint-disable camelcase */
 const User = require('../models/userModel');
 const hataYakala = require('../utils/hataYakala');
 const ApiEklenti = require('../utils/apiEklenti');
+const AppError = require('../utils/appError');
 
 const objeFiltre = (obj, ...filtre) => {
   Object.keys(obj).forEach((el) => {
@@ -86,5 +88,32 @@ exports.kullaniciSil = hataYakala(async (req, res, next) => {
   res.status(204).json({
     status: 'success',
     data: null,
+  });
+});
+
+exports.beniGuncelle = hataYakala(async (req, res, next) => {
+  const body = objeFiltre(
+    req.body,
+    'sifre',
+    'sifreTekrar',
+    'sifreDegistirmeTarih',
+    'emailVerify',
+    'rol'
+  );
+
+  if (!body.email && !body.kullanici_ad) {
+    return next(
+      new AppError('Email veya kullanıcı adından en az biri girilmelidir!', 400)
+    );
+  }
+
+  const newUser = await User.findByIdAndUpdate(req.user.id, body, {
+    new: true,
+    runValidators: true,
+  });
+
+  res.status(200).json({
+    status: 'success',
+    user: newUser,
   });
 });

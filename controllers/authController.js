@@ -37,6 +37,8 @@ exports.protect = hataYakala(async (req, res, next) => {
     );
   }
 
+  req.user = user;
+
   next();
 });
 
@@ -176,7 +178,6 @@ exports.sifreSifirla = hataYakala(async (req, res, next) => {
 });
 
 /**
- * Şifre sıfırlama
  * kullanıcı güncelle /me (Sadece email ve kullanıcı adı)
  * Kullanıcı şifre değiş /me
  */
