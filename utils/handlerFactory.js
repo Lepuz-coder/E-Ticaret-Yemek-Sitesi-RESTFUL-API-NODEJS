@@ -34,13 +34,13 @@ exports.hepsiniAl = (Model) =>
 exports.birTaneAl = (Model, ...populate) =>
   hataYakala(async (req, res, next) => {
     const query = Model.findById(req.params.id);
-
+    console.log(populate);
     if (populate) {
       populate.forEach((el) => {
         query.populate(el);
       });
     }
-
+    console.log(query);
     const doc = await query;
 
     res.status(200).json({

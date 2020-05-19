@@ -60,5 +60,5 @@ exports.sifremiDegistir = hataYakala(async (req, res, next) => {
 exports.kullanicilariAl = handlerFactory.hepsiniAl(User);
 exports.kullaniciOlustur = handlerFactory.olustur(User);
 exports.kullaniciGuncelle = handlerFactory.guncelle(User);
-exports.kullaniciAl = handlerFactory.birTaneAl(User);
+exports.kullaniciAl = handlerFactory.birTaneAl(User, 'yemekler');
 exports.kullaniciSil = handlerFactory.sil(User);
