@@ -8,6 +8,9 @@ router.use(authController.protect);
 
 router.route('/').get(sepetController.getir);
 
-router.route('/:id').post(sepetController.sepeteEkle);
+router
+  .route('/:id')
+  .post(sepetController.sepeteEkle)
+  .delete(sepetController.sepettenCikar);
 
 module.exports = router;
