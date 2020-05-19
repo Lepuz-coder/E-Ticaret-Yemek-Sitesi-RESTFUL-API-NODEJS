@@ -23,3 +23,52 @@ exports.hepsiniAl = (Model) =>
       },
     });
   });
+
+exports.birTaneAl = (Model) =>
+  hataYakala(async (req, res, next) => {
+    const doc = await Model.findById(req.params.id);
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        doc,
+      },
+    });
+  });
+
+exports.olustur = (Model) =>
+  hataYakala(async (req, res, next) => {
+    const newDoc = await Model.create(req.body);
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        newDoc,
+      },
+    });
+  });
+
+exports.guncelle = (Model) =>
+  hataYakala(async (req, res, next) => {
+    const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        doc,
+      },
+    });
+  });
+
+exports.sil = (Model) =>
+  hataYakala(async (req, res, next) => {
+    await Model.findByIdAndDelete(req.params.id);
+
+    res.status(204).json({
+      status: 'success',
+      data: null,
+    });
+  });

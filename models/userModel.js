@@ -48,7 +48,6 @@ const userSchema = new Schema({
   emailVerify: {
     type: Boolean,
     default: false,
-    select: false,
   },
   emailVerifyCode: {
     type: String,
