@@ -18,6 +18,10 @@ const yemekSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Yemek ile alakalı açıklama koyulması zorunludur'],
   },
+  satis: {
+    type: Number,
+    default: 0,
+  },
   stok: {
     type: Number,
     required: [true, 'Stoğunuzda bulunan miktarın girilmesi zorunludur'],

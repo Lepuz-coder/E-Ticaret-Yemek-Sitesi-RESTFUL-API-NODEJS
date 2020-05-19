@@ -2,12 +2,16 @@ const express = require('express');
 
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
+const yemekRoutes = require('./yemekRoutes');
 
 const router = express.Router();
 
 router.use(authController.protect);
+
 router.post('/beni-guncelle', userController.beniGuncelle);
 router.post('/sifremi-degis', userController.sifremiDegistir);
+
+router.use(authController.izinliRoller('admin'));
 
 router
   .route('/')

@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 const User = require('../models/userModel');
 const hataYakala = require('../utils/hataYakala');
-const ApiEklenti = require('../utils/apiEklenti');
 const AppError = require('../utils/appError');
 const tokenOlustur = require('../utils/tokenOlustur');
 const handlerFactory = require('../utils/handlerFactory');

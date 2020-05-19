@@ -8,6 +8,15 @@ const AppError = require('../utils/appError');
 const tokenOlustur = require('../utils/tokenOlustur');
 const Email = require('../utils/email');
 
+exports.izinliRoller = (...izinliRoller) => (req, res, next) => {
+  console.log(izinliRoller);
+  if (!izinliRoller.includes(req.user.rol)) {
+    return next(new AppError('Bunu yapmaya yetkiniz yok üzgünüz', 400));
+  }
+
+  next();
+};
+
 exports.protect = hataYakala(async (req, res, next) => {
   let token;
   if (

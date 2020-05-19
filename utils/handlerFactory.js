@@ -24,9 +24,17 @@ exports.hepsiniAl = (Model) =>
     });
   });
 
-exports.birTaneAl = (Model) =>
+exports.birTaneAl = (Model, ...populate) =>
   hataYakala(async (req, res, next) => {
-    const doc = await Model.findById(req.params.id);
+    const query = Model.findById(req.params.id);
+
+    if (populate) {
+      populate.forEach((el) => {
+        query.populate(el);
+      });
+    }
+
+    const doc = await query;
 
     res.status(200).json({
       status: 'success',
@@ -40,7 +48,7 @@ exports.olustur = (Model) =>
   hataYakala(async (req, res, next) => {
     const newDoc = await Model.create(req.body);
 
-    res.status(200).json({
+    res.status(201).json({
       status: 'success',
       data: {
         newDoc,
