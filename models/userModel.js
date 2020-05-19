@@ -41,7 +41,10 @@ const userSchema = new Schema({
     enum: ['kullanici', 'satici', 'admin'],
     default: 'kullanici',
   },
-  sifreDegistirmeTarih: Date,
+  sifreDegistirmeTarih: {
+    type: Date,
+    select: false,
+  },
   emailVerify: {
     type: Boolean,
     default: false,
@@ -73,7 +76,7 @@ userSchema.pre('save', function (next) {
   if (!this.isModified('sifre') || this.isNew) return next();
   console.log('Tarih Sifre');
 
-  this.sifreDegistirmeTarih = Date.now() + 1000 * 60 * 60 * 3;
+  this.sifreDegistirmeTarih = Date.now();
   next();
 });
 
@@ -85,7 +88,7 @@ userSchema.methods.sifreDegismisMi = function (tokenTarih) {
   if (!this.sifreDegistirmeTarih) return false;
 
   const sifreUnixTime = this.sifreDegistirmeTarih.getTime() / 1000;
-
+  console.log({ tokenTarih, sifreUnixTime });
   return tokenTarih < sifreUnixTime;
 };
 
