@@ -51,6 +51,13 @@ exports.protect = hataYakala(async (req, res, next) => {
   next();
 });
 
+exports.emailKontrol = (req, res, next) => {
+  if (req.user.emailVerify === false) {
+    return next(new AppError('Lütfen emailinizi onaylayınız', 401));
+  }
+  next();
+};
+
 exports.girisYap = hataYakala(async (req, res, next) => {
   //isim_email
   // eslint-disable-next-line camelcase
