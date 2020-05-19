@@ -57,7 +57,6 @@ module.exports = (err, req, res, next) => {
   if (process.env.NODE_ENV === 'development') {
     return developmentError(err, res);
   }
-
   if (err.name === 'ValidationError') return validationError(err, res);
   if (err.name === 'JsonWebTokenError') return jsonWebTokenError(err, res);
   if (err.name === 'TokenExpiredError') return tokenExpiredError(err, res);
