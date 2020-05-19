@@ -4,9 +4,10 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
-router.route('/').patch(sepetController.ekle);
+router.use(authController.protect);
+
 router.route('/').get(sepetController.getir);
 
-router.route('/:id').post(authController.protect, sepetController.sepeteEkle);
+router.route('/:id').post(sepetController.sepeteEkle);
 
 module.exports = router;

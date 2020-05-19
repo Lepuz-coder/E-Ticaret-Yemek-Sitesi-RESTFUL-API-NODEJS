@@ -23,10 +23,12 @@ exports.hepsiniAl = (Model, tip) =>
     let documents;
 
     if (tip === 'sepet') {
-      documents = await apiEklenti.query.populate({
-        path: 'urunler.yemek',
-        select: 'ad fiyat aciklama stok',
-      });
+      documents = await apiEklenti.query
+        .findOne({ kullanici: req.user.id })
+        .populate({
+          path: 'urunler.yemek',
+          select: 'ad fiyat aciklama stok',
+        });
     } else {
       documents = await apiEklenti.query;
     }
