@@ -51,3 +51,8 @@ exports.yorumlarAlNested = (req, res, next) => {
   req.filter = { yemek_id: req.params.yemekId };
   next();
 };
+
+exports.meYorumlarFilter = (req, res, next) => {
+  req.filter = { kullanici_id: req.user.id };
+  next();
+};

@@ -66,3 +66,8 @@ exports.yemekIdIzin = hataYakala(async (req, res, next) => {
   req.body.satan_kullanici = req.user.id;
   next();
 });
+
+exports.meYemeklerFilter = (req, res, next) => {
+  req.filter = { satan_kullanici: req.user.id };
+  next();
+};

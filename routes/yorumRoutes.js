@@ -4,6 +4,13 @@ const authController = require('../controllers/authController');
 
 const router = express.Router({ mergeParams: true });
 
+router.get(
+  '/me',
+  authController.protect,
+  yorumController.meYorumlarFilter,
+  yorumController.yorumlariAl
+);
+
 router
   .route('/')
   .get(yorumController.yorumlarAlNested, yorumController.yorumlariAl)
