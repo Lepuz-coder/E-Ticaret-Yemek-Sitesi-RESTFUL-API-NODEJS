@@ -8,30 +8,26 @@ exports.ekle = handlerFactory.olustur(Sepet);
 exports.getir = handlerFactory.hepsiniAl(Sepet, 'sepet');
 
 exports.sepeteEkle = hataYakala(async (req, res, next) => {
-  let sepet;
-
-  sepet = await Sepet.findOneAndUpdate(
-    { kullanici: req.user._id, 'urunler.yemek': req.params.id },
-    { $inc: { 'urunler.$.sayi': 1 } },
-    { new: true }
-  );
+  let sepet = await Sepet.findOne({
+    kullanici: req.user.id,
+    'urunler.yemek': req.params.id,
+  });
 
   if (!sepet) {
-    sepet = await Sepet.findOneAndUpdate(
-      { kullanici: req.user._id },
-      {
-        $push: {
-          urunler: {
-            yemek: req.params.id,
-            sayi: 1,
-          },
-        },
-      },
-      {
-        new: true,
-      }
-    );
+    sepet = await Sepet.findOne({ kullanici: req.user.id });
+
+    sepet.urunler.push({
+      yemek: req.params.id,
+      sayi: 1,
+    });
+  } else {
+    console.log(sepet.urunler);
+
+    const index = sepet.urunler.findIndex((el) => el.yemek == req.params.id);
+    sepet.urunler[index].sayi += 1;
   }
+
+  await sepet.save();
 
   res.status(200).json({
     status: 'success',
