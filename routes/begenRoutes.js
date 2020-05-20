@@ -6,7 +6,10 @@ const router = express.Router();
 
 router.use(authController.protect);
 
-router.route('/:id').post(begenController.begenilenEkle);
+router
+  .route('/:id')
+  .post(begenController.begenilenEkle)
+  .delete(begenController.begenilenCikar);
 //POST -> begenilen ekle, DELETE -> begenilen çıkar
 
 //router.use('/');
