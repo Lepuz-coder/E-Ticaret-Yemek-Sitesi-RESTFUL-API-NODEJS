@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const rateLimiter = require('express-rate-limit');
 
 const errorController = require('./controllers/errorController');
 const AppError = require('./utils/appError');
@@ -14,6 +15,15 @@ const begenRouter = require('./routes/begenRoutes');
 const app = express();
 
 app.use(express.json());
+
+//GÜVENLİK ÖNLEMLERİ:
+
+const limiter = rateLimiter({
+  max: 500,
+  windowMs: 1000 * 60 * 30,
+});
+
+app.use('/api', limiter);
 
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
