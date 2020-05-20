@@ -20,11 +20,11 @@ export const kayit = async (kullanici_ad, email, sifre, sifreTekrar) => {
 
     $('#kayitFormKutu').slideUp(500);
     $('#kayitBasariKutu').html(
-      '<div class="alert alert-success">Kayıt Başarıyla tamamlandı</div>'
+      '<div class="alert alert-success">Kayıt Başarıyla tamamlandı. Lütfen emailinizi onaylayınız</div>'
     );
     window.setTimeout(() => {
       location.assign('/urunler');
-    }, 1000);
+    }, 5000);
   } catch (err) {
     $('#FakekayitButon').addClass('d-none');
     $('#kayitButon').show();
