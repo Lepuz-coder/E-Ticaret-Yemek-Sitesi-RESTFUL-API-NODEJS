@@ -5,15 +5,23 @@ block content
   .container
     .row.block-9
       .col-md-6.order-md-last.d-flex.mx-auto
+       div#kayitFormKutu.col-12 
         form.bg-white.p-5.contact-form(action='#' id='kayitForm')
           .form-group
-            span.text-danger#uyari_mesaj
+            span.text-danger#uyari_mesaj.kullanici_ad.kaldir
             input.form-control(type='text' placeholder='İsminizi Giriniz' id='ad')
           .form-group
+            span.email.kaldir
             input.form-control(type='email' placeholder='Emailinizi Giriniz' id='email')
           .form-group
+            span.sifre.kaldir
             input.form-control(type='password' placeholder='Şifrenizi Giriniz' id='sifre')
           .form-group
+            span.sifreTekrar.text-danger.kaldir
             input.form-control(type='password' placeholder='Şifrenizi Tekrar Giriniz' id='sifreTekrar')  
           .form-group  
             input.btn.btn-primary.py-3.px-5(type='submit' value='Kayıt Ol' id='kayitButon')
+            input.btn.btn-primary.py-3.px-5.d-none(type='button' value='Yükleniyor..' id='FakekayitButon')
+
+       div#kayitBasariKutu.col-12     
+           
