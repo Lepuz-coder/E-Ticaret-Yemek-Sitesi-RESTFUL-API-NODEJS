@@ -81,7 +81,7 @@ exports.girisYap = hataYakala(async (req, res, next) => {
     return next(new AppError('Girmis oldugunuz sifre yanlis', 401));
   }
 
-  const token = tokenOlustur(user._id);
+  const token = tokenOlustur(user._id, req, res);
 
   res.status(200).json({
     status: 'success',
@@ -112,7 +112,7 @@ exports.kayitOl = hataYakala(async (req, res, next) => {
   await newUser.save({ validateBeforeSave: false });
 
   //4-)Token oluşturulacak ve oluşturulan token cevap olarak verilecek
-  const token = tokenOlustur(newUser._id);
+  const token = tokenOlustur(newUser._id, req, res);
 
   res.status(200).json({
     status: 'success',
@@ -188,7 +188,7 @@ exports.sifreSifirla = hataYakala(async (req, res, next) => {
   await user.save();
 
   //3-)Kullanıcıyı giriş yaptırıp jwt token gönderilecek
-  const token = tokenOlustur(user._id);
+  const token = tokenOlustur(user._id, req, res);
 
   res.status(200).json({
     status: 'success',

@@ -3,10 +3,10 @@ const Sepet = require('../models/sepetModel');
 const handlerFactory = require('../utils/handlerFactory');
 const hataYakala = require('../utils/hataYakala');
 
-exports.ekle = handlerFactory.olustur(Sepet);
-
+//Kullanıcının sepetindeki ürünleri getirir
 exports.getir = handlerFactory.hepsiniAl(Sepet, 'sepet');
 
+//Sepete Bir Ürün Ekler, eğer ki o ürün zaten varsa sayısını bir artırır.
 exports.sepeteEkle = hataYakala(async (req, res, next) => {
   let sepet = await Sepet.findOne({
     kullanici: req.user.id,
@@ -35,6 +35,7 @@ exports.sepeteEkle = hataYakala(async (req, res, next) => {
   });
 });
 
+//Sepetten ürünü bir ekilstir. Eğer ki 0'a ulaştıysa siler
 exports.sepettekiUrunuEksilt = hataYakala(async (req, res, next) => {
   const sepet = await Sepet.findOne({ kullanici: req.user.id });
   const index = sepet.urunler.findIndex((el) => {
@@ -57,6 +58,7 @@ exports.sepettekiUrunuEksilt = hataYakala(async (req, res, next) => {
   });
 });
 
+//Sepetten ürünü direk çıkarır.
 exports.sepettenUrunCikart = hataYakala(async (req, res, next) => {
   const sepet = await Sepet.findOne({ kullanici: req.user.id });
 
