@@ -42,3 +42,16 @@ exports.begenilenleriGetir = hataYakala(async (req, res, next) => {
     begenilenler,
   });
 });
+
+exports.tumBegenilenleriKaldir = hataYakala(async (req, res, next) => {
+  const begen = await Begen.findOne({ kullanici: req.user.id });
+
+  begen.begenilenler.splice(0, begen.begenilenler.length);
+
+  await begen.save();
+
+  res.status(204).json({
+    status: 'success',
+    data: null,
+  });
+});
