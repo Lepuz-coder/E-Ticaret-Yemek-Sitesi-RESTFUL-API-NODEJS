@@ -19555,7 +19555,7 @@ var _kayitModel = require("../models/kayitModel");
 var kayitButton = document.getElementById('kayitButon'); //Kayıt Controller
 
 if (kayitButton) {
-  kayitButton.addEventListener('click', function (e) {
+  kayitButton.addEventListener('submit', function (e) {
     e.preventDefault();
     var kulad = $('#ad').val();
     var email = $('#email').val();
@@ -19920,7 +19920,16 @@ if (girisButon) {
     }
   });
 }
-},{"../models/girisModel":"models/girisModel.js"}],"index.js":[function(require,module,exports) {
+},{"../models/girisModel":"models/girisModel.js"}],"controllers/cikisController.js":[function(require,module,exports) {
+/* eslint-disable */
+var cikisButon = document.getElementById('cikisButon');
+
+if (cikisButon) {
+  cikisButon.addEventListener('click', function () {
+    console.log('Tiklandi');
+  });
+}
+},{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _jquery = _interopRequireDefault(require("jquery"));
@@ -19929,8 +19938,10 @@ require("./controllers/kayitController");
 
 require("./controllers/girisController");
 
+require("./controllers/cikisController");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"jquery":"../../node_modules/jquery/dist/jquery.js","./controllers/kayitController":"controllers/kayitController.js","./controllers/girisController":"controllers/girisController.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"jquery":"../../node_modules/jquery/dist/jquery.js","./controllers/kayitController":"controllers/kayitController.js","./controllers/girisController":"controllers/girisController.js","./controllers/cikisController":"controllers/cikisController.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

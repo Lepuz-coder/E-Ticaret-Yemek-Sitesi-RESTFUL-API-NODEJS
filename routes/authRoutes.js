@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post('/giris', authController.girisYap);
 router.post('/kayit', authController.kayitOl);
+router.get('/cikis', authController.cikisYap);
 router.get('/emailOnayla/:token', authController.emailTokenKontrol);
 router.post('/sifreUnuttum', authController.sifreUnuttum);
 router.post('/sifreSifirla/:token', authController.sifreSifirla);

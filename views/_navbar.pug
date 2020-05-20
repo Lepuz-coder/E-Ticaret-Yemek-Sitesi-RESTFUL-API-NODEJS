@@ -6,21 +6,24 @@ nav#ftco-navbar.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-nav
       |  Menu
     #ftco-nav.collapse.navbar-collapse
       ul.navbar-nav.ml-auto
-        li.nav-item.active.dropdown
-          a#dropdown04.nav-link.dropdown-toggle(href='#' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') Kullan&imath;c&imath; Ad&imath;
+        if user
+         li.nav-item.active.dropdown
+          a#dropdown04.nav-link.dropdown-toggle(href='#' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')= user.kullanici_ad
           .dropdown-menu(aria-labelledby='dropdown04')
             a.dropdown-item(href='wishlist.html') &Idot;stek Listesi
             a.dropdown-item(href='cart.html') &Uuml;r&uuml;nlerim
             // Satıcıysa Göster
             a.dropdown-item(href='checkout.html') Hesap Ayarlar&imath;
-            a.dropdown-item(href='product-single.html') &Ccedil;&imath;k&imath;&scedil; Yap
-        li.nav-item
-          a.nav-link(href='about.html') Giri&scedil;
-          // Giriş yapmadıysa göster
-        li.nav-item
-          a.nav-link(href='/kayit') Kay&imath;t Ol
-          // Giriş yapmadıysa göster
-        li.nav-item.cta.cta-colored
+            button.dropdown-item(id='cikisButon' style='cursor:pointer') &Ccedil;&imath;k&imath;&scedil; Yap
+        else    
+          li.nav-item
+            a.nav-link(href='/giris') Giri&scedil;
+            // Giriş yapmadıysa göster
+          li.nav-item
+            a.nav-link(href='/kayit') Kay&imath;t Ol
+            // Giriş yapmadıysa göster
+        if user    
+         li.nav-item.cta.cta-colored
           a.nav-link(href='cart.html')
             span.icon-shopping_cart
             | [0]

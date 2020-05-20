@@ -5,7 +5,7 @@ const kayitButton = document.getElementById('kayitButon');
 
 //Kayıt Controller
 if (kayitButton) {
-  kayitButton.addEventListener('click', (e) => {
+  kayitButton.addEventListener('submit', (e) => {
     e.preventDefault();
     const kulad = $('#ad').val();
     const email = $('#email').val();

@@ -56,6 +56,42 @@ exports.protect = hataYakala(async (req, res, next) => {
   next();
 });
 
+exports.girisYaptiMi = hataYakala(async (req, res, next) => {
+  let decoded;
+  if (req.cookies.jwt) {
+    decoded = await util.promisify(jwt.verify)(
+      req.cookies.jwt,
+      process.env.JWT_SECRET_KEY
+    );
+  }
+
+  //1-) Cookie var mı
+  if (!decoded) {
+    return next();
+  }
+
+  const user = await User.findById(decoded.id);
+
+  if (!user) {
+    return next();
+  }
+
+  res.locals.user = user;
+
+  next();
+});
+
+exports.cikisYap = (req, res, next) => {
+  res.cookie('jwt', 'cikisYapildi', {
+    expires: new Date(Date.now() + 10 * 60),
+  });
+
+  res.status(200).json({
+    status: 'success',
+    message: 'Basariyla cikis yapildi',
+  });
+};
+
 exports.emailKontrol = (req, res, next) => {
   if (req.user.emailVerify === false) {
     return next(new AppError('Lütfen emailinizi onaylayınız', 401));
