@@ -1,0 +1,19 @@
+extends base
+
+block content 
+ section.ftco-section.contact-section.bg-light
+  .container
+    .row.block-9
+      .col-md-6.order-md-last.d-flex.mx-auto
+        form.bg-white.p-5.contact-form(action='#' id='kayitForm')
+          .form-group
+            span.text-danger#uyari_mesaj
+            input.form-control(type='text' placeholder='İsminizi Giriniz' id='ad')
+          .form-group
+            input.form-control(type='email' placeholder='Emailinizi Giriniz' id='email')
+          .form-group
+            input.form-control(type='password' placeholder='Şifrenizi Giriniz' id='sifre')
+          .form-group
+            input.form-control(type='password' placeholder='Şifrenizi Tekrar Giriniz' id='sifreTekrar')  
+          .form-group  
+            input.btn.btn-primary.py-3.px-5(type='submit' value='Kayıt Ol' id='kayitButon')

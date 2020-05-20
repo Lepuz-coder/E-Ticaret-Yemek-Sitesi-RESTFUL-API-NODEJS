@@ -4,6 +4,6 @@ const viewController = require('../controllers/viewController');
 const router = express.Router();
 
 router.get('/urunler', viewController.urunlerGoster);
-router.get('/giris', viewController.girisGoster);
+router.get('/kayit', viewController.girisGoster);
 
 module.exports = router;

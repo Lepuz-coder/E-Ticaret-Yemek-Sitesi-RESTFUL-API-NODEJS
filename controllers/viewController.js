@@ -6,8 +6,8 @@ exports.urunlerGoster = (req, res, next) => {
 };
 
 exports.girisGoster = (req, res, next) => {
-  res.status(200).render('giris', {
-    kapakBaslik: 'GİŞİR YAP',
-    title: 'Giriş',
+  res.status(200).render('kayit', {
+    kapakBaslik: 'Kayıt Ol',
+    title: 'Kayıt',
   });
 };
