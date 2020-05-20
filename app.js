@@ -17,6 +17,7 @@ const yemekRouter = require('./routes/yemekRoutes');
 const yorumRouter = require('./routes/yorumRoutes');
 const sepetRouter = require('./routes/sepetRoutes');
 const begenRouter = require('./routes/begenRoutes');
+const viewRouter = require('./routes/viewRouter');
 
 const app = express();
 
@@ -36,10 +37,14 @@ app.use(xss());
 app.use(hpp());
 
 //Render işlemleri:
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
+
+app.use('/', viewRouter);
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/auth', authRouter);
