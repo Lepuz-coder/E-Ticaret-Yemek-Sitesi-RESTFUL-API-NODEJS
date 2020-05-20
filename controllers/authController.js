@@ -20,13 +20,19 @@ exports.izinliRoller = (...izinliRoller) => (req, res, next) => {
 
 exports.protect = hataYakala(async (req, res, next) => {
   let token;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
-  ) {
-    token = req.headers.authorization.split(' ')[1];
+  if (!req.cookies.jwt) {
+    if (
+      req.headers.authorization &&
+      req.headers.authorization.startsWith('Bearer')
+    ) {
+      token = req.headers.authorization.split(' ')[1];
+    } else {
+      return next(
+        new AppError('Buraya erişmek için lütfen giriş yapınız', 401)
+      );
+    }
   } else {
-    return next(new AppError('Buraya erişmek için lütfen giriş yapınız', 401));
+    token = req.cookies.jwt;
   }
 
   if (!token) {
