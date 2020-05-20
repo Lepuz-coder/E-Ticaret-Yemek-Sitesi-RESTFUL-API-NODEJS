@@ -1,0 +1,35 @@
+extends base
+
+block content 
+ section.ftco-section.contact-section.bg-light
+  .container
+    .row.block-9
+      .col-md-6.order-md-last.d-flex.mx-auto
+       div#kayitFormKutu.col-12 
+        form.bg-white.p-5.contact-form( id='urunForm')
+          .form-group
+            span.text-danger#uyari_mesaj
+            input.form-control(type='text' placeholder='Ürün Adını Giriniz' id='ad')
+          .form-group
+            input.form-control(type='text' placeholder='Ürün Açıklamasını giriniz' id='aciklama')
+          .form-group
+            input.form-control(type='text' placeholder='Ürün Fiyatını giriniz' id='fiyat')
+          .form-group
+            input.form-control(type='text' placeholder='Ürünün stoktaki sayısını giriniz' id='stok')    
+          .form-group
+            span Ürünün resmini Ekleyiniz
+            input.form-control(type='file' id='resim')  
+          .form-group
+            div.row
+               div.col-9 
+                input.form-control(type='text' placeholder='Ürün Tipi ekleyiniz' id='tip')  
+               div.col-3
+                input.btn.btn-secondary(type='button' value='Ekle' id='tipEkleButon')
+               div.col-12#tipKutu  
+
+          .form-group  
+            input.btn.btn-primary.py-3.px-5(type='submit' value='Ürünü Ekle' id='urunEkleButon')
+            input.btn.btn-primary.py-3.px-5.d-none(type='button' value='Yükleniyor..' id='FakeurunEkleButon')
+
+       div#girisBasariKutu.col-12     
+           

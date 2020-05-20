@@ -18,3 +18,10 @@ exports.girisGoster = (req, res, next) => {
     title: 'Giris',
   });
 };
+
+exports.urunEkleGoster = (req, res, next) => {
+  res.status(200).render('urun_ekle', {
+    kapakBaslik: 'Yeni Ürün Ekle',
+    title: 'Urun Ekle',
+  });
+};

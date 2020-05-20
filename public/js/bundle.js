@@ -20206,7 +20206,9 @@ var cikis = /*#__PURE__*/function () {
             });
 
           case 3:
-            location.assign('/urunler');
+            window.setTimeout(function () {
+              location.assign('/urunler');
+            }, 500);
             _context.next = 9;
             break;
 
@@ -20242,7 +20244,47 @@ if (cikisButon) {
     (0, _cikisModel.cikis)();
   });
 }
-},{"../models/cikisModel":"models/cikisModel.js"}],"index.js":[function(require,module,exports) {
+},{"../models/cikisModel":"models/cikisModel.js"}],"controllers/urunEkleController.js":[function(require,module,exports) {
+/* eslint-disable */
+var urunEkleForm = document.getElementById('urunEkleButon');
+
+if (urunEkleForm) {
+  var val, id;
+  var fields = {
+    tip: []
+  };
+  $('#tipEkleButon').click(function (e) {
+    val = $('#tip').val();
+    id = fields.tip.length + 1;
+    fields.tip.push({
+      id: id,
+      value: val
+    });
+    $('#tip').val('');
+    $('#tipKutu').append("<div class=\"alert alert-primary alert-dismissible fade show mt-2\" role=\"alert\">\n    <strong>".concat(val, "</strong> \n    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\" data-id=\"").concat(id, "\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>"));
+    console.log(fields);
+  });
+  $('#tipKutu').on('click', function (e) {
+    var id = $(e.target).closest('.close').attr('data-id');
+    var index = fields.tip.findIndex(function (e) {
+      return e.id == id;
+    });
+    fields.tip.splice(index, 1);
+    console.log(fields);
+  });
+  urunEkleForm.addEventListener('click', function (e) {
+    e.preventDefault();
+    var ad = $('#ad').val();
+    var aciklama = $('#aciklama').val();
+    var fiyat = $('#fiyat').val();
+    var stok = $('#stok').val();
+    var tipler = fields.tip.map(function (el) {
+      return el.value;
+    });
+    console.log(tipler);
+  });
+}
+},{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _jquery = _interopRequireDefault(require("jquery"));
@@ -20253,8 +20295,10 @@ require("./controllers/girisController");
 
 require("./controllers/cikisController");
 
+require("./controllers/urunEkleController");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"jquery":"../../node_modules/jquery/dist/jquery.js","./controllers/kayitController":"controllers/kayitController.js","./controllers/girisController":"controllers/girisController.js","./controllers/cikisController":"controllers/cikisController.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"jquery":"../../node_modules/jquery/dist/jquery.js","./controllers/kayitController":"controllers/kayitController.js","./controllers/girisController":"controllers/girisController.js","./controllers/cikisController":"controllers/cikisController.js","./controllers/urunEkleController":"controllers/urunEkleController.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

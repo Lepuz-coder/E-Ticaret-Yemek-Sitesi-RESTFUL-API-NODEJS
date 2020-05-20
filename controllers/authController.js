@@ -56,13 +56,17 @@ exports.protect = hataYakala(async (req, res, next) => {
   next();
 });
 
-exports.girisYaptiMi = hataYakala(async (req, res, next) => {
+exports.girisYaptiMi = async (req, res, next) => {
   let decoded;
   if (req.cookies.jwt) {
-    decoded = await util.promisify(jwt.verify)(
-      req.cookies.jwt,
-      process.env.JWT_SECRET_KEY
-    );
+    try {
+      decoded = await util.promisify(jwt.verify)(
+        req.cookies.jwt,
+        process.env.JWT_SECRET_KEY
+      );
+    } catch (err) {
+      return next();
+    }
   }
 
   //1-) Cookie var mı
@@ -79,7 +83,7 @@ exports.girisYaptiMi = hataYakala(async (req, res, next) => {
   res.locals.user = user;
 
   next();
-});
+};
 
 exports.cikisYap = (req, res, next) => {
   res.cookie('jwt', 'cikisYapildi', {

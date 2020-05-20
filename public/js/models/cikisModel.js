@@ -8,7 +8,9 @@ export const cikis = async () => {
       url: '/api/v1/auth/cikis',
     });
 
-    location.assign('/urunler');
+    window.setTimeout(() => {
+      location.assign('/urunler');
+    }, 500);
   } catch (err) {
     console.log(err.response.data.message);
   }
