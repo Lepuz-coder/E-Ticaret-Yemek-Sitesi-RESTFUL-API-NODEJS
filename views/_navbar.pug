@@ -1,0 +1,26 @@
+nav#ftco-navbar.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-navbar-light
+  .container
+    a.navbar-brand(href='index.html') ORGAN&Idot;K YEMEK&Ccedil;&Idot;M
+    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#ftco-nav' aria-controls='ftco-nav' aria-expanded='false' aria-label='Toggle navigation')
+      span.oi.oi-menu
+      |  Menu
+    #ftco-nav.collapse.navbar-collapse
+      ul.navbar-nav.ml-auto
+        li.nav-item.active.dropdown
+          a#dropdown04.nav-link.dropdown-toggle(href='#' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') Kullan&imath;c&imath; Ad&imath;
+          .dropdown-menu(aria-labelledby='dropdown04')
+            a.dropdown-item(href='wishlist.html') &Idot;stek Listesi
+            a.dropdown-item(href='cart.html') &Uuml;r&uuml;nlerim
+            // Satıcıysa Göster
+            a.dropdown-item(href='checkout.html') Hesap Ayarlar&imath;
+            a.dropdown-item(href='product-single.html') &Ccedil;&imath;k&imath;&scedil; Yap
+        li.nav-item
+          a.nav-link(href='about.html') Giri&scedil;
+          // Giriş yapmadıysa göster
+        li.nav-item
+          a.nav-link(href='blog.html') Kay&imath;t Ol
+          // Giriş yapmadıysa göster
+        li.nav-item.cta.cta-colored
+          a.nav-link(href='cart.html')
+            span.icon-shopping_cart
+            | [0]
