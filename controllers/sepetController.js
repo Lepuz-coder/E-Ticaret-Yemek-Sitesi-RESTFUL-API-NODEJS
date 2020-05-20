@@ -35,7 +35,7 @@ exports.sepeteEkle = hataYakala(async (req, res, next) => {
   });
 });
 
-exports.sepettenCikar = hataYakala(async (req, res, next) => {
+exports.sepettekiUrunuEksilt = hataYakala(async (req, res, next) => {
   const sepet = await Sepet.findOne({ kullanici: req.user.id });
   const index = sepet.urunler.findIndex((el) => {
     return el.yemek == req.params.id;
@@ -54,5 +54,20 @@ exports.sepettenCikar = hataYakala(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     sepet: sepet.urunler,
+  });
+});
+
+exports.sepettenUrunCikart = hataYakala(async (req, res, next) => {
+  const sepet = await Sepet.findOne({ kullanici: req.user.id });
+
+  const index = sepet.urunler.findIndex((el) => el.yemek == req.params.id);
+
+  sepet.urunler.splice(index, 1);
+
+  await sepet.save();
+
+  res.status(204).json({
+    status: 'success',
+    data: null,
   });
 });

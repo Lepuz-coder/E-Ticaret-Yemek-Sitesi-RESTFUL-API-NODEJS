@@ -11,6 +11,7 @@ router.route('/').get(sepetController.getir);
 router
   .route('/:id')
   .post(sepetController.sepeteEkle)
-  .delete(sepetController.sepettenCikar);
+  .patch(sepetController.sepettekiUrunuEksilt)
+  .delete(sepetController.sepettenUrunCikart);
 
 module.exports = router;
