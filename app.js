@@ -7,6 +7,9 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const multer = require('multer');
+
+const upload = multer();
 
 const errorController = require('./controllers/errorController');
 const AppError = require('./utils/appError');
@@ -23,6 +26,7 @@ const app = express();
 
 app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 //GÜVENLİK ÖNLEMLERİ:
 const limiter = rateLimiter({

@@ -56,8 +56,16 @@ if (urunEkleForm) {
         $('#uyari_mesaj').html('');
       }, 1500);
     } else {
-      console.log(tipler);
-      urunEkle(ad, fiyat, aciklama, stok, tipler);
+      const form = new FormData();
+      form.append('ad', ad);
+      form.append('aciklama', aciklama);
+      form.append('fiyat', fiyat);
+      form.append('stok', stok);
+      form.append('tipler', JSON.stringify(tipler));
+      form.append('resim', document.getElementById('resim').files[0]);
+      console.log(document.getElementById('resim').files[0]);
+
+      urunEkle(form);
     }
   });
 }

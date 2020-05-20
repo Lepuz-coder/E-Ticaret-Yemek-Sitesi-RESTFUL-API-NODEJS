@@ -20517,7 +20517,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var urunEkle = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(ad, fiyat, aciklama, stok, tipler) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(data) {
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -20529,18 +20529,14 @@ var urunEkle = /*#__PURE__*/function () {
             return (0, _axios.default)({
               method: 'POST',
               url: '/api/v1/yemekler',
-              data: {
-                ad: ad,
-                fiyat: fiyat,
-                aciklama: aciklama,
-                stok: stok,
-                tipler: tipler
-              }
+              data: data
             });
 
           case 5:
             $('#FakeurunEkleButon').val('Eklendi');
-            alert('Eklendi');
+            window.setTimeout(function () {
+              location.assign('/urunler');
+            }, 700);
             _context.next = 14;
             break;
 
@@ -20559,7 +20555,7 @@ var urunEkle = /*#__PURE__*/function () {
     }, _callee, null, [[0, 9]]);
   }));
 
-  return function urunEkle(_x, _x2, _x3, _x4, _x5) {
+  return function urunEkle(_x) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -20615,8 +20611,15 @@ if (urunEkleForm) {
         $('#uyari_mesaj').html('');
       }, 1500);
     } else {
-      console.log(tipler);
-      (0, _urunEkleModel.urunEkle)(ad, fiyat, aciklama, stok, tipler);
+      var form = new FormData();
+      form.append('ad', ad);
+      form.append('aciklama', aciklama);
+      form.append('fiyat', fiyat);
+      form.append('stok', stok);
+      form.append('tipler', JSON.stringify(tipler));
+      form.append('resim', document.getElementById('resim').files[0]);
+      console.log(document.getElementById('resim').files[0]);
+      (0, _urunEkleModel.urunEkle)(form);
     }
   });
 }
