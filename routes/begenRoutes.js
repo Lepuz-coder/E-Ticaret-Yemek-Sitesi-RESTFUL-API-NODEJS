@@ -12,7 +12,7 @@ router
   .delete(begenController.begenilenCikar);
 //POST -> begenilen ekle, DELETE -> begenilen çıkar
 
-//router.use('/');
+router.route('/').get(begenController.begenilenleriGetir);
 //GET-> begenilenleri getir, DELELTE -> tüm beğenilenleri sil
 
 module.exports = router;

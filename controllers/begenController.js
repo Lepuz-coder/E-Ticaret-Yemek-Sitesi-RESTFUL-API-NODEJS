@@ -33,3 +33,12 @@ exports.begenilenCikar = hataYakala(async (req, res, next) => {
     data: null,
   });
 });
+
+exports.begenilenleriGetir = hataYakala(async (req, res, next) => {
+  const begenilenler = await Begen.findOne({ kullanici: req.user.id });
+
+  res.status(200).json({
+    status: 'success',
+    begenilenler,
+  });
+});
