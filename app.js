@@ -9,6 +9,7 @@ const authRouter = require('./routes/authRoutes');
 const yemekRouter = require('./routes/yemekRoutes');
 const yorumRouter = require('./routes/yorumRoutes');
 const sepetRouter = require('./routes/sepetRoutes');
+const begenRouter = require('./routes/begenRoutes');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/yemekler', yemekRouter);
 app.use('/api/v1/yorumlar', yorumRouter);
 app.use('/api/v1/sepet', sepetRouter);
+app.use('/api/v1/begen', begenRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`This url cant found: ${req.originalUrl}`, 404));

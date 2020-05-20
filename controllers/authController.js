@@ -13,7 +13,6 @@ exports.izinliRoller = (...izinliRoller) => (req, res, next) => {
   if (!izinliRoller.includes(req.user.rol)) {
     return next(new AppError('Bunu yapmaya yetkiniz yok üzgünüz', 400));
   }
-
   next();
 };
 

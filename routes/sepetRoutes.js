@@ -6,7 +6,10 @@ const router = express.Router();
 
 router.use(authController.protect);
 
-router.route('/').get(sepetController.getir);
+router
+  .route('/')
+  .get(sepetController.getir)
+  .delete(sepetController.sepetiBoslat);
 
 router
   .route('/:id')

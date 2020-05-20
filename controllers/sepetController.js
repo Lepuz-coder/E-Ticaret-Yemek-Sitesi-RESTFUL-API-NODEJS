@@ -73,3 +73,15 @@ exports.sepettenUrunCikart = hataYakala(async (req, res, next) => {
     data: null,
   });
 });
+
+exports.sepetiBoslat = hataYakala(async (req, res, next) => {
+  const sepet = await Sepet.findOne({ kullanici: req.user.id });
+
+  sepet.urunler.splice(0, sepet.urunler.length);
+  await sepet.save();
+
+  res.status(201).json({
+    status: 'success',
+    data: null,
+  });
+});
