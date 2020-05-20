@@ -1,5 +1,6 @@
 const multer = require('multer');
 const sharp = require('sharp');
+const User = require('../models/userModel');
 const Yemek = require('../models/yemekModel');
 const handlerFactory = require('../utils/handlerFactory');
 const AppError = require('../utils/appError');
@@ -64,14 +65,17 @@ exports.nestedYemekler = (req, res, next) => {
 };
 
 //Satıcıların sadece kendisine ait bir yemek oluşturmasını sağlayan middleware
-exports.yemekOlusturmaIzin = (req, res, next) => {
+exports.yemekOlusturmaIzin = async (req, res, next) => {
   if (req.user.rol === 'admin') {
     return next();
   }
 
-  /*if (req.user.rol !== 'satici') {
-    return next(new AppError('Buraya erişiminize izin yok', 400));
-  }*/
+  if (req.user.rol !== 'satici') {
+    req.user.rol = 'satici';
+    await User.findByIdAndUpdate(req.user.id, {
+      rol: 'satici',
+    });
+  }
 
   req.body.satan_kullanici = req.user.id;
   next();
