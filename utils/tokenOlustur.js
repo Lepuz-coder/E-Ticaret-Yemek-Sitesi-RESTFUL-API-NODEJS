@@ -13,4 +13,6 @@ module.exports = (id, req, res) => {
     cookieOptions.secure = true;
 
   res.cookie('jwt', token, cookieOptions);
+
+  return token;
 };

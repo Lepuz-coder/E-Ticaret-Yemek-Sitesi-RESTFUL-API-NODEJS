@@ -8,6 +8,7 @@ const hataYakala = require('../utils/hataYakala');
 const AppError = require('../utils/appError');
 const tokenOlustur = require('../utils/tokenOlustur');
 const Email = require('../utils/email');
+const Sepet = require('../models/sepetModel');
 
 exports.izinliRoller = (...izinliRoller) => (req, res, next) => {
   if (!izinliRoller.includes(req.user.rol)) {
@@ -98,6 +99,12 @@ exports.kayitOl = hataYakala(async (req, res, next) => {
     email,
     sifre,
     sifreTekrar,
+  });
+
+  //EKSTRA-> Kullanıcının sepetini oluştur.
+  await Sepet.create({
+    kullanici: newUser.id,
+    urunler: [],
   });
 
   //3-)Kullanıcıya email verify kodu gönder
