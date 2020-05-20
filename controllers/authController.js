@@ -9,6 +9,7 @@ const AppError = require('../utils/appError');
 const tokenOlustur = require('../utils/tokenOlustur');
 const Email = require('../utils/email');
 const Sepet = require('../models/sepetModel');
+const Begen = require('../models/begenModel');
 
 exports.izinliRoller = (...izinliRoller) => (req, res, next) => {
   if (!izinliRoller.includes(req.user.rol)) {
@@ -101,10 +102,15 @@ exports.kayitOl = hataYakala(async (req, res, next) => {
     sifreTekrar,
   });
 
-  //EKSTRA-> Kullanıcının sepetini oluştur.
+  //EKSTRA-> Kullanıcının sepetini ve begenilenleri oluştur.
   await Sepet.create({
     kullanici: newUser.id,
     urunler: [],
+  });
+
+  await Begen.create({
+    kullanici: newUser.id,
+    begenilenler: [],
   });
 
   //3-)Kullanıcıya email verify kodu gönder
