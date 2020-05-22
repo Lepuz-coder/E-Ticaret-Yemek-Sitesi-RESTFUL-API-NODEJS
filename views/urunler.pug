@@ -4,20 +4,21 @@ block content
  section.ftco-section
   .container
     .row
+     each yemek in yemekler
       .col-md-6.col-lg-3.ftco-animate
         .product
           a.img-prod(href='#')
-            img.img-fluid(src='images/product-1.jpg' alt='Colorlib Template')
-            span.status 30%
+            img.img-fluid(src=`/resimler/yemekler/${yemek.resim}` alt='Colorlib Template')
+            span.status 
             .overlay
           .text.py-3.pb-4.px-3.text-center
             h3
-              a(href='#') Bell Pepper
+              a(href='#')= yemek.ad
             .d-flex
               .pricing
                 p.price
-                  span.mr-2.price-dc $120.00
-                  span.price-sale $80.00
+                  span.mr-2 Kilosu
+                  span.price-sale= `$${yemek.fiyat}`
             .bottom-area.d-flex.px-3
               .m-auto.d-flex
                 a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
@@ -29,263 +30,7 @@ block content
                 a.heart.d-flex.justify-content-center.align-items-center(href='#')
                   span
                     i.ion-ios-heart
-      .col-md-6.col-lg-3.ftco-animate
-        .product
-          a.img-prod(href='#')
-            img.img-fluid(src='images/product-2.jpg' alt='Colorlib Template')
-            .overlay
-          .text.py-3.pb-4.px-3.text-center
-            h3
-              a(href='#') Strawberry
-            .d-flex
-              .pricing
-                p.price
-                  span $120.00
-            .bottom-area.d-flex.px-3
-              .m-auto.d-flex
-                a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
-                  span
-                    i.ion-ios-menu
-                a.buy-now.d-flex.justify-content-center.align-items-center.mx-1(href='#')
-                  span
-                    i.ion-ios-cart
-                a.heart.d-flex.justify-content-center.align-items-center(href='#')
-                  span
-                    i.ion-ios-heart
-      .col-md-6.col-lg-3.ftco-animate
-        .product
-          a.img-prod(href='#')
-            img.img-fluid(src='images/product-3.jpg' alt='Colorlib Template')
-            .overlay
-          .text.py-3.pb-4.px-3.text-center
-            h3
-              a(href='#') Green Beans
-            .d-flex
-              .pricing
-                p.price
-                  span $120.00
-            .bottom-area.d-flex.px-3
-              .m-auto.d-flex
-                a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
-                  span
-                    i.ion-ios-menu
-                a.buy-now.d-flex.justify-content-center.align-items-center.mx-1(href='#')
-                  span
-                    i.ion-ios-cart
-                a.heart.d-flex.justify-content-center.align-items-center(href='#')
-                  span
-                    i.ion-ios-heart
-      .col-md-6.col-lg-3.ftco-animate
-        .product
-          a.img-prod(href='#')
-            img.img-fluid(src='images/product-4.jpg' alt='Colorlib Template')
-            .overlay
-          .text.py-3.pb-4.px-3.text-center
-            h3
-              a(href='#') Purple Cabbage
-            .d-flex
-              .pricing
-                p.price
-                  span $120.00
-            .bottom-area.d-flex.px-3
-              .m-auto.d-flex
-                a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
-                  span
-                    i.ion-ios-menu
-                a.buy-now.d-flex.justify-content-center.align-items-center.mx-1(href='#')
-                  span
-                    i.ion-ios-cart
-                a.heart.d-flex.justify-content-center.align-items-center(href='#')
-                  span
-                    i.ion-ios-heart
-      .col-md-6.col-lg-3.ftco-animate
-        .product
-          a.img-prod(href='#')
-            img.img-fluid(src='images/product-5.jpg' alt='Colorlib Template')
-            span.status 30%
-            .overlay
-          .text.py-3.pb-4.px-3.text-center
-            h3
-              a(href='#') Tomatoe
-            .d-flex
-              .pricing
-                p.price
-                  span.mr-2.price-dc $120.00
-                  span.price-sale $80.00
-            .bottom-area.d-flex.px-3
-              .m-auto.d-flex
-                a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
-                  span
-                    i.ion-ios-menu
-                a.buy-now.d-flex.justify-content-center.align-items-center.mx-1(href='#')
-                  span
-                    i.ion-ios-cart
-                a.heart.d-flex.justify-content-center.align-items-center(href='#')
-                  span
-                    i.ion-ios-heart
-      .col-md-6.col-lg-3.ftco-animate
-        .product
-          a.img-prod(href='#')
-            img.img-fluid(src='images/product-6.jpg' alt='Colorlib Template')
-            .overlay
-          .text.py-3.pb-4.px-3.text-center
-            h3
-              a(href='#') Brocolli
-            .d-flex
-              .pricing
-                p.price
-                  span $120.00
-            .bottom-area.d-flex.px-3
-              .m-auto.d-flex
-                a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
-                  span
-                    i.ion-ios-menu
-                a.buy-now.d-flex.justify-content-center.align-items-center.mx-1(href='#')
-                  span
-                    i.ion-ios-cart
-                a.heart.d-flex.justify-content-center.align-items-center(href='#')
-                  span
-                    i.ion-ios-heart
-      .col-md-6.col-lg-3.ftco-animate
-        .product
-          a.img-prod(href='#')
-            img.img-fluid(src='images/product-7.jpg' alt='Colorlib Template')
-            .overlay
-          .text.py-3.pb-4.px-3.text-center
-            h3
-              a(href='#') Carrots
-            .d-flex
-              .pricing
-                p.price
-                  span $120.00
-            .bottom-area.d-flex.px-3
-              .m-auto.d-flex
-                a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
-                  span
-                    i.ion-ios-menu
-                a.buy-now.d-flex.justify-content-center.align-items-center.mx-1(href='#')
-                  span
-                    i.ion-ios-cart
-                a.heart.d-flex.justify-content-center.align-items-center(href='#')
-                  span
-                    i.ion-ios-heart
-      .col-md-6.col-lg-3.ftco-animate
-        .product
-          a.img-prod(href='#')
-            img.img-fluid(src='images/product-8.jpg' alt='Colorlib Template')
-            .overlay
-          .text.py-3.pb-4.px-3.text-center
-            h3
-              a(href='#') Fruit Juice
-            .d-flex
-              .pricing
-                p.price
-                  span $120.00
-            .bottom-area.d-flex.px-3
-              .m-auto.d-flex
-                a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
-                  span
-                    i.ion-ios-menu
-                a.buy-now.d-flex.justify-content-center.align-items-center.mx-1(href='#')
-                  span
-                    i.ion-ios-cart
-                a.heart.d-flex.justify-content-center.align-items-center(href='#')
-                  span
-                    i.ion-ios-heart
-      .col-md-6.col-lg-3.ftco-animate
-        .product
-          a.img-prod(href='#')
-            img.img-fluid(src='images/product-9.jpg' alt='Colorlib Template')
-            span.status 30%
-            .overlay
-          .text.py-3.pb-4.px-3.text-center
-            h3
-              a(href='#') Onion
-            .d-flex
-              .pricing
-                p.price
-                  span.mr-2.price-dc $120.00
-                  span.price-sale $80.00
-            .bottom-area.d-flex.px-3
-              .m-auto.d-flex
-                a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
-                  span
-                    i.ion-ios-menu
-                a.buy-now.d-flex.justify-content-center.align-items-center.mx-1(href='#')
-                  span
-                    i.ion-ios-cart
-                a.heart.d-flex.justify-content-center.align-items-center(href='#')
-                  span
-                    i.ion-ios-heart
-      .col-md-6.col-lg-3.ftco-animate
-        .product
-          a.img-prod(href='#')
-            img.img-fluid(src='images/product-10.jpg' alt='Colorlib Template')
-            .overlay
-          .text.py-3.pb-4.px-3.text-center
-            h3
-              a(href='#') Apple
-            .d-flex
-              .pricing
-                p.price
-                  span $120.00
-            .bottom-area.d-flex.px-3
-              .m-auto.d-flex
-                a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
-                  span
-                    i.ion-ios-menu
-                a.buy-now.d-flex.justify-content-center.align-items-center.mx-1(href='#')
-                  span
-                    i.ion-ios-cart
-                a.heart.d-flex.justify-content-center.align-items-center(href='#')
-                  span
-                    i.ion-ios-heart
-      .col-md-6.col-lg-3.ftco-animate
-        .product
-          a.img-prod(href='#')
-            img.img-fluid(src='images/product-11.jpg' alt='Colorlib Template')
-            .overlay
-          .text.py-3.pb-4.px-3.text-center
-            h3
-              a(href='#') Garlic
-            .d-flex
-              .pricing
-                p.price
-                  span $120.00
-            .bottom-area.d-flex.px-3
-              .m-auto.d-flex
-                a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
-                  span
-                    i.ion-ios-menu
-                a.buy-now.d-flex.justify-content-center.align-items-center.mx-1(href='#')
-                  span
-                    i.ion-ios-cart
-                a.heart.d-flex.justify-content-center.align-items-center(href='#')
-                  span
-                    i.ion-ios-heart
-      .col-md-6.col-lg-3.ftco-animate
-        .product
-          a.img-prod(href='#')
-            img.img-fluid(src='images/product-12.jpg' alt='Colorlib Template')
-            .overlay
-          .text.py-3.pb-4.px-3.text-center
-            h3
-              a(href='#') Chilli
-            .d-flex
-              .pricing
-                p.price
-                  span $120.00
-            .bottom-area.d-flex.px-3
-              .m-auto.d-flex
-                a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
-                  span
-                    i.ion-ios-menu
-                a.buy-now.d-flex.justify-content-center.align-items-center.mx-1(href='#')
-                  span
-                    i.ion-ios-cart
-                a.heart.d-flex.justify-content-center.align-items-center(href='#')
-                  span
-                    i.ion-ios-heart
+     
     .row.mt-5
       .col.text-center
         .block-27

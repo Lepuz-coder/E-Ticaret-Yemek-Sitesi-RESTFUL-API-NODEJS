@@ -27,6 +27,7 @@ const app = express();
 app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+//fieldsIsım[name] = 'blabla' filedsIsım: { name: 'blabla }
 
 //GÜVENLİK ÖNLEMLERİ:
 const limiter = rateLimiter({

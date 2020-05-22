@@ -15,7 +15,7 @@ const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
     cb(null, true);
   } else {
-    cb(new AppError('Please upload an image file !', 400));
+    cb(new AppError('Lütfen resim dosyası ekleyiniz!', 400));
   }
 };
 

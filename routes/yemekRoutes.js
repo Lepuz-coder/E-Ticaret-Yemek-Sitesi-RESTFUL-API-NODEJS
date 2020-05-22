@@ -21,6 +21,7 @@ router
     yemekController.yemekOlusturmaIzin,
     yemekController.uploadUserPhoto,
     yemekController.resizeUserPhoto,
+    yemekController.yemekDosyaYuklemeAyari,
     yemekController.yemekOlustur
   ) //Satıcı buraya erişebilir
   .get(yemekController.nestedYemekler, yemekController.yemekleriAl); //Herkes buraya erişebilir

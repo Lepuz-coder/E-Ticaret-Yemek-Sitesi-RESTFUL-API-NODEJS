@@ -1,9 +1,15 @@
-exports.urunlerGoster = (req, res, next) => {
+const Yemek = require('../models/yemekModel');
+const hataYakala = require('../utils/hataYakala');
+
+exports.urunlerGoster = hataYakala(async (req, res, next) => {
+  const yemekler = await Yemek.find().limit(8);
+
   res.status(200).render('urunler', {
     kapakBaslik: 'ÜRÜNLER',
     title: 'Ürünler',
+    yemekler,
   });
-};
+});
 
 exports.kayitGoster = (req, res, next) => {
   res.status(200).render('kayit', {
