@@ -2,11 +2,17 @@ const Yemek = require('../models/yemekModel');
 const hataYakala = require('../utils/hataYakala');
 
 exports.urunlerGoster = hataYakala(async (req, res, next) => {
-  const yemekler = await Yemek.find().limit(8);
+  const yemekler = await Yemek.find()
+    .skip((req.params.sayfa - 1) * 8)
+    .limit(8);
+  const toplam = Math.ceil((await Yemek.find()).length / 8);
+
+  res.locals.sayfa = req.params.sayfa;
 
   res.status(200).render('urunler', {
     kapakBaslik: 'ÜRÜNLER',
     title: 'Ürünler',
+    toplam,
     yemekler,
   });
 });

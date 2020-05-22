@@ -7,7 +7,7 @@ const router = express.Router();
 router.use(authController.girisYaptiMi);
 
 router.get('/', viewController.urunlerGoster);
-router.get('/urunler', viewController.urunlerGoster);
+router.get('/urunler/:sayfa', viewController.urunlerGoster);
 router.get('/kayit', viewController.kayitGoster);
 router.get('/giris', viewController.girisGoster);
 router.get('/urun-ekle', viewController.urunEkleGoster);

@@ -35,20 +35,11 @@ block content
       .col.text-center
         .block-27
           ul
+            -for(let i=1; i<=toplam; i++)    
+              li(class = `${sayfa == i ? 'active' : ''}`)
+                a(href=`/urunler/${i}`)= i
             li
-              a(href='#') &lt;
-            li.active
-              span 1
-            li
-              a(href='#') 2
-            li
-              a(href='#') 3
-            li
-              a(href='#') 4
-            li
-              a(href='#') 5
-            li
-              a(href='#') &gt;
+              a(href=`${sayfa < toplam ? `/urunler/${parseInt(sayfa) + 1}` : '#' }`) &gt;
   #ftco-loader.show.fullscreen
     svg.circular(width='48px' height='48px')
         circle.path-bg(cx='24' cy='24' r='22' fill='none' stroke-width='4' stroke='#eeeeee')
