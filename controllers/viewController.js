@@ -1,6 +1,11 @@
 const Yemek = require('../models/yemekModel');
 const hataYakala = require('../utils/hataYakala');
 
+exports.anasayfaMiddleware = (req, res, next) => {
+  req.params.sayfa = 1;
+  next();
+};
+
 exports.urunlerGoster = hataYakala(async (req, res, next) => {
   const yemekler = await Yemek.find()
     .skip((req.params.sayfa - 1) * 8)

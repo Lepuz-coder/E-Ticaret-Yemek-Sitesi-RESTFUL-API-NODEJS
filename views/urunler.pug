@@ -30,8 +30,10 @@ block content
                 a.heart.d-flex.justify-content-center.align-items-center(href='#')
                   span
                     i.ion-ios-heart
-     
-    .row.mt-5
+    -if(yemekler.length <= 0)
+      h2 Üzgünüz, aradığınızı bulamadık..
+    -if(yemekler.length > 0)   
+     .row.mt-5
       .col.text-center
         .block-27
           ul
@@ -39,7 +41,8 @@ block content
               li(class = `${sayfa == i ? 'active' : ''}`)
                 a(href=`/urunler/${i}`)= i
             li
-              a(href=`${sayfa < toplam ? `/urunler/${parseInt(sayfa) + 1}` : '#' }`) &gt;
+             -if(sayfa < toplam)
+              a(href=`/urunler/${parseInt(sayfa) + 1}`) &gt;
   #ftco-loader.show.fullscreen
     svg.circular(width='48px' height='48px')
         circle.path-bg(cx='24' cy='24' r='22' fill='none' stroke-width='4' stroke='#eeeeee')
