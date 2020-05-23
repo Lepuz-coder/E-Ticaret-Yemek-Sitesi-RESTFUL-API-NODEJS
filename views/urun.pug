@@ -1,0 +1,60 @@
+extends base
+
+block content
+
+ section.ftco-section
+  .container
+    .row
+      .col-lg-6.mb-5.ftco-animate
+        a.image-popup(href=`/resimler/yemekler/${urun.resim}`)
+          img.img-fluid(src=`/resimler/yemekler/${urun.resim}` alt=`${urun.ad}`)
+      .col-lg-6.product-details.pl-md-5.ftco-animate
+        h3 Bell Pepper
+        .rating.d-flex
+          p.text-left.mr-4
+            a.mr-2(href='#') #{urun.puan_ortalama}
+            a(href='#')
+              span.ion-ios-star-outline
+            a(href='#')
+              span.ion-ios-star-outline
+            a(href='#')
+              span.ion-ios-star-outline
+            a(href='#')
+              span.ion-ios-star-outline
+            a(href='#')
+              span.ion-ios-star-outline
+          p.text-left.mr-4
+            a.mr-2(href='#' style='color: #000;')
+              | #{urun.puan_sayi} 
+              span(style='color: #bbb;') Rating
+          p.text-left
+            a.mr-2(href='#' style='color: #000;')
+              | #{urun.satis} 
+              span(style='color: #bbb;') Sold
+        p.price
+          span $#{urun.fiyat}
+        p
+          | #{urun.aciklama}
+        .row.mt-4
+          .col-md-6
+            .form-group.d-flex
+              .select-wrap
+                .icon
+                  span.ion-ios-arrow-down
+                select.form-control(name='' id='')
+                 each tip in urun.tipler
+                  option(value=`${tip}`)= tip
+          .w-100
+          .input-group.col-md-6.d-flex.mb-3
+            span.input-group-btn.mr-2
+              button.quantity-left-minus.btn(type='button' data-type='minus' data-field='')
+                i.ion-ios-remove
+            input#quantity.form-control.input-number(type='text' name='miktar' value='1' min='1' max='100')
+            span.input-group-btn.ml-2
+              button.quantity-right-plus.btn(type='button' data-type='plus' data-field='')
+                i.ion-ios-add
+          .w-100
+          .col-md-12
+            p(style='color: #000;') Stoktaki Sayısı : #{urun.stok}
+        p
+          a.btn.btn-black.py-3.px-5(href='cart.html') Sepete Ekle

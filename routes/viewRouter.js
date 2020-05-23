@@ -27,5 +27,6 @@ router.get(
   viewController.favoriler
 );
 router.get('/sepetim', authController.protect, viewController.sepet);
+router.get('/urun/:id', viewController.urun);
 
 module.exports = router;

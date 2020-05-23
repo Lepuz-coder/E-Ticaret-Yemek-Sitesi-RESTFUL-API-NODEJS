@@ -79,9 +79,20 @@ exports.favoriler = hataYakala(async (req, res, next) => {
   });
 });
 
+// TODO
 exports.sepet = hataYakala(async (req, res, next) => {
   res.status(200).render('sepet', {
     title: 'Sepetim',
     kapakBaslik: 'Sepet',
+  });
+});
+
+exports.urun = hataYakala(async (req, res, next) => {
+  const urun = await Yemek.findById(req.params.id);
+
+  res.status(200).render('urun', {
+    title: urun.ad,
+    kapakBaslik: urun.ad,
+    urun,
   });
 });
