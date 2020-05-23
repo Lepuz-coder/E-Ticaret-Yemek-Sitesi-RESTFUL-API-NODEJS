@@ -61,3 +61,31 @@ exports.yemeklerim = hataYakala(async (req, res, next) => {
   req.filter = { satan_kullanici: req.user.id };
   next();
 });
+
+exports.favoriler = hataYakala(async (req, res, next) => {
+  if (!req.params.sayfa) req.params.sayfa = 1;
+
+  const begenilerDb = await Begen.findOne({ kullanici: req.user.id })
+    .populate('begenilenler.begenilen')
+    .skip((req.params.sayfa - 1) * 8)
+    .limit(8);
+
+  const tumBegeniler = (await Begen.findOne({ kullanici: req.user.id }))
+    .begenilenler;
+
+  res.locals.begeniler = tumBegeniler.map((el) => el.begenilen);
+  const toplam = Math.ceil(tumBegeniler.length / 8);
+  console.log(toplam);
+
+  const begeniler = begenilerDb.begenilenler.map((el) => el.begenilen);
+
+  res.locals.favori = true;
+
+  res.status(200).render('urunler', {
+    kapakBaslik: 'Favoriler',
+    title: 'Favoriler',
+    toplam,
+    yemekler: begeniler,
+    sayfa: req.params.sayfa,
+  });
+});

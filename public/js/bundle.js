@@ -24057,7 +24057,7 @@ var begenToggle = /*#__PURE__*/function () {
 
             _sweetalert.default.fire({
               icon: 'success',
-              title: 'Beğeni eklendi',
+              title: 'Favorilere eklendi',
               timer: '1000',
               showConfirmButton: false
             });
@@ -24067,7 +24067,7 @@ var begenToggle = /*#__PURE__*/function () {
           case 10:
             _sweetalert.default.fire({
               icon: 'error',
-              title: 'Beğeni kaldırıldı',
+              title: 'Favorilerden kaldırıldı',
               timer: '700',
               showConfirmButton: false
             });

@@ -20,7 +20,7 @@ export const begenToggle = async (id) => {
     if (res.data) {
       Swal.fire({
         icon: 'success',
-        title: 'Beğeni eklendi',
+        title: 'Favorilere eklendi',
         timer: '1000',
         showConfirmButton: false,
       });
@@ -28,7 +28,7 @@ export const begenToggle = async (id) => {
     } else {
       Swal.fire({
         icon: 'error',
-        title: 'Beğeni kaldırıldı',
+        title: 'Favorilerden kaldırıldı',
         timer: '700',
         showConfirmButton: false,
       });
