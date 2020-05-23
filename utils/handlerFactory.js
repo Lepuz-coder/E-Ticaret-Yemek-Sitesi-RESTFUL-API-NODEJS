@@ -64,6 +64,7 @@ exports.birTaneAl = (Model, ...populate) =>
 
 exports.olustur = (Model) =>
   hataYakala(async (req, res, next) => {
+    console.log(req.body);
     const newDoc = await Model.create(req.body);
 
     res.status(201).json({

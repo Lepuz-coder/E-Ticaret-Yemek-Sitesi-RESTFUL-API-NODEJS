@@ -18,10 +18,10 @@ router
   .route('/')
   .post(
     authController.protect,
-    yemekController.yemekOlusturmaIzin,
     yemekController.uploadUserPhoto,
     yemekController.resizeUserPhoto,
     yemekController.yemekDosyaYuklemeAyari,
+    yemekController.yemekOlusturmaIzin,
     yemekController.yemekOlustur
   ) //Satıcı buraya erişebilir
   .get(yemekController.nestedYemekler, yemekController.yemekleriAl); //Herkes buraya erişebilir

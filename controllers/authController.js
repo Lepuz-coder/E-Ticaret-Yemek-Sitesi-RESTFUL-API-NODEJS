@@ -86,6 +86,7 @@ exports.girisYaptiMi = async (req, res, next) => {
     return next();
   }
 
+  req.user = user;
   res.locals.user = user;
 
   next();

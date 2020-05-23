@@ -42,3 +42,5 @@ exports.urunEkleGoster = (req, res, next) => {
     title: 'Urun Ekle',
   });
 };
+
+exports.yemeklerim = hataYakala(async (req, res, next) => {});
