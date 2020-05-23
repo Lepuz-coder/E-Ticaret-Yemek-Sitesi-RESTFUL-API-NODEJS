@@ -10,99 +10,22 @@ block content
                 thead.thead-primary
                   tr.text-center
                     th &nbsp;
-                    th Product List
+                    th Ürün Listesi
                     th &nbsp;
-                    th Price
-                    th Quantity
-                    th Total
+                    th Fiyat
+                    th Miktar
                 tbody
+                 each favori in favoriler
                   tr.text-center
                     td.product-remove
                       a(href="#")
                         span.ion-ios-close
                     td.image-prod
-                      .img(style="background-image:url(images/product-1.jpg);")
+                      .img(style=`background-image:url(/resimler/yemekler/${favori.begenilen.resim});`)
                     td.product-name
-                      h3 Bell Pepper
-                      p Far far away, behind the word mountains, far from the countries
-                    td.price $4.90
+                      h3= favori.begenilen.ad
+                      p= favori.begenilen.aciklama
+                    td.price= `$${favori.begenilen.fiyat}`
                     td.quantity
                       .input-group.mb-3
-                        input.quantity.form-control.input-number(type="text" name="quantity" value="1" min="1" max="100")
-                    td.total $4.90
-                  // END TR
-                  tr.text-center
-                    td.product-remove
-                      a(href="#")
-                        span.ion-ios-close
-                    td.image-prod
-                      .img(style="background-image:url(images/product-2.jpg);")
-                    td.product-name
-                      h3 Bell Pepper
-                      p Far far away, behind the word mountains, far from the countries
-                    td.price $15.70
-                    td.quantity
-                      .input-group.mb-3
-                        input.quantity.form-control.input-number(type="text" name="quantity" value="1" min="1" max="100")
-                    td.total $15.70
-                  // END TR
-                  tr.text-center
-                    td.product-remove
-                      a(href="#")
-                        span.ion-ios-close
-                    td.image-prod
-                      .img(style="background-image:url(images/product-3.jpg);")
-                    td.product-name
-                      h3 Bell Pepper
-                      p Far far away, behind the word mountains, far from the countries
-                    td.price $15.70
-                    td.quantity
-                      .input-group.mb-3
-                        input.quantity.form-control.input-number(type="text" name="quantity" value="1" min="1" max="100")
-                    td.total $15.70
-                  // END TR
-                  tr.text-center
-                    td.product-remove
-                      a(href="#")
-                        span.ion-ios-close
-                    td.image-prod
-                      .img(style="background-image:url(images/product-4.jpg);")
-                    td.product-name
-                      h3 Bell Pepper
-                      p Far far away, behind the word mountains, far from the countries
-                    td.price $15.70
-                    td.quantity
-                      .input-group.mb-3
-                        input.quantity.form-control.input-number(type="text" name="quantity" value="1" min="1" max="100")
-                    td.total $15.70
-                  // END TR
-                  tr.text-center
-                    td.product-remove
-                      a(href="#")
-                        span.ion-ios-close
-                    td.image-prod
-                      .img(style="background-image:url(images/product-5.jpg);")
-                    td.product-name
-                      h3 Bell Pepper
-                      p Far far away, behind the word mountains, far from the countries
-                    td.price $15.70
-                    td.quantity
-                      .input-group.mb-3
-                        input.quantity.form-control.input-number(type="text" name="quantity" value="1" min="1" max="100")
-                    td.total $15.70
-                  // END TR
-                  tr.text-center
-                    td.product-remove
-                      a(href="#")
-                        span.ion-ios-close
-                    td.image-prod
-                      .img(style="background-image:url(images/product-6.jpg);")
-                    td.product-name
-                      h3 Bell Pepper
-                      p Far far away, behind the word mountains, far from the countries
-                    td.price $15.70
-                    td.quantity
-                      .input-group.mb-3
-                        input.quantity.form-control.input-number(type="text" name="quantity" value="1" min="1" max="100")
-                    td.total $15.70
-                  // END TR
+                        input.quantity.form-control.input-number(type="text" name="quantity" value="1" min="1" max="100" disabled)

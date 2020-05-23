@@ -65,17 +65,16 @@ exports.yemeklerim = hataYakala(async (req, res, next) => {
 exports.favoriler = hataYakala(async (req, res, next) => {
   if (!req.params.sayfa) req.params.sayfa = 1;
 
-  const begeniler = (
+  const favoriler = (
     await Begen.findOne({ kullanici: req.user.id }).populate({
       path: 'begenilenler.begenilen',
       select: 'aciklama resim fiyat ad',
     })
   ).begenilenler;
-
-  console.log(begeniler);
-
+  console.log(favoriler);
   res.status(200).render('favoriler', {
     title: 'Favoriler',
     kapakBaslik: 'FAVORİLER',
+    favoriler,
   });
 });
