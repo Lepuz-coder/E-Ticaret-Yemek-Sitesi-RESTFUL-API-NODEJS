@@ -16,4 +16,6 @@ router
   .post(begenController.begenilenEkle)
   .delete(begenController.begenilenCikar);
 
+router.post('/toggle/:id', begenController.begenToggle);
+
 module.exports = router;

@@ -2,7 +2,7 @@
 const Begen = require('../models/begenModel');
 const hataYakala = require('../utils/hataYakala');
 
-exports.begenilenEkle = hataYakala(async (req, res, next) => {
+const begenOn = hataYakala(async (req, res) => {
   const begen = await Begen.findOne({ kullanici: req.user.id });
 
   begen.begenilenler.push({
@@ -17,11 +17,11 @@ exports.begenilenEkle = hataYakala(async (req, res, next) => {
   });
 });
 
-exports.begenilenCikar = hataYakala(async (req, res, next) => {
+const begenOff = hataYakala(async (req, res) => {
   const begen = await Begen.findOne({ kullanici: req.user.id });
 
   const index = begen.begenilenler.findIndex(
-    (el) => el.begenilen == req.param.id
+    (el) => el.begenilen == req.params.id
   );
 
   begen.begenilenler.splice(index, 1);
@@ -32,6 +32,24 @@ exports.begenilenCikar = hataYakala(async (req, res, next) => {
     status: 'success',
     data: null,
   });
+});
+
+exports.begenilenEkle = begenOn;
+
+exports.begenilenCikar = begenOff;
+
+exports.begenToggle = hataYakala(async (req, res, next) => {
+  const begen = await Begen.findOne({ kullanici: req.user.id });
+
+  const index = begen.begenilenler.findIndex(
+    (el) => el.begenilen == req.params.id
+  );
+
+  if (index === -1) {
+    begenOn(req, res, next);
+  } else {
+    begenOff(req, res, next);
+  }
 });
 
 exports.begenilenleriGetir = hataYakala(async (req, res, next) => {

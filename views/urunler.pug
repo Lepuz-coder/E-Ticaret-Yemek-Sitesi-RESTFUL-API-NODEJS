@@ -20,7 +20,7 @@ block content
                   span.mr-2 Kilosu
                   span.price-sale= `$${yemek.fiyat}`
             .bottom-area.d-flex.px-3
-              .m-auto.d-flex
+              .m-auto.d-flex.yemekId(data-id=`${yemek.id}`)
                 a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
                   span
                     i.ion-ios-menu
