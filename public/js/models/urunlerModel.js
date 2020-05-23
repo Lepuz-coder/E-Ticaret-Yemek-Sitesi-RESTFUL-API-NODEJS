@@ -21,12 +21,16 @@ export const begenToggle = async (id) => {
       Swal.fire({
         icon: 'success',
         title: 'Beğeni eklendi',
+        timer: '1000',
+        showConfirmButton: false,
       });
       return true;
     } else {
       Swal.fire({
         icon: 'error',
         title: 'Beğeni kaldırıldı',
+        timer: '700',
+        showConfirmButton: false,
       });
       return false;
     }

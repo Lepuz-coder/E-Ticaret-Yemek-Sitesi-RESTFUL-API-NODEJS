@@ -10,38 +10,36 @@ if (kalp) {
     e.preventDefault();
 
     const id = $(e.target).closest('.yemekId').attr('data-id');
-    const giris = $(e.target).closest('.yemekId').attr('data-giris');
-    if (giris) {
+    if (id) {
       begenToggle(id)
         .then((res) => {
           console.log($(e.target).closest('.yemekId'));
+          const likeTarget = $(e.target).closest('.yemekId').find('.likeButon');
+          const dislikeTarget = $(e.target)
+            .closest('.yemekId')
+            .find('.dislikeButon');
           if (res) {
-            $(e.target)
-              .closest('.yemekId')
-              .find('.likeButon')
-              .toggleClass('d-none');
-            $(e.target)
-              .closest('.yemekId')
-              .find('.dislikeButon')
-              .toggleClass('d-none');
+            likeTarget.toggleClass('d-none');
+            dislikeTarget.toggleClass('d-none');
           } else {
-            $(e.target)
-              .closest('.yemekId')
-              .find('.likeButon')
-              .toggleClass('d-none');
-            $(e.target)
-              .closest('.yemekId')
-              .find('.dislikeButon')
-              .toggleClass('d-none');
+            likeTarget.toggleClass('d-none');
+            dislikeTarget.toggleClass('d-none');
           }
         })
         .catch((err) => {
-          console.log(`ERROR: ${err}`);
+          Swal.fire({
+            icon: 'warning',
+            title: 'Server ile ileişimde hata meydana geldi !',
+          });
         });
     } else {
       Swal.fire({
         icon: 'warning',
         title: 'Beğenmek için giriş yapınız',
+        confirmButtonText: 'Giriş Yap',
+        type: 'success ',
+      }).then(function (res) {
+        if (!res.isDismissed) location.assign('/giris');
       });
     }
   });

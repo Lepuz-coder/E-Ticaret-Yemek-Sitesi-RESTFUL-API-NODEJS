@@ -24057,7 +24057,9 @@ var begenToggle = /*#__PURE__*/function () {
 
             _sweetalert.default.fire({
               icon: 'success',
-              title: 'Beğeni eklendi'
+              title: 'Beğeni eklendi',
+              timer: '1000',
+              showConfirmButton: false
             });
 
             return _context.abrupt("return", true);
@@ -24065,7 +24067,9 @@ var begenToggle = /*#__PURE__*/function () {
           case 10:
             _sweetalert.default.fire({
               icon: 'error',
-              title: 'Beğeni kaldırıldı'
+              title: 'Beğeni kaldırıldı',
+              timer: '700',
+              showConfirmButton: false
             });
 
             return _context.abrupt("return", false);
@@ -24109,26 +24113,34 @@ if (kalp) {
   $('.heart').on('click', function (e) {
     e.preventDefault();
     var id = $(e.target).closest('.yemekId').attr('data-id');
-    var giris = $(e.target).closest('.yemekId').attr('data-giris');
 
-    if (giris) {
+    if (id) {
       (0, _urunlerModel.begenToggle)(id).then(function (res) {
         console.log($(e.target).closest('.yemekId'));
+        var likeTarget = $(e.target).closest('.yemekId').find('.likeButon');
+        var dislikeTarget = $(e.target).closest('.yemekId').find('.dislikeButon');
 
         if (res) {
-          $(e.target).closest('.yemekId').find('.likeButon').toggleClass('d-none');
-          $(e.target).closest('.yemekId').find('.dislikeButon').toggleClass('d-none');
+          likeTarget.toggleClass('d-none');
+          dislikeTarget.toggleClass('d-none');
         } else {
-          $(e.target).closest('.yemekId').find('.likeButon').toggleClass('d-none');
-          $(e.target).closest('.yemekId').find('.dislikeButon').toggleClass('d-none');
+          likeTarget.toggleClass('d-none');
+          dislikeTarget.toggleClass('d-none');
         }
       }).catch(function (err) {
-        console.log("ERROR: ".concat(err));
+        _sweetalert.default.fire({
+          icon: 'warning',
+          title: 'Server ile ileişimde hata meydana geldi !'
+        });
       });
     } else {
       _sweetalert.default.fire({
         icon: 'warning',
-        title: 'Beğenmek için giriş yapınız'
+        title: 'Beğenmek için giriş yapınız',
+        confirmButtonText: 'Giriş Yap',
+        type: 'success '
+      }).then(function (res) {
+        if (!res.isDismissed) location.assign('/giris');
       });
     }
   });

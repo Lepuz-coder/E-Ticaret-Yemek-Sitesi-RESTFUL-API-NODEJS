@@ -12,12 +12,15 @@ exports.urunlerGoster = hataYakala(async (req, res, next) => {
 
   req.filter ? (filter = req.filter) : (filter = {});
 
+  if (!req.params.sayfa) req.params.sayfa = 1;
+
   const yemekler = await Yemek.find(filter)
     .skip((req.params.sayfa - 1) * 8)
     .limit(8);
   const toplam = Math.ceil((await Yemek.find(filter)).length / 8);
 
   res.locals.sayfa = req.params.sayfa;
+
   if (req.user) {
     const begenilerDb = await Begen.findOne({ kullanici: req.user.id });
     const begeniler = begenilerDb.begenilenler.map((el) => el.begenilen);
