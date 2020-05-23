@@ -4,6 +4,7 @@ const handlerFactory = require('../utils/handlerFactory');
 const hataYakala = require('../utils/hataYakala');
 
 const urunEkle = hataYakala(async (req, res, next) => {
+  if (!req.params.sayi) req.params.sayi = 1;
   let sepet = await Sepet.findOne({
     kullanici: req.user.id,
     'urunler.yemek': req.params.id,
@@ -20,7 +21,7 @@ const urunEkle = hataYakala(async (req, res, next) => {
     console.log(sepet.urunler);
 
     const index = sepet.urunler.findIndex((el) => el.yemek == req.params.id);
-    sepet.urunler[index].sayi += 1;
+    sepet.urunler[index].sayi += parseInt(req.params.sayi);
   }
 
   await sepet.save();

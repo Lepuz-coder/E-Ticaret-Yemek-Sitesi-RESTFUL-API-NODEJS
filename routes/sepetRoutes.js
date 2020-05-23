@@ -12,7 +12,7 @@ router
   .delete(sepetController.sepetiBoslat);
 
 router
-  .route('/:id')
+  .route('/:id/:sayi?')
   .post(sepetController.sepeteEkle)
   .patch(sepetController.sepettekiUrunuEksilt)
   .delete(sepetController.sepettenUrunCikart);

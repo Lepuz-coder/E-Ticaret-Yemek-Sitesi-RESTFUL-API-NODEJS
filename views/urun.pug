@@ -55,6 +55,7 @@ block content
                 i.ion-ios-add
           .w-100
           .col-md-12
-            p(style='color: #000;') Stoktaki Sayısı : #{urun.stok}
+            p(style='color: #000;') Stoktaki Sayısı : 
+                span.stokSayi #{urun.stok}
         p
-          a.btn.btn-black.py-3.px-5(href='cart.html') Sepete Ekle
+          a.btn.btn-black.py-3.px-5(id='urunSepeteEkle' style='color:white') Sepete Ekle

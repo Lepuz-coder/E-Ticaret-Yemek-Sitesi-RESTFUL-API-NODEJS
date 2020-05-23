@@ -24587,7 +24587,21 @@ if (favoriKaldir) {
     });
   });
 }
-},{"../models/favoriModel":"models/favoriModel.js"}],"index.js":[function(require,module,exports) {
+},{"../models/favoriModel":"models/favoriModel.js"}],"controllers/tekUrunController.js":[function(require,module,exports) {
+/*eslint-disable */
+var tekUrunEkleButon = document.getElementById('urunSepeteEkle');
+
+if (tekUrunEkleButon) {
+  var sayi = $('.input-number');
+  var stokSayi = parseInt($('.stokSayi').html());
+  $('.quantity-right-plus').on('click', function () {
+    if (parseInt(sayi.val()) < stokSayi) sayi.val(parseInt(sayi.val()) + 1);else sayi.val(stokSayi);
+  });
+  $('.quantity-left-minus').on('click', function () {
+    if (sayi.val() > 1) sayi.val(parseInt(sayi.val()) - 1);else sayi.val(1);
+  });
+}
+},{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _jquery = _interopRequireDefault(require("jquery"));
@@ -24604,8 +24618,10 @@ require("./controllers/urunlerController");
 
 require("./controllers/favoriController");
 
+require("./controllers/tekUrunController");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"jquery":"../../node_modules/jquery/dist/jquery.js","./controllers/kayitController":"controllers/kayitController.js","./controllers/girisController":"controllers/girisController.js","./controllers/cikisController":"controllers/cikisController.js","./controllers/urunEkleController":"controllers/urunEkleController.js","./controllers/urunlerController":"controllers/urunlerController.js","./controllers/favoriController":"controllers/favoriController.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"jquery":"../../node_modules/jquery/dist/jquery.js","./controllers/kayitController":"controllers/kayitController.js","./controllers/girisController":"controllers/girisController.js","./controllers/cikisController":"controllers/cikisController.js","./controllers/urunEkleController":"controllers/urunEkleController.js","./controllers/urunlerController":"controllers/urunlerController.js","./controllers/favoriController":"controllers/favoriController.js","./controllers/tekUrunController":"controllers/tekUrunController.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
