@@ -78,7 +78,6 @@ exports.yemekOlusturmaIzin = async (req, res, next) => {
   }
 
   req.body.satan_kullanici = req.user.id;
-  console.log(req.body);
   next();
 };
 

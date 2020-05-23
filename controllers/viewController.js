@@ -7,10 +7,14 @@ exports.anasayfaMiddleware = (req, res, next) => {
 };
 
 exports.urunlerGoster = hataYakala(async (req, res, next) => {
-  const yemekler = await Yemek.find()
+  let filter;
+
+  req.filter ? (filter = req.filter) : (filter = {});
+
+  const yemekler = await Yemek.find(filter)
     .skip((req.params.sayfa - 1) * 8)
     .limit(8);
-  const toplam = Math.ceil((await Yemek.find()).length / 8);
+  const toplam = Math.ceil((await Yemek.find(filter)).length / 8);
 
   res.locals.sayfa = req.params.sayfa;
 
@@ -43,4 +47,7 @@ exports.urunEkleGoster = (req, res, next) => {
   });
 };
 
-exports.yemeklerim = hataYakala(async (req, res, next) => {});
+exports.yemeklerim = hataYakala(async (req, res, next) => {
+  req.filter = { satan_kullanici: req.user.id };
+  next();
+});

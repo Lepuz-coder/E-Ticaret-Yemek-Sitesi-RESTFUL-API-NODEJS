@@ -15,6 +15,10 @@ router.get('/urunler/:sayfa', viewController.urunlerGoster);
 router.get('/kayit', viewController.kayitGoster);
 router.get('/giris', viewController.girisGoster);
 router.get('/urun-ekle', viewController.urunEkleGoster);
-router.get('/urunlerim', viewController.yemeklerim);
+router.get(
+  '/urunlerim/:sayfa',
+  viewController.yemeklerim,
+  viewController.urunlerGoster
+);
 
 module.exports = router;
