@@ -16,9 +16,9 @@ block content
                     th Miktar
                 tbody
                  each favori in favoriler
-                  tr.text-center
-                    td.product-remove
-                      a(href="#")
+                  tr.text-center.anaSatir
+                    td.product-remove.favoriKaldir(data-id = `${favori.begenilen.id}`)
+                      a
                         span.ion-ios-close
                     td.image-prod
                       .img(style=`background-image:url(/resimler/yemekler/${favori.begenilen.resim});`)
