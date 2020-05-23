@@ -25,7 +25,6 @@ exports.urunlerGoster = hataYakala(async (req, res, next) => {
     const begenilerDb = await Begen.findOne({ kullanici: req.user.id });
     const begeniler = begenilerDb.begenilenler.map((el) => el.begenilen);
     res.locals.begeniler = begeniler;
-    console.log(begeniler);
   }
 
   res.status(200).render('urunler', {
@@ -75,7 +74,6 @@ exports.favoriler = hataYakala(async (req, res, next) => {
 
   res.locals.begeniler = tumBegeniler.map((el) => el.begenilen);
   const toplam = Math.ceil(tumBegeniler.length / 8);
-  console.log(toplam);
 
   const begeniler = begenilerDb.begenilenler.map((el) => el.begenilen);
 

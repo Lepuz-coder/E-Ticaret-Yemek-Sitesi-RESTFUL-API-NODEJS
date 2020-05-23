@@ -3,11 +3,7 @@ const Sepet = require('../models/sepetModel');
 const handlerFactory = require('../utils/handlerFactory');
 const hataYakala = require('../utils/hataYakala');
 
-//Kullanıcının sepetindeki ürünleri getirir
-exports.getir = handlerFactory.hepsiniAl(Sepet, 'sepet');
-
-//Sepete Bir Ürün Ekler, eğer ki o ürün zaten varsa sayısını bir artırır.
-exports.sepeteEkle = hataYakala(async (req, res, next) => {
+const urunEkle = hataYakala(async (req, res, next) => {
   let sepet = await Sepet.findOne({
     kullanici: req.user.id,
     'urunler.yemek': req.params.id,
@@ -31,9 +27,33 @@ exports.sepeteEkle = hataYakala(async (req, res, next) => {
 
   res.status(200).json({
     status: 'success',
+    tip: 'Ekleme',
     sepet,
   });
 });
+
+const urunEksilt = async (sepet, index, res) => {
+  if (sepet.urunler[index].sayi === 1) {
+    sepet.urunler.splice(index, 1);
+  } else {
+    sepet.urunler[index].sayi -= 1;
+  }
+
+  await sepet.save();
+  //Eğer ki sayi 0 sa o nested objeyi sil
+
+  res.status(200).json({
+    status: 'success',
+    tip: 'Eksiltme',
+    sepet: sepet.urunler,
+  });
+};
+
+//Kullanıcının sepetindeki ürünleri getirir
+exports.getir = handlerFactory.hepsiniAl(Sepet, 'sepet');
+
+//Sepete Bir Ürün Ekler, eğer ki o ürün zaten varsa sayısını bir artırır.
+exports.sepeteEkle = urunEkle;
 
 //Sepetten ürünü bir ekilstir. Eğer ki 0'a ulaştıysa siler
 exports.sepettekiUrunuEksilt = hataYakala(async (req, res, next) => {
@@ -42,20 +62,7 @@ exports.sepettekiUrunuEksilt = hataYakala(async (req, res, next) => {
     return el.yemek == req.params.id;
   });
 
-  if (sepet.urunler[index].sayi === 1) {
-    sepet.urunler.splice(index, 1);
-  } else {
-    sepet.urunler[index].sayi -= 1;
-  }
-  console.log(sepet.urunler);
-
-  await sepet.save();
-  //Eğer ki sayi 0 sa o nested objeyi sil
-
-  res.status(200).json({
-    status: 'success',
-    sepet: sepet.urunler,
-  });
+  urunEksilt(sepet, index, res);
 });
 
 //Sepetten ürünü direk çıkarır.
@@ -84,4 +91,19 @@ exports.sepetiBoslat = hataYakala(async (req, res, next) => {
     status: 'success',
     data: null,
   });
+});
+
+exports.sepetToggle = hataYakala(async (req, res, next) => {
+  const sepetIndex = await Sepet.findOne({ kullanici: req.user.id });
+  const index = sepetIndex.urunler.findIndex((el) => {
+    return el.yemek == req.params.id;
+  });
+
+  if (index === -1) {
+    //Sepete ürün ekle
+    urunEkle(req, res, next);
+  } else {
+    //Sepetten ürünü eksilt
+    urunEksilt(sepetIndex, index, res);
+  }
 });

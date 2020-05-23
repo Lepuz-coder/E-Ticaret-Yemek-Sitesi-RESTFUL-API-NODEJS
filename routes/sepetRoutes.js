@@ -17,4 +17,6 @@ router
   .patch(sepetController.sepettekiUrunuEksilt)
   .delete(sepetController.sepettenUrunCikart);
 
+router.post('/toggle/:id', sepetController.sepetToggle);
+
 module.exports = router;

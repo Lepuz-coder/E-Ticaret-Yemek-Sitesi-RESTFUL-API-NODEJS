@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { begenToggle } from '../models/urunlerModel';
+import { begenToggle, sepetToggle } from '../models/urunlerModel';
 import Swal from 'sweetalert2';
 
 const kalp = document.querySelector('.heart');
@@ -32,6 +32,25 @@ if (kalp) {
             title: 'Server ile ileişimde hata meydana geldi !',
           });
         });
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Beğenmek için giriş yapınız',
+        confirmButtonText: 'Giriş Yap',
+        type: 'success ',
+      }).then(function (res) {
+        if (!res.isDismissed) location.assign('/giris');
+      });
+    }
+  });
+
+  $('.buy-now').on('click', (e) => {
+    e.preventDefault();
+
+    const id = $(e.target).closest('.yemekId').attr('data-id');
+    if (id) {
+      //Sepete ekleme modeli çağrılacak
+      sepetToggle(id);
     } else {
       Swal.fire({
         icon: 'warning',
