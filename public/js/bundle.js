@@ -24213,7 +24213,15 @@ if (kalp) {
 
     if (id) {
       //Sepete ekleme modeli çağrılacak
-      (0, _urunlerModel.sepetToggle)(id);
+      (0, _urunlerModel.sepetToggle)(id).then(function (res) {
+        if (res) {
+          console.log('Yep');
+          $(e.target).closest('.yemekId').find('.buy-now').css('background', 'green');
+        } else {
+          console.log('Nop');
+          $(e.target).closest('.yemekId').find('.buy-now').css('background', '#82ae46');
+        }
+      });
     } else {
       _sweetalert.default.fire({
         icon: 'warning',

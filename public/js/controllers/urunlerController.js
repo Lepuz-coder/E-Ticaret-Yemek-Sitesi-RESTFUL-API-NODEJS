@@ -50,7 +50,21 @@ if (kalp) {
     const id = $(e.target).closest('.yemekId').attr('data-id');
     if (id) {
       //Sepete ekleme modeli çağrılacak
-      sepetToggle(id);
+      sepetToggle(id).then((res) => {
+        if (res) {
+          console.log('Yep');
+          $(e.target)
+            .closest('.yemekId')
+            .find('.buy-now')
+            .css('background', 'green');
+        } else {
+          console.log('Nop');
+          $(e.target)
+            .closest('.yemekId')
+            .find('.buy-now')
+            .css('background', '#82ae46');
+        }
+      });
     } else {
       Swal.fire({
         icon: 'warning',
