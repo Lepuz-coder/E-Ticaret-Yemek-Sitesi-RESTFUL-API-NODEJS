@@ -1,5 +1,6 @@
 extends base
 
+
 block content
  section.ftco-section
   .container
@@ -25,7 +26,7 @@ block content
                 a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
                   span
                     i.ion-ios-menu
-                a.buy-now.d-flex.justify-content-center.align-items-center.mx-1(href='#')
+                a.buy-now.d-flex.justify-content-center.align-items-center.mx-1(href='#' class=`${sepettekiler.includes(yemek.id) ? 'sepette' : ''}`)
                   span
                     i.ion-ios-cart
                 a.heart.d-flex.justify-content-center.align-items-center(href='#')
