@@ -15,7 +15,7 @@ const urunEkle = hataYakala(async (req, res, next) => {
 
     sepet.urunler.push({
       yemek: req.params.id,
-      sayi: 1,
+      sayi: req.params.sayi,
     });
   } else {
     console.log(sepet.urunler);

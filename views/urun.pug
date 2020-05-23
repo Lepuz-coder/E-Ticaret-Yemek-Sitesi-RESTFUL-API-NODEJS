@@ -9,7 +9,7 @@ block content
         a.image-popup(href=`/resimler/yemekler/${urun.resim}`)
           img.img-fluid(src=`/resimler/yemekler/${urun.resim}` alt=`${urun.ad}`)
       .col-lg-6.product-details.pl-md-5.ftco-animate
-        h3 Bell Pepper
+        h3.urunId(data-id=`${urun.id}`) Bell Pepper
         .rating.d-flex
           p.text-left.mr-4
             a.mr-2(href='#') #{urun.puan_ortalama}
