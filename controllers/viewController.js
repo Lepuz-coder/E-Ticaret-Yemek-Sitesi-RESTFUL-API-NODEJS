@@ -26,11 +26,6 @@ exports.urunlerGoster = hataYakala(async (req, res, next) => {
     const begenilerDb = await Begen.findOne({ kullanici: req.user.id });
     const begeniler = begenilerDb.begenilenler.map((el) => el.begenilen);
     res.locals.begeniler = begeniler;
-
-    const sepet = await Sepet.findOne({ kullanici: req.user.id });
-    const sepettekiler = sepet.urunler.map((el) => el.yemek);
-    res.locals.sepettekiler = sepettekiler;
-    console.log(res.locals.sepettekiler);
   }
 
   res.status(200).render('urunler', {

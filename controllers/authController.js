@@ -85,6 +85,9 @@ exports.girisYaptiMi = async (req, res, next) => {
   if (!user) {
     return next();
   }
+  const sepetSayi = (await Sepet.findOne({ kullanici: user.id })).urunler
+    .length;
+  res.locals.sepetSayi = sepetSayi;
 
   req.user = user;
   res.locals.user = user;

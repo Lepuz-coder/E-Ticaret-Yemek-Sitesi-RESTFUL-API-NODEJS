@@ -24193,7 +24193,7 @@ if (kalp) {
       }).catch(function (err) {
         _sweetalert.default.fire({
           icon: 'warning',
-          title: 'Server ile ileişimde hata meydana geldi !'
+          title: 'Bir hata meydana geldi ! Lütfen daha sonra tekrar deneyiniz.'
         });
       });
     } else {
@@ -24214,13 +24214,19 @@ if (kalp) {
     if (id) {
       //Sepete ekleme modeli çağrılacak
       (0, _urunlerModel.sepetToggle)(id).then(function (res) {
+        var sayi = parseInt($('.sepetSayiGosterge').html().match(/\[(.*)\]/).pop());
+
         if (res) {
-          console.log('Yep');
-          $(e.target).closest('.yemekId').find('.buy-now').css('background', 'green');
+          console.log(sayi);
+          $('.sepetSayiGosterge').html("[".concat(sayi + 1, "]"));
         } else {
-          console.log('Nop');
-          $(e.target).closest('.yemekId').find('.buy-now').css('background', '#82ae46');
+          $('.sepetSayiGosterge').html("[".concat(sayi - 1, "]"));
         }
+      }).catch(function (err) {
+        _sweetalert.default.fire({
+          icon: 'warning',
+          title: 'Bir hata meydana geldi ! Lütfen daha sonra tekrar deneyiniz.'
+        });
       });
     } else {
       _sweetalert.default.fire({

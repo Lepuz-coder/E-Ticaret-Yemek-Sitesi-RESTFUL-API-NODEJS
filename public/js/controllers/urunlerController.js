@@ -29,7 +29,8 @@ if (kalp) {
         .catch((err) => {
           Swal.fire({
             icon: 'warning',
-            title: 'Server ile ileişimde hata meydana geldi !',
+            title:
+              'Bir hata meydana geldi ! Lütfen daha sonra tekrar deneyiniz.',
           });
         });
     } else {
@@ -50,21 +51,28 @@ if (kalp) {
     const id = $(e.target).closest('.yemekId').attr('data-id');
     if (id) {
       //Sepete ekleme modeli çağrılacak
-      sepetToggle(id).then((res) => {
-        if (res) {
-          console.log('Yep');
-          $(e.target)
-            .closest('.yemekId')
-            .find('.buy-now')
-            .css('background', 'green');
-        } else {
-          console.log('Nop');
-          $(e.target)
-            .closest('.yemekId')
-            .find('.buy-now')
-            .css('background', '#82ae46');
-        }
-      });
+      sepetToggle(id)
+        .then((res) => {
+          const sayi = parseInt(
+            $('.sepetSayiGosterge')
+              .html()
+              .match(/\[(.*)\]/)
+              .pop()
+          );
+          if (res) {
+            console.log(sayi);
+            $('.sepetSayiGosterge').html(`[${sayi + 1}]`);
+          } else {
+            $('.sepetSayiGosterge').html(`[${sayi - 1}]`);
+          }
+        })
+        .catch((err) => {
+          Swal.fire({
+            icon: 'warning',
+            title:
+              'Bir hata meydana geldi ! Lütfen daha sonra tekrar deneyiniz.',
+          });
+        });
     } else {
       Swal.fire({
         icon: 'warning',
