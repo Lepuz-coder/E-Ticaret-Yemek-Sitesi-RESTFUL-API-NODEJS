@@ -20,7 +20,7 @@ export const begeniKaldir = async (id) => {
     Swal.close();
 
     Swal.fire({
-      title: 'Beğenilerden kaldırıldı',
+      title: 'Favorilerden kaldırıldı',
       timer: 500,
       icon: 'success',
       showConfirmButton: false,

@@ -26,5 +26,6 @@ router.get(
   authController.protect,
   viewController.favoriler
 );
+router.get('/sepetim', authController.protect, viewController.sepet);
 
 module.exports = router;

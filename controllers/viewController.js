@@ -71,10 +71,17 @@ exports.favoriler = hataYakala(async (req, res, next) => {
       select: 'aciklama resim fiyat ad',
     })
   ).begenilenler;
-  console.log(favoriler);
+
   res.status(200).render('favoriler', {
     title: 'Favoriler',
     kapakBaslik: 'FAVORİLER',
     favoriler,
+  });
+});
+
+exports.sepet = hataYakala(async (req, res, next) => {
+  res.status(200).render('sepet', {
+    title: 'Sepetim',
+    kapakBaslik: 'Sepet',
   });
 });

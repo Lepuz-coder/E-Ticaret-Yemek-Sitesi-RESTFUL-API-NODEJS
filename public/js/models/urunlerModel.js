@@ -8,15 +8,15 @@ export const begenToggle = async (id) => {
     Swal.fire({
       title: 'Yükleniyor...',
       timer: '500',
-      imageUrl: '/gif/loading.gif',
       imageWidth: 100,
+      imageUrl: '/gif/loading.gif',
       showConfirmButton: false,
     });
     const res = await axios({
       method: 'POST',
       url: `/api/v1/begen/toggle/${id}`,
     });
-
+    Swal.close();
     if (res.data) {
       Swal.fire({
         icon: 'success',
@@ -42,7 +42,6 @@ export const begenToggle = async (id) => {
 export const sepetToggle = async (id) => {
   Swal.fire({
     title: 'Yükleniyor...',
-    timer: '500',
     imageUrl: '/gif/loading.gif',
     imageWidth: 100,
     showConfirmButton: false,
@@ -52,7 +51,7 @@ export const sepetToggle = async (id) => {
     method: 'POST',
     url: `/api/v1/sepet/toggle/${id}`,
   });
-
+  Swal.close();
   if (res.data.tip === 'Ekleme') {
     Swal.fire({
       icon: 'success',

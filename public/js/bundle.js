@@ -24036,8 +24036,8 @@ var begenToggle = /*#__PURE__*/function () {
             _sweetalert.default.fire({
               title: 'Yükleniyor...',
               timer: '500',
-              imageUrl: '/gif/loading.gif',
               imageWidth: 100,
+              imageUrl: '/gif/loading.gif',
               showConfirmButton: false
             });
 
@@ -24050,8 +24050,10 @@ var begenToggle = /*#__PURE__*/function () {
           case 4:
             res = _context.sent;
 
+            _sweetalert.default.close();
+
             if (!res.data) {
-              _context.next = 10;
+              _context.next = 11;
               break;
             }
 
@@ -24064,7 +24066,7 @@ var begenToggle = /*#__PURE__*/function () {
 
             return _context.abrupt("return", true);
 
-          case 10:
+          case 11:
             _sweetalert.default.fire({
               icon: 'error',
               title: 'Favorilerden kaldırıldı',
@@ -24074,21 +24076,21 @@ var begenToggle = /*#__PURE__*/function () {
 
             return _context.abrupt("return", false);
 
-          case 12:
-            _context.next = 17;
+          case 13:
+            _context.next = 18;
             break;
 
-          case 14:
-            _context.prev = 14;
+          case 15:
+            _context.prev = 15;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0.response.data);
 
-          case 17:
+          case 18:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 14]]);
+    }, _callee, null, [[0, 15]]);
   }));
 
   return function begenToggle(_x) {
@@ -24107,7 +24109,6 @@ var sepetToggle = /*#__PURE__*/function () {
           case 0:
             _sweetalert.default.fire({
               title: 'Yükleniyor...',
-              timer: '500',
               imageUrl: '/gif/loading.gif',
               imageWidth: 100,
               showConfirmButton: false
@@ -24122,8 +24123,10 @@ var sepetToggle = /*#__PURE__*/function () {
           case 3:
             res = _context2.sent;
 
+            _sweetalert.default.close();
+
             if (!(res.data.tip === 'Ekleme')) {
-              _context2.next = 9;
+              _context2.next = 10;
               break;
             }
 
@@ -24136,7 +24139,7 @@ var sepetToggle = /*#__PURE__*/function () {
 
             return _context2.abrupt("return", true);
 
-          case 9:
+          case 10:
             _sweetalert.default.fire({
               icon: 'error',
               title: 'Sepetten kaldırıldı',
@@ -24146,7 +24149,7 @@ var sepetToggle = /*#__PURE__*/function () {
 
             return _context2.abrupt("return", false);
 
-          case 11:
+          case 12:
           case "end":
             return _context2.stop();
         }
@@ -24539,7 +24542,7 @@ var begeniKaldir = /*#__PURE__*/function () {
             _sweetalert.default.close();
 
             _sweetalert.default.fire({
-              title: 'Beğenilerden kaldırıldı',
+              title: 'Favorilerden kaldırıldı',
               timer: 500,
               icon: 'success',
               showConfirmButton: false
