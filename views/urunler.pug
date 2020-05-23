@@ -20,7 +20,7 @@ block content
                   span.mr-2 Kilosu
                   span.price-sale= `$${yemek.fiyat}`
             .bottom-area.d-flex.px-3
-              .m-auto.d-flex.yemekId(data-id=`${yemek.id}`)
+              .m-auto.d-flex.yemekId(data-id=`${yemek.id}` data-giris=`${user ? 'true' : 'false'}`)
                 a.add-to-cart.d-flex.justify-content-center.align-items-center.text-center(href='#')
                   span
                     i.ion-ios-menu
@@ -28,8 +28,10 @@ block content
                   span
                     i.ion-ios-cart
                 a.heart.d-flex.justify-content-center.align-items-center(href='#')
-                  span
-                    i.ion-ios-heart
+                  span 
+                    i.ion-ios-heart-empty.likeButon(class=`${begeniler.includes(yemek.id) ? 'd-none' : '' }`)
+                    i.ion-ios-heart.dislikeButon(class=`${begeniler.includes(yemek.id) ? '' : 'd-none' }`)
+
     -if(yemekler.length <= 0)
       h2 Üzgünüz, aradığınızı bulamadık..
     -if(yemekler.length > 0)   

@@ -24035,7 +24035,7 @@ var begenToggle = /*#__PURE__*/function () {
 
             _sweetalert.default.fire({
               title: 'Yükleniyor...',
-              timer: '1000',
+              timer: '500',
               imageUrl: '/gif/loading.gif',
               imageWidth: 100,
               showConfirmButton: false
@@ -24050,32 +24050,41 @@ var begenToggle = /*#__PURE__*/function () {
           case 4:
             res = _context.sent;
 
-            if (res.data) {
-              _sweetalert.default.fire({
-                icon: 'success',
-                title: 'Beğeni eklendi'
-              });
-            } else {
-              _sweetalert.default.fire({
-                icon: 'error',
-                title: 'Beğeni kaldırıldı'
-              });
+            if (!res.data) {
+              _context.next = 10;
+              break;
             }
 
-            _context.next = 11;
+            _sweetalert.default.fire({
+              icon: 'success',
+              title: 'Beğeni eklendi'
+            });
+
+            return _context.abrupt("return", true);
+
+          case 10:
+            _sweetalert.default.fire({
+              icon: 'error',
+              title: 'Beğeni kaldırıldı'
+            });
+
+            return _context.abrupt("return", false);
+
+          case 12:
+            _context.next = 17;
             break;
 
-          case 8:
-            _context.prev = 8;
+          case 14:
+            _context.prev = 14;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0.response.data);
 
-          case 11:
+          case 17:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 14]]);
   }));
 
   return function begenToggle(_x) {
@@ -24089,6 +24098,10 @@ exports.begenToggle = begenToggle;
 
 var _urunlerModel = require("../models/urunlerModel");
 
+var _sweetalert = _interopRequireDefault(require("sweetalert2"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /* eslint-disable */
 var kalp = document.querySelector('.heart');
 
@@ -24096,10 +24109,31 @@ if (kalp) {
   $('.heart').on('click', function (e) {
     e.preventDefault();
     var id = $(e.target).closest('.yemekId').attr('data-id');
-    (0, _urunlerModel.begenToggle)(id);
+    var giris = $(e.target).closest('.yemekId').attr('data-giris');
+
+    if (giris) {
+      (0, _urunlerModel.begenToggle)(id).then(function (res) {
+        console.log($(e.target).closest('.yemekId'));
+
+        if (res) {
+          $(e.target).closest('.yemekId').find('.likeButon').toggleClass('d-none');
+          $(e.target).closest('.yemekId').find('.dislikeButon').toggleClass('d-none');
+        } else {
+          $(e.target).closest('.yemekId').find('.likeButon').toggleClass('d-none');
+          $(e.target).closest('.yemekId').find('.dislikeButon').toggleClass('d-none');
+        }
+      }).catch(function (err) {
+        console.log("ERROR: ".concat(err));
+      });
+    } else {
+      _sweetalert.default.fire({
+        icon: 'warning',
+        title: 'Beğenmek için giriş yapınız'
+      });
+    }
   });
 }
-},{"../models/urunlerModel":"models/urunlerModel.js"}],"index.js":[function(require,module,exports) {
+},{"../models/urunlerModel":"models/urunlerModel.js","sweetalert2":"../../node_modules/sweetalert2/dist/sweetalert2.all.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _jquery = _interopRequireDefault(require("jquery"));

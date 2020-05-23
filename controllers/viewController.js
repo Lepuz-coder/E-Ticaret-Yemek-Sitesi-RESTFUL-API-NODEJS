@@ -1,4 +1,5 @@
 const Yemek = require('../models/yemekModel');
+const Begen = require('../models/begenModel');
 const hataYakala = require('../utils/hataYakala');
 
 exports.anasayfaMiddleware = (req, res, next) => {
@@ -17,6 +18,12 @@ exports.urunlerGoster = hataYakala(async (req, res, next) => {
   const toplam = Math.ceil((await Yemek.find(filter)).length / 8);
 
   res.locals.sayfa = req.params.sayfa;
+  if (req.user) {
+    const begenilerDb = await Begen.findOne({ kullanici: req.user.id });
+    const begeniler = begenilerDb.begenilenler.map((el) => el.begenilen);
+    res.locals.begeniler = begeniler;
+    console.log(begeniler);
+  }
 
   res.status(200).render('urunler', {
     kapakBaslik: 'ÜRÜNLER',

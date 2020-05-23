@@ -7,7 +7,7 @@ export const begenToggle = async (id) => {
   try {
     Swal.fire({
       title: 'Yükleniyor...',
-      timer: '1000',
+      timer: '500',
       imageUrl: '/gif/loading.gif',
       imageWidth: 100,
       showConfirmButton: false,
@@ -22,11 +22,13 @@ export const begenToggle = async (id) => {
         icon: 'success',
         title: 'Beğeni eklendi',
       });
+      return true;
     } else {
       Swal.fire({
         icon: 'error',
         title: 'Beğeni kaldırıldı',
       });
+      return false;
     }
   } catch (err) {
     console.log(err.response.data);
