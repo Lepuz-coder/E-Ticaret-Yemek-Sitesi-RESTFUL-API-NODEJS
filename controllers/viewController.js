@@ -65,26 +65,17 @@ exports.yemeklerim = hataYakala(async (req, res, next) => {
 exports.favoriler = hataYakala(async (req, res, next) => {
   if (!req.params.sayfa) req.params.sayfa = 1;
 
-  const begenilerDb = await Begen.findOne({ kullanici: req.user.id })
-    .populate('begenilenler.begenilen')
-    .skip((req.params.sayfa - 1) * 8)
-    .limit(8);
+  const begeniler = (
+    await Begen.findOne({ kullanici: req.user.id }).populate({
+      path: 'begenilenler.begenilen',
+      select: 'aciklama resim fiyat ad',
+    })
+  ).begenilenler;
 
-  const tumBegeniler = (await Begen.findOne({ kullanici: req.user.id }))
-    .begenilenler;
+  console.log(begeniler);
 
-  res.locals.begeniler = tumBegeniler.map((el) => el.begenilen);
-  const toplam = Math.ceil(tumBegeniler.length / 8);
-
-  const begeniler = begenilerDb.begenilenler.map((el) => el.begenilen);
-
-  res.locals.favori = true;
-
-  res.status(200).render('urunler', {
-    kapakBaslik: 'Favoriler',
+  res.status(200).render('favoriler', {
     title: 'Favoriler',
-    toplam,
-    yemekler: begeniler,
-    sayfa: req.params.sayfa,
+    kapakBaslik: 'FAVORİLER',
   });
 });
