@@ -37,45 +37,45 @@ block content
     .row.justify-content-end
       .col-lg-4.mt-5.cart-wrap.ftco-animate
         .cart-total.mb-3
-          h3 Coupon Code
-          p Enter your coupon code if you have one
+          h3 Kupon Kodu
+          p İndirim için kupon kodunuz varsa giriniz
           form.info(action='#')
             .form-group
-              label(for='') Coupon code
+              label(for='') Kupon Kodu
               input.form-control.text-left.px-3(type='text' placeholder='')
         p
-          a.btn.btn-primary.py-3.px-4(href='checkout.html') Apply Coupon
+          a.btn.btn-primary.py-3.px-4(href='checkout.html') Kuponu Uygula
       .col-lg-4.mt-5.cart-wrap.ftco-animate
         .cart-total.mb-3
-          h3 Estimate shipping and tax
-          p Enter your destination to get a shipping estimate
+          h3 Adresinizi Giriniz
+          p Kargo için adresini giriniz. Ödemeden sonra kargo bilgileriniz bize ulşaır.
           form.info(action='#')
             .form-group
-              label(for='') Country
+              label(for='') Şehir
               input.form-control.text-left.px-3(type='text' placeholder='')
             .form-group
-              label(for='country') State/Province
+              label(for='country') İlçe
               input.form-control.text-left.px-3(type='text' placeholder='')
             .form-group
-              label(for='country') Zip/Postal Code
+              label(for='country') Tam adresiniz
               input.form-control.text-left.px-3(type='text' placeholder='')
         p
-          a.btn.btn-primary.py-3.px-4(href='checkout.html') Estimate
+          a.btn.btn-primary.py-3.px-4(href='checkout.html') Adresi Onaylayınız
       .col-lg-4.mt-5.cart-wrap.ftco-animate
         .cart-total.mb-3
-          h3 Cart Totals
+          h3 Sepet Toplamı
           p.d-flex
-            span Subtotal
+            span Alt Toplam
             span $20.60
           p.d-flex
-            span Delivery
-            span $0.00
+            span Kargo Ücreti
+            span $2.00
           p.d-flex
-            span Discount
+            span İndirim
             span $3.00
           hr
           p.d-flex.total-price
-            span Total
-            span $17.60
+            span Toplam
+            span $22.60
         p
-          a.btn.btn-primary.py-3.px-4(href='checkout.html') Proceed to Checkout
+          a.btn.btn-primary.py-3.px-4(href='checkout.html') Ödeme Yap
