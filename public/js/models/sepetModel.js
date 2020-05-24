@@ -20,12 +20,14 @@ export const satinAl = async (urunler) => {
       },
     });
 
-    Swal.close();
-    Swal.fire({
-      title: 'Güncellendi!',
-      icon: 'success',
-      confirmButtonText: 'Tamam',
+    const form = await axios({
+      method: 'GET',
+      url: '/api/v1/sepet/checkout-session',
     });
+
+    Swal.close();
+    console.log(form.data);
+    $('.anaContainter').append(form.data.form);
   } catch (err) {
     console.log(err.response);
   }

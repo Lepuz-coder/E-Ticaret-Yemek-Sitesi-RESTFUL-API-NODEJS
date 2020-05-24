@@ -1,4 +1,5 @@
 /* eslint-disable eqeqeq */
+const Iyzipay = require('iyzipay');
 const Sepet = require('../models/sepetModel');
 const handlerFactory = require('../utils/handlerFactory');
 const hataYakala = require('../utils/hataYakala');
@@ -123,5 +124,86 @@ exports.sepetGuncelle = hataYakala(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     sepet,
+  });
+});
+
+exports.getCheckoutSession = hataYakala(async (req, res, next) => {
+  //1-)Kullanıcının sepetini al
+  const sepet = await Sepet.findOne({ kullanici: req.user.id }).populate(
+    'urunler.yemek'
+  );
+  const iyzipay = new Iyzipay({
+    apiKey: 'sandbox-QeMIDb7JHhbGWPc9bI9n49STmDA3yokz',
+    secretKey: 'sandbox-VIhdTDg4I3boyjjimf07rHh4GDdZIqtM',
+    uri: 'https://sandbox-api.iyzipay.com',
+  });
+
+  const basketItems = [];
+  let toplam = 0;
+  sepet.urunler.forEach((el) => {
+    for (let i = 1; i <= el.sayi; i += 1) {
+      basketItems.push({
+        id: el.yemek.id,
+        name: el.yemek.ad,
+        itemType: Iyzipay.BASKET_ITEM_TYPE.PHYSICAL,
+        price: `${el.yemek.fiyat}`,
+        category1: 'Yemek',
+      });
+      toplam += el.yemek.fiyat;
+    }
+  });
+
+  console.log(basketItems);
+
+  const request = {
+    locale: Iyzipay.LOCALE.TR,
+    conversationId: '123456789',
+    price: `${toplam}`,
+    paidPrice: `${toplam}`,
+    currency: Iyzipay.CURRENCY.TRY,
+    basketId: 'B67832',
+    paymentGroup: Iyzipay.PAYMENT_GROUP.LISTING,
+    callbackUrl: 'http://127.0.0.1:3000/urunler',
+    enabledInstallments: [2, 3, 6, 9],
+    buyer: {
+      id: req.user.id,
+      name: req.user.kullanici_ad,
+      surname: 'Yok',
+      gsmNumber: '+905350000000',
+      email: req.user.email,
+      identityNumber: '74300864791',
+      lastLoginDate: '2015-10-05 12:43:35',
+      registrationDate: '2013-04-21 15:12:09',
+      registrationAddress: 'Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1',
+      ip: '85.34.78.112',
+      city: 'Istanbul',
+      country: 'Turkey',
+      zipCode: '34732',
+    },
+    shippingAddress: {
+      contactName: 'Jane Doe',
+      city: 'Istanbul',
+      country: 'Turkey',
+      address: 'Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1',
+      zipCode: '34742',
+    },
+    billingAddress: {
+      contactName: 'Jane Doe',
+      city: 'Istanbul',
+      country: 'Turkey',
+      address: 'Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1',
+      zipCode: '34742',
+    },
+    basketItems,
+  };
+  iyzipay.checkoutFormInitialize.create(request, function (err, result) {
+    //console.log(result);
+    console.log(err);
+    console.log(result);
+    const form = `${result.checkoutFormContent}<div id="iyzipay-checkout-form" class="responsive"></div>`;
+    res.status(200).json({
+      status: 'success',
+      form,
+    });
   });
 });

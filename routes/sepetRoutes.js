@@ -20,5 +20,6 @@ router
 router.post('/toggle/:id', sepetController.sepetToggle);
 
 router.put('/guncelle', sepetController.sepetGuncelle);
+router.get('/checkout-session', sepetController.getCheckoutSession);
 
 module.exports = router;

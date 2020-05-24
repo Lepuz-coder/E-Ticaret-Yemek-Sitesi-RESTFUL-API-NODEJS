@@ -29804,6 +29804,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var satinAl = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(urunler) {
+    var form;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -29827,28 +29828,33 @@ var satinAl = /*#__PURE__*/function () {
             });
 
           case 4:
-            _sweetalert.default.close();
-
-            _sweetalert.default.fire({
-              title: 'Güncellendi!',
-              icon: 'success',
-              confirmButtonText: 'Tamam'
+            _context.next = 6;
+            return (0, _axios.default)({
+              method: 'GET',
+              url: '/api/v1/sepet/checkout-session'
             });
 
-            _context.next = 11;
+          case 6:
+            form = _context.sent;
+
+            _sweetalert.default.close();
+
+            console.log(form.data);
+            $('.anaContainter').append(form.data.form);
+            _context.next = 15;
             break;
 
-          case 8:
-            _context.prev = 8;
+          case 12:
+            _context.prev = 12;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0.response);
 
-          case 11:
+          case 15:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 12]]);
   }));
 
   return function satinAl(_x) {
