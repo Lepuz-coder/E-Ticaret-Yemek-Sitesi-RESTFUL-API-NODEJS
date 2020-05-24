@@ -17,7 +17,6 @@ block content
                 th Miktar
                 th Toplam
             tbody
-              
              each urun in urunler 
               tr.text-center
                 td.product-remove
@@ -32,7 +31,7 @@ block content
                 td.quantity
                   .input-group.mb-3
                     input.quantity.form-control.input-number(type='text' name='quantity' value=`${urun.sayi}` min='1' max='100')
-                td.total $4.90
+                td.total= `$${urun.yemek.fiyat * urun.sayi}`
         
     .row.justify-content-end
       .col-lg-4.mt-5.cart-wrap.ftco-animate
@@ -66,16 +65,16 @@ block content
           h3 Sepet Toplamı
           p.d-flex
             span Alt Toplam
-            span $20.60
+            span= `$${toplam}`
           p.d-flex
             span Kargo Ücreti
             span $2.00
           p.d-flex
             span İndirim
-            span $3.00
+            span $0.00
           hr
           p.d-flex.total-price
             span Toplam
-            span $22.60
+            span= `$${toplam + 2}`
         p
-          a.btn.btn-primary.py-3.px-4(href='checkout.html') Ödeme Yap
+          a.btn.btn-primary.py-3.px-4(href='#' id='odemeButon') Ödeme Yap

@@ -85,11 +85,16 @@ exports.sepet = hataYakala(async (req, res, next) => {
     'urunler.yemek'
   );
   const { urunler } = sepet;
-  console.log(urunler);
+
+  const toplam = urunler.reduce((val, cur) => {
+    return val + cur.yemek.fiyat * cur.sayi;
+  }, 0);
+
   res.status(200).render('sepet', {
     title: 'Sepet',
     kapakBaslik: 'SEPETİM',
     urunler,
+    toplam,
   });
 });
 

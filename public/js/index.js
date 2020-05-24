@@ -7,3 +7,4 @@ import './controllers/urunEkleController';
 import './controllers/urunlerController';
 import './controllers/favoriController';
 import './controllers/tekUrunController';
+import './controllers/sepetController';

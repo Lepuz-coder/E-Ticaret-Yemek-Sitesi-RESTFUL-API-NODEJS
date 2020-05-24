@@ -24937,7 +24937,17 @@ if (tekUrunEkleButon) {
     (0, _tekUrunModel.urunEkle)(urunId, parseInt(sayi.val()));
   });
 }
-},{"../models/tekUrunModel":"models/tekUrunModel.js"}],"index.js":[function(require,module,exports) {
+},{"../models/tekUrunModel":"models/tekUrunModel.js"}],"controllers/sepetController.js":[function(require,module,exports) {
+/* eslint-disable */
+var sepetButon = document.getElementById('odemeButon');
+
+if (sepetButon) {
+  $('#odemeButon').on('click', function (e) {
+    e.preventDefault();
+    console.log('hi');
+  });
+}
+},{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _jquery = _interopRequireDefault(require("jquery"));
@@ -24956,8 +24966,10 @@ require("./controllers/favoriController");
 
 require("./controllers/tekUrunController");
 
+require("./controllers/sepetController");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"jquery":"../../node_modules/jquery/dist/jquery.js","./controllers/kayitController":"controllers/kayitController.js","./controllers/girisController":"controllers/girisController.js","./controllers/cikisController":"controllers/cikisController.js","./controllers/urunEkleController":"controllers/urunEkleController.js","./controllers/urunlerController":"controllers/urunlerController.js","./controllers/favoriController":"controllers/favoriController.js","./controllers/tekUrunController":"controllers/tekUrunController.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"jquery":"../../node_modules/jquery/dist/jquery.js","./controllers/kayitController":"controllers/kayitController.js","./controllers/girisController":"controllers/girisController.js","./controllers/cikisController":"controllers/cikisController.js","./controllers/urunEkleController":"controllers/urunEkleController.js","./controllers/urunlerController":"controllers/urunlerController.js","./controllers/favoriController":"controllers/favoriController.js","./controllers/tekUrunController":"controllers/tekUrunController.js","./controllers/sepetController":"controllers/sepetController.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
