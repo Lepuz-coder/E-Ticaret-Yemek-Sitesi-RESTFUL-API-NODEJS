@@ -81,9 +81,15 @@ exports.favoriler = hataYakala(async (req, res, next) => {
 
 // TODO
 exports.sepet = hataYakala(async (req, res, next) => {
+  const sepet = await Sepet.findOne({ kullanici: req.user.id }).populate(
+    'urunler.yemek'
+  );
+  const { urunler } = sepet;
+  console.log(urunler);
   res.status(200).render('sepet', {
-    title: 'Sepetim',
-    kapakBaslik: 'Sepet',
+    title: 'Sepet',
+    kapakBaslik: 'SEPETİM',
+    urunler,
   });
 });
 
