@@ -29528,10 +29528,341 @@ var _default = validator;
 exports.default = _default;
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./lib/toDate":"../../node_modules/validator/lib/toDate.js","./lib/toFloat":"../../node_modules/validator/lib/toFloat.js","./lib/toInt":"../../node_modules/validator/lib/toInt.js","./lib/toBoolean":"../../node_modules/validator/lib/toBoolean.js","./lib/equals":"../../node_modules/validator/lib/equals.js","./lib/contains":"../../node_modules/validator/lib/contains.js","./lib/matches":"../../node_modules/validator/lib/matches.js","./lib/isEmail":"../../node_modules/validator/lib/isEmail.js","./lib/isURL":"../../node_modules/validator/lib/isURL.js","./lib/isMACAddress":"../../node_modules/validator/lib/isMACAddress.js","./lib/isIP":"../../node_modules/validator/lib/isIP.js","./lib/isIPRange":"../../node_modules/validator/lib/isIPRange.js","./lib/isFQDN":"../../node_modules/validator/lib/isFQDN.js","./lib/isBoolean":"../../node_modules/validator/lib/isBoolean.js","./lib/isLocale":"../../node_modules/validator/lib/isLocale.js","./lib/isAlpha":"../../node_modules/validator/lib/isAlpha.js","./lib/isAlphanumeric":"../../node_modules/validator/lib/isAlphanumeric.js","./lib/isNumeric":"../../node_modules/validator/lib/isNumeric.js","./lib/isPassportNumber":"../../node_modules/validator/lib/isPassportNumber.js","./lib/isPort":"../../node_modules/validator/lib/isPort.js","./lib/isLowercase":"../../node_modules/validator/lib/isLowercase.js","./lib/isUppercase":"../../node_modules/validator/lib/isUppercase.js","./lib/isAscii":"../../node_modules/validator/lib/isAscii.js","./lib/isFullWidth":"../../node_modules/validator/lib/isFullWidth.js","./lib/isHalfWidth":"../../node_modules/validator/lib/isHalfWidth.js","./lib/isVariableWidth":"../../node_modules/validator/lib/isVariableWidth.js","./lib/isMultibyte":"../../node_modules/validator/lib/isMultibyte.js","./lib/isSemVer":"../../node_modules/validator/lib/isSemVer.js","./lib/isSurrogatePair":"../../node_modules/validator/lib/isSurrogatePair.js","./lib/isInt":"../../node_modules/validator/lib/isInt.js","./lib/isFloat":"../../node_modules/validator/lib/isFloat.js","./lib/isDecimal":"../../node_modules/validator/lib/isDecimal.js","./lib/isHexadecimal":"../../node_modules/validator/lib/isHexadecimal.js","./lib/isOctal":"../../node_modules/validator/lib/isOctal.js","./lib/isDivisibleBy":"../../node_modules/validator/lib/isDivisibleBy.js","./lib/isHexColor":"../../node_modules/validator/lib/isHexColor.js","./lib/isRgbColor":"../../node_modules/validator/lib/isRgbColor.js","./lib/isHSL":"../../node_modules/validator/lib/isHSL.js","./lib/isISRC":"../../node_modules/validator/lib/isISRC.js","./lib/isIBAN":"../../node_modules/validator/lib/isIBAN.js","./lib/isBIC":"../../node_modules/validator/lib/isBIC.js","./lib/isMD5":"../../node_modules/validator/lib/isMD5.js","./lib/isHash":"../../node_modules/validator/lib/isHash.js","./lib/isJWT":"../../node_modules/validator/lib/isJWT.js","./lib/isJSON":"../../node_modules/validator/lib/isJSON.js","./lib/isEmpty":"../../node_modules/validator/lib/isEmpty.js","./lib/isLength":"../../node_modules/validator/lib/isLength.js","./lib/isByteLength":"../../node_modules/validator/lib/isByteLength.js","./lib/isUUID":"../../node_modules/validator/lib/isUUID.js","./lib/isMongoId":"../../node_modules/validator/lib/isMongoId.js","./lib/isAfter":"../../node_modules/validator/lib/isAfter.js","./lib/isBefore":"../../node_modules/validator/lib/isBefore.js","./lib/isIn":"../../node_modules/validator/lib/isIn.js","./lib/isCreditCard":"../../node_modules/validator/lib/isCreditCard.js","./lib/isIdentityCard":"../../node_modules/validator/lib/isIdentityCard.js","./lib/isEAN":"../../node_modules/validator/lib/isEAN.js","./lib/isISIN":"../../node_modules/validator/lib/isISIN.js","./lib/isISBN":"../../node_modules/validator/lib/isISBN.js","./lib/isISSN":"../../node_modules/validator/lib/isISSN.js","./lib/isMobilePhone":"../../node_modules/validator/lib/isMobilePhone.js","./lib/isEthereumAddress":"../../node_modules/validator/lib/isEthereumAddress.js","./lib/isCurrency":"../../node_modules/validator/lib/isCurrency.js","./lib/isBtcAddress":"../../node_modules/validator/lib/isBtcAddress.js","./lib/isISO8601":"../../node_modules/validator/lib/isISO8601.js","./lib/isRFC3339":"../../node_modules/validator/lib/isRFC3339.js","./lib/isISO31661Alpha2":"../../node_modules/validator/lib/isISO31661Alpha2.js","./lib/isISO31661Alpha3":"../../node_modules/validator/lib/isISO31661Alpha3.js","./lib/isBase32":"../../node_modules/validator/lib/isBase32.js","./lib/isBase64":"../../node_modules/validator/lib/isBase64.js","./lib/isDataURI":"../../node_modules/validator/lib/isDataURI.js","./lib/isMagnetURI":"../../node_modules/validator/lib/isMagnetURI.js","./lib/isMimeType":"../../node_modules/validator/lib/isMimeType.js","./lib/isLatLong":"../../node_modules/validator/lib/isLatLong.js","./lib/isPostalCode":"../../node_modules/validator/lib/isPostalCode.js","./lib/ltrim":"../../node_modules/validator/lib/ltrim.js","./lib/rtrim":"../../node_modules/validator/lib/rtrim.js","./lib/trim":"../../node_modules/validator/lib/trim.js","./lib/escape":"../../node_modules/validator/lib/escape.js","./lib/unescape":"../../node_modules/validator/lib/unescape.js","./lib/stripLow":"../../node_modules/validator/lib/stripLow.js","./lib/whitelist":"../../node_modules/validator/lib/whitelist.js","./lib/blacklist":"../../node_modules/validator/lib/blacklist.js","./lib/isWhitelisted":"../../node_modules/validator/lib/isWhitelisted.js","./lib/normalizeEmail":"../../node_modules/validator/lib/normalizeEmail.js","./lib/isSlug":"../../node_modules/validator/lib/isSlug.js"}],"controllers/sepetController.js":[function(require,module,exports) {
+},{"./lib/toDate":"../../node_modules/validator/lib/toDate.js","./lib/toFloat":"../../node_modules/validator/lib/toFloat.js","./lib/toInt":"../../node_modules/validator/lib/toInt.js","./lib/toBoolean":"../../node_modules/validator/lib/toBoolean.js","./lib/equals":"../../node_modules/validator/lib/equals.js","./lib/contains":"../../node_modules/validator/lib/contains.js","./lib/matches":"../../node_modules/validator/lib/matches.js","./lib/isEmail":"../../node_modules/validator/lib/isEmail.js","./lib/isURL":"../../node_modules/validator/lib/isURL.js","./lib/isMACAddress":"../../node_modules/validator/lib/isMACAddress.js","./lib/isIP":"../../node_modules/validator/lib/isIP.js","./lib/isIPRange":"../../node_modules/validator/lib/isIPRange.js","./lib/isFQDN":"../../node_modules/validator/lib/isFQDN.js","./lib/isBoolean":"../../node_modules/validator/lib/isBoolean.js","./lib/isLocale":"../../node_modules/validator/lib/isLocale.js","./lib/isAlpha":"../../node_modules/validator/lib/isAlpha.js","./lib/isAlphanumeric":"../../node_modules/validator/lib/isAlphanumeric.js","./lib/isNumeric":"../../node_modules/validator/lib/isNumeric.js","./lib/isPassportNumber":"../../node_modules/validator/lib/isPassportNumber.js","./lib/isPort":"../../node_modules/validator/lib/isPort.js","./lib/isLowercase":"../../node_modules/validator/lib/isLowercase.js","./lib/isUppercase":"../../node_modules/validator/lib/isUppercase.js","./lib/isAscii":"../../node_modules/validator/lib/isAscii.js","./lib/isFullWidth":"../../node_modules/validator/lib/isFullWidth.js","./lib/isHalfWidth":"../../node_modules/validator/lib/isHalfWidth.js","./lib/isVariableWidth":"../../node_modules/validator/lib/isVariableWidth.js","./lib/isMultibyte":"../../node_modules/validator/lib/isMultibyte.js","./lib/isSemVer":"../../node_modules/validator/lib/isSemVer.js","./lib/isSurrogatePair":"../../node_modules/validator/lib/isSurrogatePair.js","./lib/isInt":"../../node_modules/validator/lib/isInt.js","./lib/isFloat":"../../node_modules/validator/lib/isFloat.js","./lib/isDecimal":"../../node_modules/validator/lib/isDecimal.js","./lib/isHexadecimal":"../../node_modules/validator/lib/isHexadecimal.js","./lib/isOctal":"../../node_modules/validator/lib/isOctal.js","./lib/isDivisibleBy":"../../node_modules/validator/lib/isDivisibleBy.js","./lib/isHexColor":"../../node_modules/validator/lib/isHexColor.js","./lib/isRgbColor":"../../node_modules/validator/lib/isRgbColor.js","./lib/isHSL":"../../node_modules/validator/lib/isHSL.js","./lib/isISRC":"../../node_modules/validator/lib/isISRC.js","./lib/isIBAN":"../../node_modules/validator/lib/isIBAN.js","./lib/isBIC":"../../node_modules/validator/lib/isBIC.js","./lib/isMD5":"../../node_modules/validator/lib/isMD5.js","./lib/isHash":"../../node_modules/validator/lib/isHash.js","./lib/isJWT":"../../node_modules/validator/lib/isJWT.js","./lib/isJSON":"../../node_modules/validator/lib/isJSON.js","./lib/isEmpty":"../../node_modules/validator/lib/isEmpty.js","./lib/isLength":"../../node_modules/validator/lib/isLength.js","./lib/isByteLength":"../../node_modules/validator/lib/isByteLength.js","./lib/isUUID":"../../node_modules/validator/lib/isUUID.js","./lib/isMongoId":"../../node_modules/validator/lib/isMongoId.js","./lib/isAfter":"../../node_modules/validator/lib/isAfter.js","./lib/isBefore":"../../node_modules/validator/lib/isBefore.js","./lib/isIn":"../../node_modules/validator/lib/isIn.js","./lib/isCreditCard":"../../node_modules/validator/lib/isCreditCard.js","./lib/isIdentityCard":"../../node_modules/validator/lib/isIdentityCard.js","./lib/isEAN":"../../node_modules/validator/lib/isEAN.js","./lib/isISIN":"../../node_modules/validator/lib/isISIN.js","./lib/isISBN":"../../node_modules/validator/lib/isISBN.js","./lib/isISSN":"../../node_modules/validator/lib/isISSN.js","./lib/isMobilePhone":"../../node_modules/validator/lib/isMobilePhone.js","./lib/isEthereumAddress":"../../node_modules/validator/lib/isEthereumAddress.js","./lib/isCurrency":"../../node_modules/validator/lib/isCurrency.js","./lib/isBtcAddress":"../../node_modules/validator/lib/isBtcAddress.js","./lib/isISO8601":"../../node_modules/validator/lib/isISO8601.js","./lib/isRFC3339":"../../node_modules/validator/lib/isRFC3339.js","./lib/isISO31661Alpha2":"../../node_modules/validator/lib/isISO31661Alpha2.js","./lib/isISO31661Alpha3":"../../node_modules/validator/lib/isISO31661Alpha3.js","./lib/isBase32":"../../node_modules/validator/lib/isBase32.js","./lib/isBase64":"../../node_modules/validator/lib/isBase64.js","./lib/isDataURI":"../../node_modules/validator/lib/isDataURI.js","./lib/isMagnetURI":"../../node_modules/validator/lib/isMagnetURI.js","./lib/isMimeType":"../../node_modules/validator/lib/isMimeType.js","./lib/isLatLong":"../../node_modules/validator/lib/isLatLong.js","./lib/isPostalCode":"../../node_modules/validator/lib/isPostalCode.js","./lib/ltrim":"../../node_modules/validator/lib/ltrim.js","./lib/rtrim":"../../node_modules/validator/lib/rtrim.js","./lib/trim":"../../node_modules/validator/lib/trim.js","./lib/escape":"../../node_modules/validator/lib/escape.js","./lib/unescape":"../../node_modules/validator/lib/unescape.js","./lib/stripLow":"../../node_modules/validator/lib/stripLow.js","./lib/whitelist":"../../node_modules/validator/lib/whitelist.js","./lib/blacklist":"../../node_modules/validator/lib/blacklist.js","./lib/isWhitelisted":"../../node_modules/validator/lib/isWhitelisted.js","./lib/normalizeEmail":"../../node_modules/validator/lib/normalizeEmail.js","./lib/isSlug":"../../node_modules/validator/lib/isSlug.js"}],"models/sepetModel.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.satinAl = void 0;
+
+require("core-js/modules/es6.array.copy-within");
+
+require("core-js/modules/es6.array.fill");
+
+require("core-js/modules/es6.array.find");
+
+require("core-js/modules/es6.array.find-index");
+
+require("core-js/modules/es7.array.flat-map");
+
+require("core-js/modules/es6.array.from");
+
+require("core-js/modules/es7.array.includes");
+
+require("core-js/modules/es6.array.iterator");
+
+require("core-js/modules/es6.array.of");
+
+require("core-js/modules/es6.array.sort");
+
+require("core-js/modules/es6.array.species");
+
+require("core-js/modules/es6.date.to-primitive");
+
+require("core-js/modules/es6.function.has-instance");
+
+require("core-js/modules/es6.function.name");
+
+require("core-js/modules/es6.map");
+
+require("core-js/modules/es6.math.acosh");
+
+require("core-js/modules/es6.math.asinh");
+
+require("core-js/modules/es6.math.atanh");
+
+require("core-js/modules/es6.math.cbrt");
+
+require("core-js/modules/es6.math.clz32");
+
+require("core-js/modules/es6.math.cosh");
+
+require("core-js/modules/es6.math.expm1");
+
+require("core-js/modules/es6.math.fround");
+
+require("core-js/modules/es6.math.hypot");
+
+require("core-js/modules/es6.math.imul");
+
+require("core-js/modules/es6.math.log1p");
+
+require("core-js/modules/es6.math.log10");
+
+require("core-js/modules/es6.math.log2");
+
+require("core-js/modules/es6.math.sign");
+
+require("core-js/modules/es6.math.sinh");
+
+require("core-js/modules/es6.math.tanh");
+
+require("core-js/modules/es6.math.trunc");
+
+require("core-js/modules/es6.number.constructor");
+
+require("core-js/modules/es6.number.epsilon");
+
+require("core-js/modules/es6.number.is-finite");
+
+require("core-js/modules/es6.number.is-integer");
+
+require("core-js/modules/es6.number.is-nan");
+
+require("core-js/modules/es6.number.is-safe-integer");
+
+require("core-js/modules/es6.number.max-safe-integer");
+
+require("core-js/modules/es6.number.min-safe-integer");
+
+require("core-js/modules/es6.number.parse-float");
+
+require("core-js/modules/es6.number.parse-int");
+
+require("core-js/modules/es6.object.assign");
+
+require("core-js/modules/es7.object.define-getter");
+
+require("core-js/modules/es7.object.define-setter");
+
+require("core-js/modules/es7.object.entries");
+
+require("core-js/modules/es6.object.freeze");
+
+require("core-js/modules/es6.object.get-own-property-descriptor");
+
+require("core-js/modules/es7.object.get-own-property-descriptors");
+
+require("core-js/modules/es6.object.get-own-property-names");
+
+require("core-js/modules/es6.object.get-prototype-of");
+
+require("core-js/modules/es7.object.lookup-getter");
+
+require("core-js/modules/es7.object.lookup-setter");
+
+require("core-js/modules/es6.object.prevent-extensions");
+
+require("core-js/modules/es6.object.to-string");
+
+require("core-js/modules/es6.object.is");
+
+require("core-js/modules/es6.object.is-frozen");
+
+require("core-js/modules/es6.object.is-sealed");
+
+require("core-js/modules/es6.object.is-extensible");
+
+require("core-js/modules/es6.object.keys");
+
+require("core-js/modules/es6.object.seal");
+
+require("core-js/modules/es7.object.values");
+
+require("core-js/modules/es6.promise");
+
+require("core-js/modules/es7.promise.finally");
+
+require("core-js/modules/es6.reflect.apply");
+
+require("core-js/modules/es6.reflect.construct");
+
+require("core-js/modules/es6.reflect.define-property");
+
+require("core-js/modules/es6.reflect.delete-property");
+
+require("core-js/modules/es6.reflect.get");
+
+require("core-js/modules/es6.reflect.get-own-property-descriptor");
+
+require("core-js/modules/es6.reflect.get-prototype-of");
+
+require("core-js/modules/es6.reflect.has");
+
+require("core-js/modules/es6.reflect.is-extensible");
+
+require("core-js/modules/es6.reflect.own-keys");
+
+require("core-js/modules/es6.reflect.prevent-extensions");
+
+require("core-js/modules/es6.reflect.set");
+
+require("core-js/modules/es6.reflect.set-prototype-of");
+
+require("core-js/modules/es6.regexp.constructor");
+
+require("core-js/modules/es6.regexp.flags");
+
+require("core-js/modules/es6.regexp.match");
+
+require("core-js/modules/es6.regexp.replace");
+
+require("core-js/modules/es6.regexp.split");
+
+require("core-js/modules/es6.regexp.search");
+
+require("core-js/modules/es6.regexp.to-string");
+
+require("core-js/modules/es6.set");
+
+require("core-js/modules/es6.symbol");
+
+require("core-js/modules/es7.symbol.async-iterator");
+
+require("core-js/modules/es6.string.anchor");
+
+require("core-js/modules/es6.string.big");
+
+require("core-js/modules/es6.string.blink");
+
+require("core-js/modules/es6.string.bold");
+
+require("core-js/modules/es6.string.code-point-at");
+
+require("core-js/modules/es6.string.ends-with");
+
+require("core-js/modules/es6.string.fixed");
+
+require("core-js/modules/es6.string.fontcolor");
+
+require("core-js/modules/es6.string.fontsize");
+
+require("core-js/modules/es6.string.from-code-point");
+
+require("core-js/modules/es6.string.includes");
+
+require("core-js/modules/es6.string.italics");
+
+require("core-js/modules/es6.string.iterator");
+
+require("core-js/modules/es6.string.link");
+
+require("core-js/modules/es7.string.pad-start");
+
+require("core-js/modules/es7.string.pad-end");
+
+require("core-js/modules/es6.string.raw");
+
+require("core-js/modules/es6.string.repeat");
+
+require("core-js/modules/es6.string.small");
+
+require("core-js/modules/es6.string.starts-with");
+
+require("core-js/modules/es6.string.strike");
+
+require("core-js/modules/es6.string.sub");
+
+require("core-js/modules/es6.string.sup");
+
+require("core-js/modules/es7.string.trim-left");
+
+require("core-js/modules/es7.string.trim-right");
+
+require("core-js/modules/es6.typed.array-buffer");
+
+require("core-js/modules/es6.typed.int8-array");
+
+require("core-js/modules/es6.typed.uint8-array");
+
+require("core-js/modules/es6.typed.uint8-clamped-array");
+
+require("core-js/modules/es6.typed.int16-array");
+
+require("core-js/modules/es6.typed.uint16-array");
+
+require("core-js/modules/es6.typed.int32-array");
+
+require("core-js/modules/es6.typed.uint32-array");
+
+require("core-js/modules/es6.typed.float32-array");
+
+require("core-js/modules/es6.typed.float64-array");
+
+require("core-js/modules/es6.weak-map");
+
+require("core-js/modules/es6.weak-set");
+
+require("core-js/modules/web.timers");
+
+require("core-js/modules/web.immediate");
+
+require("core-js/modules/web.dom.iterable");
+
+require("regenerator-runtime/runtime");
+
+var _axios = _interopRequireDefault(require("axios"));
+
+var _sweetalert = _interopRequireDefault(require("sweetalert2"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var satinAl = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(urunler) {
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+
+            _sweetalert.default.fire({
+              title: 'Yükleniyor...',
+              imageUrl: '/gif/loading.gif',
+              imageWidth: 100,
+              showConfirmButton: false
+            });
+
+            _context.next = 4;
+            return (0, _axios.default)({
+              method: 'PUT',
+              url: '/api/v1/sepet/guncelle',
+              data: {
+                urunler: urunler
+              }
+            });
+
+          case 4:
+            _sweetalert.default.close();
+
+            _sweetalert.default.fire({
+              title: 'Güncellendi!',
+              icon: 'success',
+              confirmButtonText: 'Tamam'
+            });
+
+            _context.next = 11;
+            break;
+
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0.response);
+
+          case 11:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 8]]);
+  }));
+
+  return function satinAl(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+exports.satinAl = satinAl;
+},{"core-js/modules/es6.array.copy-within":"../../node_modules/core-js/modules/es6.array.copy-within.js","core-js/modules/es6.array.fill":"../../node_modules/core-js/modules/es6.array.fill.js","core-js/modules/es6.array.find":"../../node_modules/core-js/modules/es6.array.find.js","core-js/modules/es6.array.find-index":"../../node_modules/core-js/modules/es6.array.find-index.js","core-js/modules/es7.array.flat-map":"../../node_modules/core-js/modules/es7.array.flat-map.js","core-js/modules/es6.array.from":"../../node_modules/core-js/modules/es6.array.from.js","core-js/modules/es7.array.includes":"../../node_modules/core-js/modules/es7.array.includes.js","core-js/modules/es6.array.iterator":"../../node_modules/core-js/modules/es6.array.iterator.js","core-js/modules/es6.array.of":"../../node_modules/core-js/modules/es6.array.of.js","core-js/modules/es6.array.sort":"../../node_modules/core-js/modules/es6.array.sort.js","core-js/modules/es6.array.species":"../../node_modules/core-js/modules/es6.array.species.js","core-js/modules/es6.date.to-primitive":"../../node_modules/core-js/modules/es6.date.to-primitive.js","core-js/modules/es6.function.has-instance":"../../node_modules/core-js/modules/es6.function.has-instance.js","core-js/modules/es6.function.name":"../../node_modules/core-js/modules/es6.function.name.js","core-js/modules/es6.map":"../../node_modules/core-js/modules/es6.map.js","core-js/modules/es6.math.acosh":"../../node_modules/core-js/modules/es6.math.acosh.js","core-js/modules/es6.math.asinh":"../../node_modules/core-js/modules/es6.math.asinh.js","core-js/modules/es6.math.atanh":"../../node_modules/core-js/modules/es6.math.atanh.js","core-js/modules/es6.math.cbrt":"../../node_modules/core-js/modules/es6.math.cbrt.js","core-js/modules/es6.math.clz32":"../../node_modules/core-js/modules/es6.math.clz32.js","core-js/modules/es6.math.cosh":"../../node_modules/core-js/modules/es6.math.cosh.js","core-js/modules/es6.math.expm1":"../../node_modules/core-js/modules/es6.math.expm1.js","core-js/modules/es6.math.fround":"../../node_modules/core-js/modules/es6.math.fround.js","core-js/modules/es6.math.hypot":"../../node_modules/core-js/modules/es6.math.hypot.js","core-js/modules/es6.math.imul":"../../node_modules/core-js/modules/es6.math.imul.js","core-js/modules/es6.math.log1p":"../../node_modules/core-js/modules/es6.math.log1p.js","core-js/modules/es6.math.log10":"../../node_modules/core-js/modules/es6.math.log10.js","core-js/modules/es6.math.log2":"../../node_modules/core-js/modules/es6.math.log2.js","core-js/modules/es6.math.sign":"../../node_modules/core-js/modules/es6.math.sign.js","core-js/modules/es6.math.sinh":"../../node_modules/core-js/modules/es6.math.sinh.js","core-js/modules/es6.math.tanh":"../../node_modules/core-js/modules/es6.math.tanh.js","core-js/modules/es6.math.trunc":"../../node_modules/core-js/modules/es6.math.trunc.js","core-js/modules/es6.number.constructor":"../../node_modules/core-js/modules/es6.number.constructor.js","core-js/modules/es6.number.epsilon":"../../node_modules/core-js/modules/es6.number.epsilon.js","core-js/modules/es6.number.is-finite":"../../node_modules/core-js/modules/es6.number.is-finite.js","core-js/modules/es6.number.is-integer":"../../node_modules/core-js/modules/es6.number.is-integer.js","core-js/modules/es6.number.is-nan":"../../node_modules/core-js/modules/es6.number.is-nan.js","core-js/modules/es6.number.is-safe-integer":"../../node_modules/core-js/modules/es6.number.is-safe-integer.js","core-js/modules/es6.number.max-safe-integer":"../../node_modules/core-js/modules/es6.number.max-safe-integer.js","core-js/modules/es6.number.min-safe-integer":"../../node_modules/core-js/modules/es6.number.min-safe-integer.js","core-js/modules/es6.number.parse-float":"../../node_modules/core-js/modules/es6.number.parse-float.js","core-js/modules/es6.number.parse-int":"../../node_modules/core-js/modules/es6.number.parse-int.js","core-js/modules/es6.object.assign":"../../node_modules/core-js/modules/es6.object.assign.js","core-js/modules/es7.object.define-getter":"../../node_modules/core-js/modules/es7.object.define-getter.js","core-js/modules/es7.object.define-setter":"../../node_modules/core-js/modules/es7.object.define-setter.js","core-js/modules/es7.object.entries":"../../node_modules/core-js/modules/es7.object.entries.js","core-js/modules/es6.object.freeze":"../../node_modules/core-js/modules/es6.object.freeze.js","core-js/modules/es6.object.get-own-property-descriptor":"../../node_modules/core-js/modules/es6.object.get-own-property-descriptor.js","core-js/modules/es7.object.get-own-property-descriptors":"../../node_modules/core-js/modules/es7.object.get-own-property-descriptors.js","core-js/modules/es6.object.get-own-property-names":"../../node_modules/core-js/modules/es6.object.get-own-property-names.js","core-js/modules/es6.object.get-prototype-of":"../../node_modules/core-js/modules/es6.object.get-prototype-of.js","core-js/modules/es7.object.lookup-getter":"../../node_modules/core-js/modules/es7.object.lookup-getter.js","core-js/modules/es7.object.lookup-setter":"../../node_modules/core-js/modules/es7.object.lookup-setter.js","core-js/modules/es6.object.prevent-extensions":"../../node_modules/core-js/modules/es6.object.prevent-extensions.js","core-js/modules/es6.object.to-string":"../../node_modules/core-js/modules/es6.object.to-string.js","core-js/modules/es6.object.is":"../../node_modules/core-js/modules/es6.object.is.js","core-js/modules/es6.object.is-frozen":"../../node_modules/core-js/modules/es6.object.is-frozen.js","core-js/modules/es6.object.is-sealed":"../../node_modules/core-js/modules/es6.object.is-sealed.js","core-js/modules/es6.object.is-extensible":"../../node_modules/core-js/modules/es6.object.is-extensible.js","core-js/modules/es6.object.keys":"../../node_modules/core-js/modules/es6.object.keys.js","core-js/modules/es6.object.seal":"../../node_modules/core-js/modules/es6.object.seal.js","core-js/modules/es7.object.values":"../../node_modules/core-js/modules/es7.object.values.js","core-js/modules/es6.promise":"../../node_modules/core-js/modules/es6.promise.js","core-js/modules/es7.promise.finally":"../../node_modules/core-js/modules/es7.promise.finally.js","core-js/modules/es6.reflect.apply":"../../node_modules/core-js/modules/es6.reflect.apply.js","core-js/modules/es6.reflect.construct":"../../node_modules/core-js/modules/es6.reflect.construct.js","core-js/modules/es6.reflect.define-property":"../../node_modules/core-js/modules/es6.reflect.define-property.js","core-js/modules/es6.reflect.delete-property":"../../node_modules/core-js/modules/es6.reflect.delete-property.js","core-js/modules/es6.reflect.get":"../../node_modules/core-js/modules/es6.reflect.get.js","core-js/modules/es6.reflect.get-own-property-descriptor":"../../node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js","core-js/modules/es6.reflect.get-prototype-of":"../../node_modules/core-js/modules/es6.reflect.get-prototype-of.js","core-js/modules/es6.reflect.has":"../../node_modules/core-js/modules/es6.reflect.has.js","core-js/modules/es6.reflect.is-extensible":"../../node_modules/core-js/modules/es6.reflect.is-extensible.js","core-js/modules/es6.reflect.own-keys":"../../node_modules/core-js/modules/es6.reflect.own-keys.js","core-js/modules/es6.reflect.prevent-extensions":"../../node_modules/core-js/modules/es6.reflect.prevent-extensions.js","core-js/modules/es6.reflect.set":"../../node_modules/core-js/modules/es6.reflect.set.js","core-js/modules/es6.reflect.set-prototype-of":"../../node_modules/core-js/modules/es6.reflect.set-prototype-of.js","core-js/modules/es6.regexp.constructor":"../../node_modules/core-js/modules/es6.regexp.constructor.js","core-js/modules/es6.regexp.flags":"../../node_modules/core-js/modules/es6.regexp.flags.js","core-js/modules/es6.regexp.match":"../../node_modules/core-js/modules/es6.regexp.match.js","core-js/modules/es6.regexp.replace":"../../node_modules/core-js/modules/es6.regexp.replace.js","core-js/modules/es6.regexp.split":"../../node_modules/core-js/modules/es6.regexp.split.js","core-js/modules/es6.regexp.search":"../../node_modules/core-js/modules/es6.regexp.search.js","core-js/modules/es6.regexp.to-string":"../../node_modules/core-js/modules/es6.regexp.to-string.js","core-js/modules/es6.set":"../../node_modules/core-js/modules/es6.set.js","core-js/modules/es6.symbol":"../../node_modules/core-js/modules/es6.symbol.js","core-js/modules/es7.symbol.async-iterator":"../../node_modules/core-js/modules/es7.symbol.async-iterator.js","core-js/modules/es6.string.anchor":"../../node_modules/core-js/modules/es6.string.anchor.js","core-js/modules/es6.string.big":"../../node_modules/core-js/modules/es6.string.big.js","core-js/modules/es6.string.blink":"../../node_modules/core-js/modules/es6.string.blink.js","core-js/modules/es6.string.bold":"../../node_modules/core-js/modules/es6.string.bold.js","core-js/modules/es6.string.code-point-at":"../../node_modules/core-js/modules/es6.string.code-point-at.js","core-js/modules/es6.string.ends-with":"../../node_modules/core-js/modules/es6.string.ends-with.js","core-js/modules/es6.string.fixed":"../../node_modules/core-js/modules/es6.string.fixed.js","core-js/modules/es6.string.fontcolor":"../../node_modules/core-js/modules/es6.string.fontcolor.js","core-js/modules/es6.string.fontsize":"../../node_modules/core-js/modules/es6.string.fontsize.js","core-js/modules/es6.string.from-code-point":"../../node_modules/core-js/modules/es6.string.from-code-point.js","core-js/modules/es6.string.includes":"../../node_modules/core-js/modules/es6.string.includes.js","core-js/modules/es6.string.italics":"../../node_modules/core-js/modules/es6.string.italics.js","core-js/modules/es6.string.iterator":"../../node_modules/core-js/modules/es6.string.iterator.js","core-js/modules/es6.string.link":"../../node_modules/core-js/modules/es6.string.link.js","core-js/modules/es7.string.pad-start":"../../node_modules/core-js/modules/es7.string.pad-start.js","core-js/modules/es7.string.pad-end":"../../node_modules/core-js/modules/es7.string.pad-end.js","core-js/modules/es6.string.raw":"../../node_modules/core-js/modules/es6.string.raw.js","core-js/modules/es6.string.repeat":"../../node_modules/core-js/modules/es6.string.repeat.js","core-js/modules/es6.string.small":"../../node_modules/core-js/modules/es6.string.small.js","core-js/modules/es6.string.starts-with":"../../node_modules/core-js/modules/es6.string.starts-with.js","core-js/modules/es6.string.strike":"../../node_modules/core-js/modules/es6.string.strike.js","core-js/modules/es6.string.sub":"../../node_modules/core-js/modules/es6.string.sub.js","core-js/modules/es6.string.sup":"../../node_modules/core-js/modules/es6.string.sup.js","core-js/modules/es7.string.trim-left":"../../node_modules/core-js/modules/es7.string.trim-left.js","core-js/modules/es7.string.trim-right":"../../node_modules/core-js/modules/es7.string.trim-right.js","core-js/modules/es6.typed.array-buffer":"../../node_modules/core-js/modules/es6.typed.array-buffer.js","core-js/modules/es6.typed.int8-array":"../../node_modules/core-js/modules/es6.typed.int8-array.js","core-js/modules/es6.typed.uint8-array":"../../node_modules/core-js/modules/es6.typed.uint8-array.js","core-js/modules/es6.typed.uint8-clamped-array":"../../node_modules/core-js/modules/es6.typed.uint8-clamped-array.js","core-js/modules/es6.typed.int16-array":"../../node_modules/core-js/modules/es6.typed.int16-array.js","core-js/modules/es6.typed.uint16-array":"../../node_modules/core-js/modules/es6.typed.uint16-array.js","core-js/modules/es6.typed.int32-array":"../../node_modules/core-js/modules/es6.typed.int32-array.js","core-js/modules/es6.typed.uint32-array":"../../node_modules/core-js/modules/es6.typed.uint32-array.js","core-js/modules/es6.typed.float32-array":"../../node_modules/core-js/modules/es6.typed.float32-array.js","core-js/modules/es6.typed.float64-array":"../../node_modules/core-js/modules/es6.typed.float64-array.js","core-js/modules/es6.weak-map":"../../node_modules/core-js/modules/es6.weak-map.js","core-js/modules/es6.weak-set":"../../node_modules/core-js/modules/es6.weak-set.js","core-js/modules/web.timers":"../../node_modules/core-js/modules/web.timers.js","core-js/modules/web.immediate":"../../node_modules/core-js/modules/web.immediate.js","core-js/modules/web.dom.iterable":"../../node_modules/core-js/modules/web.dom.iterable.js","regenerator-runtime/runtime":"../../node_modules/regenerator-runtime/runtime.js","axios":"../../node_modules/axios/index.js","sweetalert2":"../../node_modules/sweetalert2/dist/sweetalert2.all.js"}],"controllers/sepetController.js":[function(require,module,exports) {
 "use strict";
 
 var _validator = _interopRequireDefault(require("validator"));
+
+var _sepetModel = require("../models/sepetModel");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29559,10 +29890,18 @@ if (sepetButon) {
     $('.genelToplam').html("$".concat(altToplam + fark + 2));
   });
   $('#odemeButon').on('click', function (e) {
-    e.preventDefault();
+    e.preventDefault(); //Sadece ürün miktarları gönderilerek sepet güncellenicek sonra ise ödeme ekranına yönlendirilecek.
+
+    var urunler = Array.from($('.input-number')).map(function (el) {
+      return {
+        id: el.dataset.id,
+        sayi: el.value
+      };
+    });
+    (0, _sepetModel.satinAl)(urunler);
   });
 }
-},{"validator":"../../node_modules/validator/index.js"}],"index.js":[function(require,module,exports) {
+},{"validator":"../../node_modules/validator/index.js","../models/sepetModel":"models/sepetModel.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _jquery = _interopRequireDefault(require("jquery"));

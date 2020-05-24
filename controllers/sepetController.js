@@ -108,3 +108,20 @@ exports.sepetToggle = hataYakala(async (req, res, next) => {
     urunEksilt(sepetIndex, index, res);
   }
 });
+
+exports.sepetGuncelle = hataYakala(async (req, res, next) => {
+  //Ürünler body'den array şeklinde sayısıyla beraber gelicek
+  const sepet = await Sepet.findOne({ kullanici: req.user.id });
+
+  req.body.urunler.forEach((el) => {
+    const index = sepet.urunler.findIndex((cur) => el.id == cur.id);
+    sepet.urunler[index].sayi = el.sayi;
+  });
+
+  await sepet.save();
+
+  res.status(200).json({
+    status: 'success',
+    sepet,
+  });
+});

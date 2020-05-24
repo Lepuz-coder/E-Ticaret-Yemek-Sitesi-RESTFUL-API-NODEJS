@@ -30,7 +30,7 @@ block content
                 td.price $#{urun.yemek.fiyat}
                 td.quantity
                   .input-group.mb-3
-                    input.quantity.form-control.input-number(type='text' name='quantity' value=`${urun.sayi}` data-fiyat=`${urun.yemek.fiyat}`)
+                    input.quantity.form-control.input-number(type='text' name='quantity' value=`${urun.sayi}` data-fiyat=`${urun.yemek.fiyat}` data-id=`${urun.id}`)
                     input(type="hidden" value=`${urun.yemek.stok}` class='stokSayi')
                 td.total= `$${urun.yemek.fiyat * urun.sayi}`
         

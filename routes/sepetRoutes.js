@@ -19,4 +19,6 @@ router
 
 router.post('/toggle/:id', sepetController.sepetToggle);
 
+router.put('/guncelle', sepetController.sepetGuncelle);
+
 module.exports = router;

@@ -1,5 +1,6 @@
 /* eslint-disable */
 import validator from 'validator';
+import { satinAl } from '../models/sepetModel';
 
 const sepetButon = document.getElementById('odemeButon');
 
@@ -30,5 +31,14 @@ if (sepetButon) {
 
   $('#odemeButon').on('click', (e) => {
     e.preventDefault();
+    //Sadece ürün miktarları gönderilerek sepet güncellenicek sonra ise ödeme ekranına yönlendirilecek.
+    const urunler = Array.from($('.input-number')).map((el) => {
+      return {
+        id: el.dataset.id,
+        sayi: el.value,
+      };
+    });
+
+    satinAl(urunler);
   });
 }
