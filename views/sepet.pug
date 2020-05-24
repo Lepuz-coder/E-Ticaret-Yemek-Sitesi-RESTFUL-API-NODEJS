@@ -30,7 +30,8 @@ block content
                 td.price $#{urun.yemek.fiyat}
                 td.quantity
                   .input-group.mb-3
-                    input.quantity.form-control.input-number(type='text' name='quantity' value=`${urun.sayi}` min='1' max='100')
+                    input.quantity.form-control.input-number(type='text' name='quantity' value=`${urun.sayi}` data-fiyat=`${urun.yemek.fiyat}`)
+                    input(type="hidden" value=`${urun.yemek.stok}` class='stokSayi')
                 td.total= `$${urun.yemek.fiyat * urun.sayi}`
         
     .row.justify-content-end
@@ -65,7 +66,7 @@ block content
           h3 Sepet Toplamı
           p.d-flex
             span Alt Toplam
-            span= `$${toplam}`
+            span.altToplam= `$${toplam}`
           p.d-flex
             span Kargo Ücreti
             span $2.00
@@ -75,6 +76,6 @@ block content
           hr
           p.d-flex.total-price
             span Toplam
-            span= `$${toplam + 2}`
+            span.genelToplam= `$${toplam + 2}`
         p
           a.btn.btn-primary.py-3.px-4(href='#' id='odemeButon') Ödeme Yap
