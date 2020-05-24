@@ -96,6 +96,7 @@ exports.sepetiBoslat = hataYakala(async (req, res, next) => {
 });
 
 exports.sepetToggle = hataYakala(async (req, res, next) => {
+  console.log('hi');
   const sepetIndex = await Sepet.findOne({ kullanici: req.user.id });
   const index = sepetIndex.urunler.findIndex((el) => {
     return el.yemek == req.params.id;
@@ -133,8 +134,8 @@ exports.getCheckoutSession = hataYakala(async (req, res, next) => {
     'urunler.yemek'
   );
   const iyzipay = new Iyzipay({
-    apiKey: 'sandbox-QeMIDb7JHhbGWPc9bI9n49STmDA3yokz',
-    secretKey: 'sandbox-VIhdTDg4I3boyjjimf07rHh4GDdZIqtM',
+    apiKey: process.env.IYZIPAY_API_KEY,
+    secretKey: process.env.IYZIPAY_SECRET_KEY,
     uri: 'https://sandbox-api.iyzipay.com',
   });
 
@@ -153,17 +154,15 @@ exports.getCheckoutSession = hataYakala(async (req, res, next) => {
     }
   });
 
-  console.log(basketItems);
-
   const request = {
     locale: Iyzipay.LOCALE.TR,
     conversationId: '123456789',
     price: `${toplam}`,
-    paidPrice: `${toplam}`,
+    paidPrice: `${toplam + 2}`,
     currency: Iyzipay.CURRENCY.TRY,
     basketId: 'B67832',
     paymentGroup: Iyzipay.PAYMENT_GROUP.LISTING,
-    callbackUrl: 'http://127.0.0.1:3000/urunler',
+    callbackUrl: `${req.protocol}://${req.get('host')}/urunler`,
     enabledInstallments: [2, 3, 6, 9],
     buyer: {
       id: req.user.id,
@@ -174,33 +173,32 @@ exports.getCheckoutSession = hataYakala(async (req, res, next) => {
       identityNumber: '74300864791',
       lastLoginDate: '2015-10-05 12:43:35',
       registrationDate: '2013-04-21 15:12:09',
-      registrationAddress: 'Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1',
+      registrationAddress: req.body.bilgiler.adres,
       ip: '85.34.78.112',
-      city: 'Istanbul',
+      city: req.body.bilgiler.sehir,
       country: 'Turkey',
-      zipCode: '34732',
+      zipCode: req.body.bilgiler.zip,
     },
     shippingAddress: {
-      contactName: 'Jane Doe',
-      city: 'Istanbul',
+      contactName: req.user.kullanici_ad,
+      city: req.body.bilgiler.sehir,
       country: 'Turkey',
-      address: 'Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1',
-      zipCode: '34742',
+      address: req.body.bilgiler.adres,
+      zipCode: req.body.bilgiler.zip,
     },
     billingAddress: {
-      contactName: 'Jane Doe',
-      city: 'Istanbul',
+      contactName: req.user.kullanici_ad,
+      city: req.body.bilgiler.sehir,
       country: 'Turkey',
-      address: 'Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1',
-      zipCode: '34742',
+      address: req.body.bilgiler.adres,
+      zipCode: req.body.bilgiler.zip,
     },
     basketItems,
   };
   iyzipay.checkoutFormInitialize.create(request, function (err, result) {
     //console.log(result);
-    console.log(err);
-    console.log(result);
-    const form = `${result.checkoutFormContent}<div id="iyzipay-checkout-form" class="responsive"></div>`;
+
+    const form = `${result.checkoutFormContent}`;
     res.status(200).json({
       status: 'success',
       form,

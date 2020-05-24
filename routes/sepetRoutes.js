@@ -17,9 +17,9 @@ router
   .patch(sepetController.sepettekiUrunuEksilt)
   .delete(sepetController.sepettenUrunCikart);
 
-router.post('/toggle/:id', sepetController.sepetToggle);
+router.post('/toggle/urun/:id', sepetController.sepetToggle);
 
 router.put('/guncelle', sepetController.sepetGuncelle);
-router.get('/checkout-session', sepetController.getCheckoutSession);
+router.post('/checkout/session/update', sepetController.getCheckoutSession);
 
 module.exports = router;

@@ -1,6 +1,7 @@
 /* eslint-disable */
 import validator from 'validator';
-import { satinAl } from '../models/sepetModel';
+import { satinAl, sepettenCikar } from '../models/sepetModel';
+import Swal from 'sweetalert2';
 
 const sepetButon = document.getElementById('odemeButon');
 
@@ -31,6 +32,20 @@ if (sepetButon) {
 
   $('#odemeButon').on('click', (e) => {
     e.preventDefault();
+
+    const sehir = $('#sehir').val();
+    const ilce = $('#ilce').val();
+    const zip = $('#zip').val();
+    const adres = $('#adres').val();
+
+    if (sehir == '' || ilce == '' || zip == '' || adres == '') {
+      return Swal.fire({
+        icon: 'warning',
+        title: 'Boş bırakmayınız!',
+        text: 'Ödeme yapmak için tüm bilgileri doldurmalısınız',
+      });
+    }
+
     //Sadece ürün miktarları gönderilerek sepet güncellenicek sonra ise ödeme ekranına yönlendirilecek.
     const urunler = Array.from($('.input-number')).map((el) => {
       return {
@@ -39,6 +54,37 @@ if (sepetButon) {
       };
     });
 
-    satinAl(urunler);
+    satinAl(urunler, { sehir, ilce, zip, adres }).then(() => {
+      $('#odemeButon').hide();
+      $('#iptalButon').removeClass('d-none');
+      $('.input-number').attr('disabled', true);
+    });
+  });
+
+  $('#iptalButon').on('click', (e) => {
+    e.preventDefault();
+    Swal.fire({
+      icon: 'warning',
+      title: 'Emin misiniz?',
+      text:
+        'Daha sonra tekrardan ödeme yapmaya sepetinize gelebilirsiniz. Ürünleriniz silinmez.',
+      confirmButtonText: 'Evet',
+      cancelButtonText: 'Hayır',
+      showCancelButton: true,
+    }).then((res) => {
+      if (!res.isDismissed) location.assign('/sepetim');
+    });
+  });
+
+  $('.sepettenKaldir').on('click', (e) => {
+    e.preventDefault();
+    const id = e.target.dataset.id;
+    sepettenCikar(id).then(() => {
+      $(e.target).parents('.text-center').remove();
+      const altToplam = parseFloat($('.altToplam').html().split('$')[1]);
+      const fark = parseFloat(e.target.dataset.fiyat);
+      $('.altToplam').html(`$${altToplam - fark}`);
+      $('.genelToplam').html(`$${altToplam - fark + 2}`);
+    });
   });
 }

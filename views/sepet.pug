@@ -1,7 +1,6 @@
 extends base
 
 block content
- div#iyzipay-checkout-form.popup
  section.ftco-section.ftco-cart
   .container.anaContainter
     .row
@@ -20,7 +19,7 @@ block content
              each urun in urunler 
               tr.text-center
                 td.product-remove
-                  a(href='#')
+                  a.sepettenKaldir(href='#' data-id=`${urun.yemek.id}` data-fiyat=`${urun.yemek.fiyat}`)
                     span.ion-ios-close
                 td.image-prod
                   .img(style='background-image:url(images/product-3.jpg);')
@@ -37,28 +36,21 @@ block content
     .row.justify-content-end
       .col-lg-4.mt-5.cart-wrap.ftco-animate
         .cart-total.mb-3
-          h3 Kupon Kodu
-          p İndirim için kupon kodunuz varsa giriniz
-          form.info(action='#')
-            .form-group
-              label(for='') Kupon Kodu
-              input.form-control.text-left.px-3(type='text' placeholder='')
-        p
-          a.btn.btn-primary.py-3.px-4(href='checkout.html') Kuponu Uygula
-      .col-lg-4.mt-5.cart-wrap.ftco-animate
-        .cart-total.mb-3
           h3 Adresinizi Giriniz
           p Kargo için adresini giriniz. Ödemeden sonra kargo bilgileriniz bize ulşaır.
           form.info(action='#')
             .form-group
               label(for='') Şehir
-              input.form-control.text-left.px-3(type='text' placeholder='')
+              input.form-control.text-left.px-3(type='text' placeholder='' id='sehir')
             .form-group
               label(for='country') İlçe
-              input.form-control.text-left.px-3(type='text' placeholder='')
+              input.form-control.text-left.px-3(type='text' placeholder='' id='ilce')
             .form-group
               label(for='country') Tam adresiniz
-              input.form-control.text-left.px-3(type='text' placeholder='')
+              input.form-control.text-left.px-3(type='text' placeholder='' id='adres')
+            .form-group
+              label(for='country') Posta kodunuzu giriniz
+              input.form-control.text-left.px-3(type='text' placeholder='' id='zip')  
         p
           a.btn.btn-primary.py-3.px-4(href='checkout.html') Adresi Onaylayınız
       .col-lg-4.mt-5.cart-wrap.ftco-animate
@@ -77,5 +69,12 @@ block content
           p.d-flex.total-price
             span Toplam
             span.genelToplam= `$${toplam + 2}`
-        p
+        p.odemeBut
           a.btn.btn-primary.py-3.px-4(href='#' id='odemeButon') Ödeme Yap
+          a.btn.btn-danger.py-3.px-4.d-none(href='#' id='iptalButon') İptal Et
+
+
+      .col-lg-4.mt-5.cart-wrap.ftco-animate
+        div#iyzipay-checkout-form.responsive    
+           
+

@@ -40,33 +40,37 @@ export const begenToggle = async (id) => {
 };
 
 export const sepetToggle = async (id) => {
-  Swal.fire({
-    title: 'Yükleniyor...',
-    imageUrl: '/gif/loading.gif',
-    imageWidth: 100,
-    showConfirmButton: false,
-  });
+  try {
+    Swal.fire({
+      title: 'Yükleniyor...',
+      imageUrl: '/gif/loading.gif',
+      imageWidth: 100,
+      showConfirmButton: false,
+    });
 
-  const res = await axios({
-    method: 'POST',
-    url: `/api/v1/sepet/toggle/${id}`,
-  });
-  Swal.close();
-  if (res.data.tip === 'Ekleme') {
-    Swal.fire({
-      icon: 'success',
-      title: 'Sepete eklendi',
-      timer: '1000',
-      showConfirmButton: false,
+    const res = await axios({
+      method: 'POST',
+      url: `/api/v1/sepet/toggle/urun/${id}`,
     });
-    return true;
-  } else {
-    Swal.fire({
-      icon: 'error',
-      title: 'Sepetten kaldırıldı',
-      timer: '700',
-      showConfirmButton: false,
-    });
-    return false;
+    Swal.close();
+    if (res.data.tip === 'Ekleme') {
+      Swal.fire({
+        icon: 'success',
+        title: 'Sepete eklendi',
+        timer: '1000',
+        showConfirmButton: false,
+      });
+      return true;
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Sepetten kaldırıldı',
+        timer: '700',
+        showConfirmButton: false,
+      });
+      return false;
+    }
+  } catch (err) {
+    console.log(err.response);
   }
 };
