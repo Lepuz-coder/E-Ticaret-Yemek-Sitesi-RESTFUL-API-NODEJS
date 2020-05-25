@@ -33,10 +33,10 @@ if (sepetButon) {
   $('#odemeButon').on('click', (e) => {
     e.preventDefault();
 
-    const sehir = $('#sehir').val();
-    const ilce = $('#ilce').val();
-    const zip = $('#zip').val();
-    const adres = $('#adres').val();
+    const sehir = $('#sehir').val().trim();
+    const ilce = $('#ilce').val().trim();
+    const zip = $('#zip').val().trim();
+    const adres = $('#adres').val().trim();
 
     if (sehir == '' || ilce == '' || zip == '' || adres == '') {
       return Swal.fire({
@@ -54,11 +54,19 @@ if (sepetButon) {
       };
     });
 
-    satinAl(urunler, { sehir, ilce, zip, adres }).then(() => {
-      $('#odemeButon').hide();
-      $('#iptalButon').removeClass('d-none');
-      $('.input-number').attr('disabled', true);
-    });
+    satinAl(urunler, { sehir, ilce, zip, adres })
+      .then(() => {
+        $('#odemeButon').hide();
+        $('#iptalButon').removeClass('d-none');
+        $('.input-number').attr('disabled', true);
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Bir şeyler ters gitti !',
+          text: 'Daha sonra tekrar deneyiniz.',
+        });
+      });
   });
 
   $('#iptalButon').on('click', (e) => {

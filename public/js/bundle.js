@@ -29968,10 +29968,10 @@ if (sepetButon) {
   });
   $('#odemeButon').on('click', function (e) {
     e.preventDefault();
-    var sehir = $('#sehir').val();
-    var ilce = $('#ilce').val();
-    var zip = $('#zip').val();
-    var adres = $('#adres').val();
+    var sehir = $('#sehir').val().trim();
+    var ilce = $('#ilce').val().trim();
+    var zip = $('#zip').val().trim();
+    var adres = $('#adres').val().trim();
 
     if (sehir == '' || ilce == '' || zip == '' || adres == '') {
       return _sweetalert.default.fire({
@@ -29997,6 +29997,12 @@ if (sepetButon) {
       $('#odemeButon').hide();
       $('#iptalButon').removeClass('d-none');
       $('.input-number').attr('disabled', true);
+    }).catch(function (err) {
+      _sweetalert.default.fire({
+        icon: 'error',
+        title: 'Bir şeyler ters gitti !',
+        text: 'Daha sonra tekrar deneyiniz.'
+      });
     });
   });
   $('#iptalButon').on('click', function (e) {
