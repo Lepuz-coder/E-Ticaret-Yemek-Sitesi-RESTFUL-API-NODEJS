@@ -17,7 +17,7 @@ Tam fonksiyonlu; giriş, üye olma, ürün ekleme, satın alma gibi işlemleri i
 Bunlar sadece kullanılan temel kütüphaneler ve teknolojilerdir.
 
 ### API Linklerinin İşlevlerine Bakmak İçin Postman Dokümentasyonu : 
-[Postman API Dokümentasyonu](https://documenter.getpostman.com/view/11268324/SztA6oST?version=latest#5701256b-d30a-4202-9b7d-7bc3be95de35 "Postman API Dokümentasyonu")
+[Postman API Dokümentasyonu](https://documenter.getpostman.com/view/11268324/SztA6oST?version=latest)
 
 ### Client ve Render Tarafında Kullanılan Teknolojiler ve Kütüphaneler
 
