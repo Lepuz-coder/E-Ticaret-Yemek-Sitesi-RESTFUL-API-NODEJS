@@ -18,7 +18,7 @@ Bunlar sadece kullanılan temel kütüphaneler ve teknolojilerdir.
 
 ### API Linklerinin İşlevlerine Bakmak İçin Postman Dokümentasyonu : 
 [Postman API Dokümentasyonu](https://documenter.getpostman.com/view/11268324/SztA6oST?version=latest)
-Postam dokümentasyonundaki {{URL}} kısımlarına bu projeyi kurduğunuz hostu yazıcaksınız(Örnek:127.0.0.1).
+Postam dokümentasyonundaki {{URL}} kısımlarına bu projeyi kurduğunuz hostu yazıcaksınız(Örnek:http://127.0.0.1:3000).
 
 ### Client ve Render Tarafında Kullanılan Teknolojiler ve Kütüphaneler
 
