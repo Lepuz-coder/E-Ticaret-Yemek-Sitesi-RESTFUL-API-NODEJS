@@ -110,3 +110,6 @@ IYZIPAY_API_KEY karşısına buradaki API Anahtarı'nda yazanı koyacaksın.
 IYZIPAY_SECRET_KEY karşısına ise Güvenlik Anahtarındaki yazanı koyacaksın.
 
 İşte bu kadar ! Bu ayarların hepsini yaptıktan sonra uygulamayı istediğin gibi kullanabileceksin. Sadece API'i kullanmak istiyorsan public klasörünün ve views klasörünün içindekiler seni ilgilendirmiyor demektir. İyi kullanmalar :D
+
+### Önemli Bir Uyarı !
+- Eğer ki tüm bu yaptıklarınızdan sonra sistem doğru çalışmadıysa node_modules dosyası indi mi diye kontrol ediniz. İnmediyse indirdiğiniz proje dizininde 'npm install' yazarak node_modules klasörünü ve içeirisindeki dosyaları indirebilirsiniz.
